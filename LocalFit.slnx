@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Project Path="LocalFit.Android/LocalFit.Android.csproj" />
+  <Project Path="LocalFit.Browser/LocalFit.Browser.csproj" />
+  <Project Path="LocalFit.Desktop/LocalFit.Desktop.csproj" />
+  <Project Path="LocalFit.iOS/LocalFit.iOS.csproj" />
+  <Project Path="LocalFit/LocalFit.csproj" />
+</Solution>
