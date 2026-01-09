@@ -1,10 +1,16 @@
 <Solution>
   <Folder Name="/Solution Items/">
     <File Path="Directory.Packages.props" />
+    <File Path="README.md" />
   </Folder>
-  <Project Path="LocalFit.Android/LocalFit.Android.csproj" />
+  <Project Path="LocalFit.Android/LocalFit.Android.csproj">
+    <Deploy />
+  </Project>
   <Project Path="LocalFit.Browser/LocalFit.Browser.csproj" />
   <Project Path="LocalFit.Desktop/LocalFit.Desktop.csproj" />
-  <Project Path="LocalFit.iOS/LocalFit.iOS.csproj" />
+  <Project Path="LocalFit.iOS/LocalFit.iOS.csproj">
+    <Deploy />
+  </Project>
+  <Project Path="LocalFit.Lib/LocalFit.Lib.csproj" Id="4e1a5d01-5700-4257-a54f-9bbbf324b2f7" />
   <Project Path="LocalFit/LocalFit.csproj" />
 </Solution>

@@ -1,0 +1,137 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.Intrinsics.X86;
+using System.Text;
+
+namespace LocalFit.Lib;
+
+/// <summary>
+/// todo: need to read up on actual nutrition calculations and improve this -> there should be papers on this but will do as a start
+/// https://www.calculator.net -> seems to have similarish results
+/// </summary>
+public static class BMRCalculator
+{
+    private static decimal CalculateBmr(decimal weightKg, decimal heightCm, int age, Sex sex)
+    {
+        return sex == Sex.Male
+            ? (10 * weightKg) + (6.25m * heightCm) - (5 * age) + 5
+            : (10 * weightKg) + (6.25m * heightCm) - (5 * age) - 161;
+    }
+    private static decimal GetProteinPerKg(FitnessLevel level)
+    {
+        return level switch
+        {
+            FitnessLevel.Sedentary => 1.6m,
+            FitnessLevel.LightlyActive => 1.8m,
+            FitnessLevel.ModeratelyActive => 2.0m,
+            FitnessLevel.VeryActive => 2.2m,
+            FitnessLevel.Athlete => 2.4m,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+    }
+
+    private static decimal GetActivityMultiplier(FitnessLevel level)
+    {
+        return level switch
+        {
+            FitnessLevel.Sedentary => 1.2m,
+            FitnessLevel.LightlyActive => 1.375m,
+            FitnessLevel.ModeratelyActive => 1.55m,
+            FitnessLevel.VeryActive => 1.725m,
+            FitnessLevel.Athlete => 1.9m,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+    }
+
+    /// <summary>
+    /// this might have to be adjusted based on body weight
+    /// </summary>
+    /// <param name="goal"></param>
+    /// <returns></returns>
+    private static decimal GetGoalCaloriesAdjustment(CalorieGoal goal)
+    {
+        return goal switch
+        {
+            CalorieGoal.Cut => -500,
+            CalorieGoal.AggressiveCut => -250,
+            CalorieGoal.Maintenance => 0,
+            CalorieGoal.Bulk => 150,
+            CalorieGoal.AggressiveBulk => 300,
+            _ => throw new NotImplementedException(),
+        };
+    }
+
+
+    public static NutritionResult CalculateDailyNutrition(decimal weightKg, decimal heightCm, int age, Sex sex, FitnessLevel fitnessLevel, CalorieGoal goal)
+
+    {
+        var bmr = CalculateBmr(weightKg, heightCm, age, sex);
+        var tdee = bmr * GetActivityMultiplier(fitnessLevel);
+
+        // Apply goal
+        var targetCalories = tdee + GetGoalCaloriesAdjustment(goal);
+
+        // Protein
+        var proteinGrams = weightKg * GetProteinPerKg(fitnessLevel);
+        var proteinCalories = proteinGrams * 4;
+
+        // Fat (25% of calories)
+        var fatCalories = tdee * 0.25m;
+        var fatGrams = fatCalories / 9;
+
+        // Carbs (remaining calories)
+        var remainingCalories = tdee - proteinCalories - fatCalories;
+        var carbsGrams = remainingCalories / 4;
+
+        return new NutritionResult
+        {
+            Calories = Math.Round(targetCalories),
+            ProteinGrams = Math.Round(proteinGrams),
+            FatGrams = Math.Round(fatGrams),
+            CarbsGrams = Math.Round(carbsGrams)
+        };
+    }
+
+    public static decimal BMI(decimal weightKg, decimal heightCm)
+    {
+        var heightM = heightCm / 100;
+        return weightKg / (heightM * heightM);
+    }
+}
+
+public class NutritionResult
+{
+    /// <summary>
+    /// for db usage
+    /// </summary>
+    public int Id { get; set; }
+    public decimal Calories { get; set; }
+    public decimal ProteinGrams { get; set; }
+    public decimal FatGrams { get; set; }
+    public decimal CarbsGrams { get; set; }
+}
+
+
+public enum Sex
+{
+    Male,
+    Female
+}
+
+public enum FitnessLevel
+{
+    Sedentary,
+    LightlyActive,
+    ModeratelyActive,
+    VeryActive,
+    Athlete
+}
+
+public enum CalorieGoal
+{
+    AggressiveCut,
+    Cut,
+    Maintenance,
+    Bulk,
+    AggressiveBulk
+}

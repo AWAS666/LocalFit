@@ -1,0 +1,104 @@
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace LocalFit.Lib.DataBase;
+
+public class UserContext : DbContext
+{
+    public DbSet<FoodPresets> FoodPresets { get; set; }
+    public DbSet<FoodEaten> FoodEaten { get; set; }
+    public DbSet<WeightTracker> Weight { get; set; }
+    public DbSet<DayTracker> Day { get; set; }
+    public UserContext(string db = "database.db")
+    {
+        var local = Environment.SpecialFolder.LocalApplicationData;
+        string basedir = AppContext.BaseDirectory; // might have to use this on android?
+        var folder = Path.Combine(Environment.GetFolderPath(local), "LocalFit");
+        Directory.CreateDirectory(folder);
+        DbPath = Path.Combine(folder, db);
+    }
+
+    public string DbPath { get; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder options)
+    {
+        options.UseSqlite($"Data Source={DbPath}");
+        base.OnConfiguring(options);
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+    }
+}
+
+public class FoodPresets
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public decimal Calories { get; set; }
+    public decimal Fat { get; set; }
+    public decimal Protein { get; set; }
+    public decimal Carbs { get; set; }
+    public decimal Sugar { get; set; }
+    public DateTime Created { get; set; } = DateTime.UtcNow;
+    public DateTime Updated { get; set; } = DateTime.UtcNow;
+}
+
+public class FoodEaten
+{
+    public int Id { get; set; }
+    public decimal Amount { get; set; }
+    public FoodPresets Preset { get; set; }
+    public DateTime Created { get; set; } = DateTime.UtcNow;
+    public DateTime Updated { get; set; } = DateTime.UtcNow;
+}
+public enum FoodUnit
+{
+    Gram,
+    Piece,
+}
+
+public class WeightTracker
+{
+    public int Id { get; set; }
+
+    /// <summary>
+    /// should be static, just in case person grows I guess
+    /// </summary>
+    public decimal Height { get; set; }
+    public decimal Weight { get; set; }
+    public string? Note { get; set; }
+    public byte[]? Image { get; set; }
+    public DateTime Created { get; set; } = DateTime.UtcNow;
+    public DateTime Updated { get; set; } = DateTime.UtcNow;
+}
+
+[PrimaryKey(nameof(Date))]
+public class DayTracker
+{
+    public DateOnly Date { get; set; } = DateOnly.FromDateTime(DateTime.UtcNow);
+    public List<FoodEaten> FoodsEaten { get; set; } = new();
+
+    public NutritionResult Targets { get; set; } = new();
+
+    public decimal TotalCalories()
+    {
+        return FoodsEaten.Sum(x => x.Preset.Calories);
+    }
+    public decimal TotalFat()
+    {
+        return FoodsEaten.Sum(x => x.Preset.Fat);
+    }
+    public decimal TotalProtein()
+    {
+        return FoodsEaten.Sum(x => x.Preset.Protein);
+    }
+    public decimal TotalCarbs()
+    {
+        return FoodsEaten.Sum(x => x.Preset.Carbs);
+    }
+    public decimal TotalSugar()
+    {
+        return FoodsEaten.Sum(x => x.Preset.Sugar);
+    }
+}

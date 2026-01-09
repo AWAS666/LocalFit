@@ -1,0 +1,69 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="using:LocalFit.ViewModels"
+			 x:Class="LocalFit.Views.NutritionCalculator"
+			 x:DataType="vm:BMRViewModel">
+	<Design.DataContext>
+		<vm:BMRViewModel/>
+	</Design.DataContext>
+	<StackPanel>
+		<StackPanel Orientation="Horizontal" Margin="5">
+			<Label >Weight:</Label>
+			<NumericUpDown Minimum="0" Maximum="500" Value="{Binding Weight}" Margin="5"/>
+		</StackPanel>
+		<StackPanel Orientation="Horizontal" Margin="5">
+			<Label >Height:</Label>
+			<NumericUpDown Minimum="60" Maximum="250" Value="{Binding Height}" Margin="5"/>
+		</StackPanel>
+		<StackPanel Orientation="Horizontal" Margin="5">
+			<Label >Age:</Label>
+			<NumericUpDown Minimum="0" Maximum="120" Value="{Binding Age}" Margin="5"/>
+		</StackPanel>
+
+		<StackPanel Orientation="Horizontal" Margin="5">
+			<Label >Sex:</Label>
+			<ComboBox SelectedItem="{Binding Sex, Mode=TwoWay}"  ItemsSource="{Binding Sexes}"/>
+		</StackPanel>
+
+		<StackPanel Orientation="Horizontal" Margin="5">
+			<Label >Fitness:</Label>
+			<ComboBox SelectedItem="{Binding Fitness, Mode=TwoWay}"  ItemsSource="{Binding FitnessLevels}"/>
+		</StackPanel>
+
+		<StackPanel Orientation="Horizontal" Margin="5">
+			<Label >Goal:</Label>
+			<ComboBox SelectedItem="{Binding Goal, Mode=TwoWay}"  ItemsSource="{Binding Goals}"/>
+		</StackPanel>
+
+
+
+
+		<StackPanel Orientation="Horizontal" Margin="5">
+			<Label >Calories:</Label>
+			<Label Content="{Binding Calories}"/>
+		</StackPanel>
+
+		<StackPanel Orientation="Horizontal" Margin="5">
+			<Label >Fat:</Label>
+			<Label Content="{Binding Fat}"/>
+		</StackPanel>
+
+		<StackPanel Orientation="Horizontal" Margin="5">
+			<Label >Protein:</Label>
+			<Label Content="{Binding Protein}"/>
+		</StackPanel>
+
+		<StackPanel Orientation="Horizontal" Margin="5">
+			<Label >Carbs:</Label>
+			<Label Content="{Binding Carbs}"/>
+		</StackPanel>
+
+		<StackPanel Orientation="Horizontal" Margin="5">
+			<Label >Bmi:</Label>
+			<Label Content="{Binding Bmi}"/>
+		</StackPanel>
+	</StackPanel>
+</UserControl>

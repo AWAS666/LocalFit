@@ -2,10 +2,15 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
-using System.Linq;
 using Avalonia.Markup.Xaml;
+using LocalFit.Lib.DataBase;
 using LocalFit.ViewModels;
 using LocalFit.Views;
+using Microsoft.EntityFrameworkCore;
+using Serilog;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace LocalFit;
 
@@ -13,6 +18,17 @@ public partial class App : Application
 {
     public override void Initialize()
     {
+        Log.Logger = new LoggerConfiguration()
+               .MinimumLevel.Information()
+               //.WriteTo.File(
+               //    logPath,
+               //    rollingInterval: RollingInterval.Day,
+               //    retainedFileCountLimit: 7)
+               .CreateLogger();
+
+        Log.Information("Application starting");
+        SetupGlobalExceptionHandlers();
+        EnsureDatabaseMigrated();
         AvaloniaXamlLoader.Load(this);
     }
 
@@ -49,6 +65,42 @@ public partial class App : Application
         foreach (var plugin in dataValidationPluginsToRemove)
         {
             BindingPlugins.DataValidators.Remove(plugin);
+        }
+    }
+
+    private void SetupGlobalExceptionHandlers()
+    {
+        TaskScheduler.UnobservedTaskException += (sender, e) =>
+        {
+            Log.Error(e.Exception, "Unobserved task exception occurred");
+            e.SetObserved();
+        };
+
+        AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+        {
+            if (e.ExceptionObject is Exception ex)
+            {
+                Log.Fatal(ex, "Unhandled exception occurred. Application will terminate: {IsTerminating}", e.IsTerminating);
+            }
+            else
+            {
+                Log.Fatal("Unhandled exception occurred (non-Exception object): {ExceptionObject}. Application will terminate: {IsTerminating}",
+                    e.ExceptionObject, e.IsTerminating);
+            }
+        };
+    }
+
+    private static void EnsureDatabaseMigrated()
+    {
+        try
+        {
+            using var db = new UserContext();
+            db.Database.Migrate();
+            Log.Information("Database migrations applied successfully");
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Error applying database migrations");
         }
     }
 }

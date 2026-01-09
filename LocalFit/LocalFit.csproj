@@ -21,4 +21,14 @@
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LocalFit.Lib\LocalFit.Lib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\FoodManager.axaml.cs">
+      <DependentUpon>FoodManager.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

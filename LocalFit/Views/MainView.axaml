@@ -1,16 +1,35 @@
 <UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="using:LocalFit.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="LocalFit.Views.MainView"
-             x:DataType="vm:MainViewModel">
-  <Design.DataContext>
-    <!-- This only sets the DataContext for the previewer in an IDE,
-         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-    <vm:MainViewModel />
-  </Design.DataContext>
-
-  <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:LocalFit.ViewModels"
+			 xmlns:local="using:LocalFit.Views"
+			 mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
+			 x:Class="LocalFit.Views.MainView"
+			 x:DataType="vm:MainViewModel">
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+		to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:MainViewModel />
+	</Design.DataContext>
+	<Grid RowDefinitions="200*,50">
+		<ContentControl Content="{Binding CurrentView}">
+			<ContentControl.DataTemplates>
+				<DataTemplate DataType="vm:BMRViewModel">
+					<local:NutritionCalculator />
+				</DataTemplate>			
+			<DataTemplate DataType="vm:FoodManagerViewModel">
+					<local:FoodManager />
+				</DataTemplate>			
+			</ContentControl.DataTemplates>
+		</ContentControl>
+		<Grid Grid.Row="1" ColumnDefinitions="100,100*,100">
+			<Button Command="{Binding View1Command}"
+				HorizontalAlignment="Center" VerticalContentAlignment="Center" Height="50">View1</Button>
+			<Button Command="{Binding View2Command}" 
+				HorizontalAlignment="Center" VerticalContentAlignment="Center" Height="50" Grid.Column="1">View2</Button>
+			<Button Command="{Binding View3Command}"
+				HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.Column="2" Height="50">View3</Button>
+		</Grid>
+	</Grid>
 </UserControl>

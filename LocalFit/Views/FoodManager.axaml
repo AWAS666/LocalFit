@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="using:LocalFit.ViewModels"
+			 x:Class="LocalFit.Views.FoodManager"
+			 x:DataType="vm:FoodManagerViewModel">
+	<Design.DataContext>
+		<vm:FoodManagerViewModel/>
+	</Design.DataContext>
+	<Grid RowDefinitions="100,100*">
+		<StackPanel>
+			<Button Command="{Binding AddCommand}">Add</Button>
+		</StackPanel>
+		<ListBox Grid.Row="1"  ItemsSource="{Binding Foods}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Horizontal" Margin="5">
+						<TextBlock Text="{Binding Name}" Width="200"/>
+						<TextBlock Text="{Binding Calories}" Width="100"/>
+						<TextBlock Text="{Binding Protein}" Width="100"/>
+						<TextBlock Text="{Binding Fat}" Width="100"/>
+						<TextBlock Text="{Binding Carbs}" Width="100"/>
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</Grid>
+</UserControl>
