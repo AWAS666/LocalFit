@@ -1,8 +1,9 @@
 # LocalFit
 
 ## Todo
-- [ ] Add Dialogs for adding/editing db stuff
+- [x] Add Dialogs for adding/editing db stuff
 - [ ] Barcode Scanner for presets/foods
+- [ ] Photos/camera access in general
 - [ ] Food api to build base database?
 
 ## Todo Global

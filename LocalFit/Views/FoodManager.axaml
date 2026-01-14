@@ -23,8 +23,13 @@
 					</Style>
 				</TextBox.Styles>
 			</TextBox>
-			<Button Command="{Binding ShowAddFoodDialogCommand}" Grid.Column="1">
-				<LucideIcon Kind="Plus" Size="24"/>
+			<Button Command="{Binding ShowAddFoodDialogCommand}" 
+					Grid.Column="1"
+					Height="56" 
+					Width="56"
+					CornerRadius="28"
+					Background="#FF4CAF50">
+				<LucideIcon Kind="Plus" Size="28" Foreground="#FFFFFF"/>
 			</Button>
 		</Grid>
 		

@@ -15,6 +15,9 @@
 	<Grid RowDefinitions="*,Auto">
 		<ContentControl Content="{Binding CurrentView}">
 			<ContentControl.DataTemplates>
+				<DataTemplate DataType="vm:OnboardingViewModel">
+					<local:OnboardingView />
+				</DataTemplate>
 				<DataTemplate DataType="vm:FoodManagerViewModel">
 					<local:FoodManager />
 				</DataTemplate>

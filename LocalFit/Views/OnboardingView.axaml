@@ -1,0 +1,164 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:LocalFit.ViewModels"
+             xmlns:local="using:LocalFit.Views.Dialogs"
+             xmlns:lucide="using:Lucide.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
+             x:Class="LocalFit.Views.OnboardingView"
+             x:DataType="vm:OnboardingViewModel">
+    <Design.DataContext>
+        <vm:OnboardingViewModel/>
+    </Design.DataContext>
+    <Grid RowDefinitions="*,Auto">
+        <Grid Grid.Row="0" VerticalAlignment="Center">
+            <!-- Step 1: Weight -->
+            <Border IsVisible="{Binding NeedsWeight}"
+                    Background="#F5F5F5"
+                    CornerRadius="12"
+                    Padding="30"
+                    BorderBrush="#E0E0E0"
+                    BorderThickness="2"
+                    Margin="20"
+                    MaxWidth="500"
+                    HorizontalAlignment="Center">
+                <StackPanel Spacing="20">
+                    <StackPanel HorizontalAlignment="Center" Spacing="10">
+                        <lucide:LucideIcon Kind="Scale" Size="64" Foreground="#FF4CAF50" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Welcome to LocalFit!" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#000000"/>
+                        <TextBlock Text="Let's get started by setting up your profile" FontSize="16" Opacity="0.7" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="#000000"/>
+                    </StackPanel>
+                    
+                    <TextBlock Text="Step 1: Add Your Weight" FontSize="20" FontWeight="SemiBold" Margin="0,20,0,0" Foreground="#000000"/>
+                    <TextBlock Text="We need your current weight and height to calculate your daily nutrition goals." FontSize="14" Opacity="0.8" TextWrapping="Wrap" Foreground="#000000"/>
+                    
+                    <Button Command="{Binding ShowWeightDialogCommand}" 
+                            Height="50"
+                            Margin="0,10"
+                            Background="#FF4CAF50"
+                            Foreground="#FFFFFF">
+                        <Button.Styles>
+                            <Style Selector="Button:pointerover">
+                                <Setter Property="Background" Value="#FF45A049"/>
+                            </Style>
+                            <Style Selector="Button:pressed">
+                                <Setter Property="Background" Value="#FF3D8B40"/>
+                            </Style>
+                        </Button.Styles>
+                        <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+                            <lucide:LucideIcon Kind="Plus" Size="20" Foreground="#FFFFFF"/>
+                            <TextBlock Text="Add Weight Entry" FontSize="16" Foreground="#FFFFFF"/>
+                        </StackPanel>
+                    </Button>
+                    
+                    <Button Command="{Binding SkipWeightCommand}" 
+                            Background="Transparent"
+                            Height="44"
+                            Margin="0,5">
+                        <TextBlock Text="Skip for now" FontSize="14" Opacity="0.7" Foreground="#000000"/>
+                    </Button>
+                </StackPanel>
+            </Border>
+            
+            <!-- Step 2: Goal -->
+            <Border IsVisible="{Binding ShowGoalStep}"
+                    Background="#F5F5F5"
+                    CornerRadius="12"
+                    Padding="30"
+                    BorderBrush="#E0E0E0"
+                    BorderThickness="2"
+                    Margin="20"
+                    MaxWidth="500"
+                    HorizontalAlignment="Center">
+                <StackPanel Spacing="20">
+                    <StackPanel HorizontalAlignment="Center" Spacing="10">
+                        <lucide:LucideIcon Kind="Award" Size="64" Foreground="#FF4CAF50" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Set Your Fitness Goals" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#000000"/>
+                    </StackPanel>
+                    
+                    <TextBlock Text="Step 2: Configure Your Goals" FontSize="20" FontWeight="SemiBold" Margin="0,20,0,0" Foreground="#000000"/>
+                    <TextBlock Text="Tell us about your fitness goals and activity level so we can calculate your personalized daily nutrition targets." FontSize="14" Opacity="0.8" TextWrapping="Wrap" Foreground="#000000"/>
+                    
+                    <Button Command="{Binding ShowGoalDialogCommand}" 
+                            Height="50"
+                            Margin="0,10"
+                            Background="#FF4CAF50"
+                            Foreground="#FFFFFF">
+                        <Button.Styles>
+                            <Style Selector="Button:pointerover">
+                                <Setter Property="Background" Value="#FF45A049"/>
+                            </Style>
+                            <Style Selector="Button:pressed">
+                                <Setter Property="Background" Value="#FF3D8B40"/>
+                            </Style>
+                        </Button.Styles>
+                        <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+                            <lucide:LucideIcon Kind="Settings" Size="20" Foreground="#FFFFFF"/>
+                            <TextBlock Text="Set Up Goals" FontSize="16" Foreground="#FFFFFF"/>
+                        </StackPanel>
+                    </Button>
+                    
+                    <Button Command="{Binding SkipGoalCommand}" 
+                            Background="Transparent"
+                            Height="44"
+                            Margin="0,5">
+                        <TextBlock Text="Skip for now" FontSize="14" Opacity="0.7" Foreground="#000000"/>
+                    </Button>
+                </StackPanel>
+            </Border>
+            
+            <!-- Step 3: Complete -->
+            <Border IsVisible="{Binding IsComplete}"
+                    Background="#F5F5F5"
+                    CornerRadius="12"
+                    Padding="30"
+                    BorderBrush="#E0E0E0"
+                    BorderThickness="2"
+                    Margin="20"
+                    MaxWidth="500"
+                    HorizontalAlignment="Center">
+                <StackPanel Spacing="20" HorizontalAlignment="Center">
+                    <lucide:LucideIcon Kind="Check" Size="64" Foreground="#FF4CAF50" HorizontalAlignment="Center"/>
+                    <TextBlock Text="You're all set!" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#000000"/>
+                    <TextBlock Text="You can start tracking your food and nutrition now. You can always update your weight and goals in Settings." FontSize="14" Opacity="0.8" TextWrapping="Wrap" TextAlignment="Center" Margin="0,10,0,0" Foreground="#000000"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+        
+        <!-- Dialog Overlays -->
+        <Grid Grid.Row="0" Grid.RowSpan="2">
+            <!-- Weight Dialog -->
+            <Grid IsVisible="{Binding IsWeightDialogVisible}" ZIndex="100">
+                <Rectangle Fill="#80000000" Opacity="0.7"/>
+                <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+                        CornerRadius="8" 
+                        BorderBrush="#E0E0E0"
+                        BorderThickness="2"
+                        Padding="0"
+                        Width="400"
+                        MaxHeight="550"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                    <local:AddWeightDialog DataContext="{Binding AddWeightDialogViewModel}"/>
+                </Border>
+            </Grid>
+            
+            <!-- Goal Dialog -->
+            <Grid IsVisible="{Binding IsGoalDialogVisible}" ZIndex="100">
+                <Rectangle Fill="#80000000" Opacity="0.7"/>
+                <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+                        CornerRadius="8" 
+                        BorderBrush="#E0E0E0"
+                        BorderThickness="2"
+                        Padding="0"
+                        Width="400"
+                        MaxHeight="550"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                    <local:GoalSetupDialog DataContext="{Binding GoalSetupDialogViewModel}"/>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
