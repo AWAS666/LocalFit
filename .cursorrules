@@ -1,0 +1,122 @@
+# LocalFit - Fitness Tracker App
+
+## Technology Stack
+- **Framework**: Avalonia UI (cross-platform .NET UI framework)
+- **MVVM**: CommunityToolkit.Mvvm (ObservableObject, RelayCommand)
+- **Database**: Entity Framework Core with SQLite
+- **Icons**: Lucide.Avalonia
+- **Language**: C# with nullable reference types enabled
+
+## Architecture Patterns
+
+### MVVM Pattern
+- ViewModels inherit from `ObservableObject` (CommunityToolkit.Mvvm)
+- Use `[ObservableProperty]` for properties that need to notify changes
+- Use `[RelayCommand]` for commands
+- ViewModels are in `LocalFit/ViewModels/`
+- Views are in `LocalFit/Views/`
+- Models are in `LocalFit.Lib/DataBase/`
+
+### Code Style
+- Use partial classes for ViewModels with source generators
+- Use `using var db = new UserContext()` for database access (disposes automatically)
+- Prefer async/await for database operations
+- Use compiled bindings with `x:DataType` in XAML
+- Enable nullable reference types - handle nulls explicitly
+
+### Database Access
+- Always use `using var db = new UserContext()` pattern
+- Use `Include()` for eager loading related entities
+- Use `FindAsync()` for single entity lookups
+- Use `ToListAsync()` for collections
+- Save changes with `await db.SaveChangesAsync()`
+
+## UI/UX Guidelines
+
+### Mobile-First Design
+- Design for mobile screens first (narrow viewport)
+- Use responsive layouts (Grid with ColumnDefinitions/RowDefinitions)
+- Minimum touch target size: 44px height
+- Use larger fonts and spacing for mobile readability
+
+### Dialogs
+- Use in-app overlay dialogs (UserControl with ZIndex), NOT separate windows
+- Dialogs should have backdrop (Rectangle with opacity)
+- Dialog borders: `BorderBrush="#E0E0E0"` and `BorderThickness="2"`
+- Typical dialog size: Width="400", MaxHeight="600"
+- Use Grid.RowSpan to cover all rows when showing overlay
+
+### Controls
+- Use `NumericUpDown` with `ShowButtonSpinner="False"` for numeric inputs (not TextBox)
+- Use `ComboBox` for dropdowns (set MinHeight="44" for mobile)
+- Use `TextBox` for text input
+- Use `LucideIcon` for icons instead of text where appropriate
+- Buttons: MinHeight="44", use icons for Save (Check) and Cancel (X)
+
+### Styling
+- Global styles defined in `App.axaml`
+- Use `Classes="SaveButton"` for primary action buttons (green background)
+- Button text/icons should be centered (HorizontalContentAlignment/VerticalContentAlignment)
+- Use consistent spacing and margins (typically 10-20px)
+
+### Navigation
+- Bottom navigation bar with icons
+- Use ContentControl with DataTemplates for view switching
+- Default view should be the most frequently used (DayTracker)
+
+## Naming Conventions
+- ViewModels: `*ViewModel.cs` (e.g., `DayTrackerViewModel`)
+- Views: `*View.axaml` (e.g., `DayTrackerView.axaml`)
+- Dialogs: `*Dialog.axaml` in `Views/Dialogs/`
+- Commands: `*Command` (e.g., `ShowAddFoodDialogCommand`)
+- Properties: PascalCase
+- Private fields: camelCase (if needed, usually use properties)
+
+## Common Patterns
+
+### ViewModel Property Change Handling
+```csharp
+partial void OnPropertyNameChanged(Type value)
+{
+    // Handle property change
+}
+```
+
+### Dialog Management
+- Use `IsDialogVisible` boolean property
+- Use `DialogViewModel` property for dialog data context
+- Setup dialog with event handlers before showing
+- Hide dialog by setting `IsDialogVisible = false` and `DialogViewModel = null`
+
+### Collection Filtering
+- Keep full collection in private field
+- Use ObservableCollection for filtered/bound collection
+- Filter on search text changes using partial method
+
+### Nutrition Calculations
+- For Gram100 units: values are per 100g, multiply by (Amount / 100)
+- For Piece units: values are per piece, multiply by Amount directly
+- Always calculate based on selected preset's unit type
+
+## Best Practices
+- Keep ViewModels focused on single responsibility
+- Extract repetitive logic into private helper methods
+- Use computed properties for derived values (TotalCalories, etc.)
+- Handle null cases explicitly (use null-conditional operators or checks)
+- Use fire-and-forget pattern `_ = Task.Run()` when needed (with comment)
+- Prefer data binding over code-behind
+- Use converters for complex binding transformations
+
+## File Organization
+- `LocalFit.Lib/` - Shared library (models, database, calculations)
+- `LocalFit/ViewModels/` - All ViewModels
+- `LocalFit/Views/` - All Views
+- `LocalFit/Views/Dialogs/` - Dialog UserControls
+- `LocalFit/App.axaml` - Global styles and resources
+
+## Common Gotchas
+- Avalonia doesn't support percentage values for MaxWidth/MaxHeight (use fixed pixels)
+- Grid doesn't support BorderBrush directly - wrap in Border control
+- ContentControl can only have one Content - use DataTemplates for multiple views
+- Remember to include namespace declarations (xmlns:lucide, xmlns:vm, etc.)
+- Use `x:DataType` for compiled bindings performance
