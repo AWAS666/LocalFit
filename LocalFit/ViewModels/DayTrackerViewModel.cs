@@ -18,16 +18,17 @@ public partial class DayTrackerViewModel : ObservableObject
     /// defaults to current, can navigate days -> add option to just pick date?
     /// </summary>
     [ObservableProperty]
-    [NotifyPropertyChangedFor(
-        nameof(TotalCalories), nameof(TotalProtein), nameof(TotalFat), nameof(TotalCarbs),
-        nameof(GoalNutrition),
-        nameof(CaloriesDisplay), nameof(ProteinDisplay), nameof(FatDisplay), nameof(CarbsDisplay),
-        nameof(CaloriesBackgroundColor), nameof(ProteinBackgroundColor), nameof(FatBackgroundColor), nameof(CarbsBackgroundColor))]
+    //[NotifyPropertyChangedFor(
+    //    nameof(TotalCalories), nameof(TotalProtein), nameof(TotalFat), nameof(TotalCarbs),
+    //    nameof(GoalNutrition),
+    //    nameof(CaloriesDisplay), nameof(ProteinDisplay), nameof(FatDisplay), nameof(CarbsDisplay),
+    //    nameof(CaloriesBackgroundColor), nameof(ProteinBackgroundColor), nameof(FatBackgroundColor), nameof(CarbsBackgroundColor))]
     private DayTracker current;
 
     partial void OnCurrentChanged(DayTracker value)
     {
         GoalNutrition = CalculateGoalNutrition();
+        Update();
     }
 
     [ObservableProperty]
@@ -69,6 +70,12 @@ public partial class DayTrackerViewModel : ObservableObject
 
     [ObservableProperty]
     private AddFoodDialogViewModel? addFoodDialogViewModel;
+
+    [ObservableProperty]
+    private bool isEditEatenFoodDialogVisible;
+
+    [ObservableProperty]
+    private EditEatenFoodDialogViewModel? editEatenFoodDialogViewModel;
 
 
     private NutritionResult CalculateGoalNutrition()
@@ -179,9 +186,24 @@ public partial class DayTrackerViewModel : ObservableObject
         // Reload to get the entity with Preset loaded
         db.Entry(foodEaten).Reference(x => x.Preset).Load();
         Eaten.Add(foodEaten);
-        OnPropertyChanged(nameof(Current));
+        Update();
     }
 
+    private void Update()
+    {
+        OnPropertyChanged(nameof(TotalCalories));
+        OnPropertyChanged(nameof(TotalProtein));
+        OnPropertyChanged(nameof(TotalFat));
+        OnPropertyChanged(nameof(TotalCarbs));
+        OnPropertyChanged(nameof(CaloriesDisplay));
+        OnPropertyChanged(nameof(ProteinDisplay));
+        OnPropertyChanged(nameof(FatDisplay));
+        OnPropertyChanged(nameof(CarbsDisplay));
+        OnPropertyChanged(nameof(CaloriesBackgroundColor));
+        OnPropertyChanged(nameof(ProteinBackgroundColor));
+        OnPropertyChanged(nameof(FatBackgroundColor));
+        OnPropertyChanged(nameof(CarbsBackgroundColor));
+    }
 
     [RelayCommand]
     private async Task RemoveFood(FoodEaten food)
@@ -192,7 +214,7 @@ public partial class DayTrackerViewModel : ObservableObject
         db.Day.Update(Current);
         await db.SaveChangesAsync();
         Eaten.Remove(food);
-        OnPropertyChanged(nameof(Current));
+        Update();
     }
 
     [RelayCommand]
@@ -205,5 +227,52 @@ public partial class DayTrackerViewModel : ObservableObject
     private async Task NextDay()
     {
         await NavigateToDay(1);
+    }
+
+    private void SetupEditEatenFoodDialog(EditEatenFoodDialogViewModel dialogViewModel)
+    {
+        dialogViewModel.OnSaved += (foodEaten) =>
+        {
+            // Update the item in the collection
+            var index = Eaten.IndexOf(foodEaten);
+            if (index >= 0)
+            {
+                Eaten[index] = foodEaten;
+            }
+            IsEditEatenFoodDialogVisible = false;
+            EditEatenFoodDialogViewModel = null;
+            OnPropertyChanged(nameof(TotalCalories));
+            OnPropertyChanged(nameof(TotalProtein));
+            OnPropertyChanged(nameof(TotalFat));
+            OnPropertyChanged(nameof(TotalCarbs));
+            OnPropertyChanged(nameof(CaloriesDisplay));
+            OnPropertyChanged(nameof(ProteinDisplay));
+            OnPropertyChanged(nameof(FatDisplay));
+            OnPropertyChanged(nameof(CarbsDisplay));
+            OnPropertyChanged(nameof(CaloriesBackgroundColor));
+            OnPropertyChanged(nameof(ProteinBackgroundColor));
+            OnPropertyChanged(nameof(FatBackgroundColor));
+            OnPropertyChanged(nameof(CarbsBackgroundColor));
+        };
+        dialogViewModel.OnCancel += () =>
+        {
+            IsEditEatenFoodDialogVisible = false;
+            EditEatenFoodDialogViewModel = null;
+        };
+        IsEditEatenFoodDialogVisible = true;
+    }
+
+    [RelayCommand]
+    private void ShowEditEatenFoodDialog(FoodEaten foodEaten)
+    {
+        EditEatenFoodDialogViewModel = new EditEatenFoodDialogViewModel(foodEaten);
+        SetupEditEatenFoodDialog(EditEatenFoodDialogViewModel);
+    }
+
+    [RelayCommand]
+    private void HideEditEatenFoodDialog()
+    {
+        IsEditEatenFoodDialogVisible = false;
+        EditEatenFoodDialogViewModel = null;
     }
 }

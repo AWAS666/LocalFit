@@ -4,6 +4,7 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:LocalFit.ViewModels"
 			 xmlns:local="using:LocalFit.Views.Dialogs"
+			 xmlns:lucide="using:Lucide.Avalonia"
 			 mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
 			 x:Class="LocalFit.Views.DayTrackerView"
 			 x:DataType="vm:DayTrackerViewModel">
@@ -59,19 +60,26 @@
 		<ListBox ItemsSource="{Binding Eaten}" Grid.Row="2" Margin="10">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<Grid ColumnDefinitions="*,Auto">
+					<Grid ColumnDefinitions="*,Auto,Auto">
 						<StackPanel Margin="10">
 							<TextBlock Text="{Binding Preset.Name}" FontWeight="SemiBold" FontSize="16"/>
 							<TextBlock FontSize="12" Margin="0,4,0,0">
-								<Run Text="{Binding Amount, StringFormat='{}{0:F0}g'}"/>
+								<Run Text="{Binding AmountDisplay}"/>
 								<Run Text=" | "/>
-								<Run Text="{Binding Calories, StringFormat='{}{0:F0} cal'}"/>
+								<Run Text="{Binding Calories, StringFormat='{}{0:F0} kcal'}"/>
 							</TextBlock>
 						</StackPanel>
-						<Button Command="{Binding $parent[UserControl].DataContext.RemoveFoodCommand}" 
+						<Button Command="{Binding $parent[UserControl].DataContext.ShowEditEatenFoodDialogCommand}" 
 								CommandParameter="{Binding}" 
 								Grid.Column="1" 
-								Margin="10"
+								Margin="5,10"
+								Background="Transparent">
+							<LucideIcon Kind="Pencil" Size="20" Foreground="#FF2196F3"/>
+						</Button>
+						<Button Command="{Binding $parent[UserControl].DataContext.RemoveFoodCommand}" 
+								CommandParameter="{Binding}" 
+								Grid.Column="2" 
+								Margin="5,10"
 								Background="Transparent">
 							<LucideIcon Kind="Trash2" Size="20" Foreground="#FFE53935"/>
 						</Button>
@@ -93,20 +101,39 @@
 			<LucideIcon Kind="Plus" Size="28" Foreground="#FFFFFF"/>
 		</Button>
 		
-		<!-- Dialog Overlay -->
-		<Grid IsVisible="{Binding IsAddFoodDialogVisible}" ZIndex="100" Grid.Row="0" Grid.RowSpan="5">
-			<Rectangle Fill="#80000000" Opacity="0.7" Tapped="OnBackdropTapped"/>
-			<Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
-					CornerRadius="8" 
-					BorderBrush="#E0E0E0"
-					BorderThickness="2"
-					Padding="0"
-					Width="400"
-					MaxHeight="600"
-					VerticalAlignment="Center"
-					HorizontalAlignment="Center">
-				<local:AddFoodDialog DataContext="{Binding AddFoodDialogViewModel}"/>
-			</Border>
+		<!-- Dialog Overlays -->
+		<Grid ZIndex="100" Grid.Row="0" Grid.RowSpan="5">
+			<!-- Add Food Dialog -->
+			<Grid IsVisible="{Binding IsAddFoodDialogVisible}">
+				<Rectangle Fill="#80000000" Opacity="0.7" Tapped="OnBackdropTapped"/>
+				<Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+						CornerRadius="8" 
+						BorderBrush="#E0E0E0"
+						BorderThickness="2"
+						Padding="0"
+						Width="400"
+						MaxHeight="600"
+						VerticalAlignment="Center"
+						HorizontalAlignment="Center">
+					<local:AddFoodDialog DataContext="{Binding AddFoodDialogViewModel}"/>
+				</Border>
+			</Grid>
+			
+			<!-- Edit Eaten Food Dialog -->
+			<Grid IsVisible="{Binding IsEditEatenFoodDialogVisible}">
+				<Rectangle Fill="#80000000" Opacity="0.7" Tapped="OnBackdropTapped"/>
+				<Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+						CornerRadius="8" 
+						BorderBrush="#E0E0E0"
+						BorderThickness="2"
+						Padding="0"
+						Width="400"
+						MaxHeight="350"
+						VerticalAlignment="Center"
+						HorizontalAlignment="Center">
+					<local:EditEatenFoodDialog DataContext="{Binding EditEatenFoodDialogViewModel}"/>
+				</Border>
+			</Grid>
 		</Grid>
 	</Grid>
 </UserControl>

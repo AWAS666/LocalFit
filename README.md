@@ -5,6 +5,7 @@
 - [ ] Barcode Scanner for presets/foods
 - [ ] Photos/camera access in general
 - [ ] Food api to build base database?
+- [ ] better mvvm, we do have some view specific fields in models right now
 
 ## Todo Global
 - translations

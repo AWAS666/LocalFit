@@ -44,6 +44,8 @@ public class FoodPresets
     public FoodUnit Unit { get; set; } = FoodUnit.Gram100;
     public DateTime Created { get; set; } = DateTime.UtcNow;
     public DateTime Updated { get; set; } = DateTime.UtcNow;
+
+    public string UnitDisplay => Unit == FoodUnit.Gram100 ? "/100g" : "/piece";
 }
 
 public class FoodEaten
@@ -54,6 +56,10 @@ public class FoodEaten
     public decimal Calories { get => Preset.Calories * DayTracker.GetMultiplier(Preset.Unit, Amount); }
     public DateTime Created { get; set; } = DateTime.UtcNow;
     public DateTime Updated { get; set; } = DateTime.UtcNow;
+
+    public string AmountDisplay => Preset.Unit == FoodUnit.Gram100 
+        ? $"{Amount:F0}g" 
+        : $"{Amount:F0} piece{(Amount == 1 ? "" : "s")}";
 }
 public enum FoodUnit
 {

@@ -15,7 +15,10 @@ public partial class DayTrackerView : UserControl
     {
         if (DataContext is DayTrackerViewModel vm)
         {
-            vm.HideAddFoodDialogCommand.Execute(null);
+            if (vm.IsAddFoodDialogVisible)
+                vm.HideAddFoodDialogCommand.Execute(null);
+            else if (vm.IsEditEatenFoodDialogVisible)
+                vm.HideEditEatenFoodDialogCommand.Execute(null);
         }
     }
 }
