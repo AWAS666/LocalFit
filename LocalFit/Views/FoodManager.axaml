@@ -16,7 +16,7 @@
 		
 		<!-- Search and Add -->
 		<Grid ColumnDefinitions="*,Auto" Margin="20,0" Grid.Row="1">
-			<TextBox Text="{Binding SearchText}" Watermark="Search foods..." Grid.Column="0" Margin="0,0,10,0">
+			<TextBox Text="{Binding SearchText}" VerticalContentAlignment="Center" Watermark="Search foods..." Grid.Column="0" Margin="0,0,10,0">
 				<TextBox.Styles>
 					<Style Selector="TextBox">
 						<Setter Property="Height" Value="44"/>
