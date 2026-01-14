@@ -43,7 +43,7 @@
 
 		<Grid Margin="20,10" Grid.Row="3" ColumnDefinitions="Auto,*,Auto">
 			<TextBlock Text="Amount:" VerticalAlignment="Center" Margin="0,0,10,0" Grid.Column="0"/>
-			<NumericUpDown Value="{Binding Amount}" Minimum="0.1" Maximum="10000" Increment="0.1" ShowButtonSpinner="False" Grid.Column="1" Margin="0,0,10,0"/>
+			<NumericUpDown Value="{Binding Amount, Converter={StaticResource NumericUpDownConverter}, ConverterParameter=0.1}" Minimum="0.1" Maximum="10000" Increment="0.1" ShowButtonSpinner="False" Grid.Column="1" Margin="0,0,10,0"/>
 			<TextBlock Text="{Binding SelectedFood.Unit, StringFormat='{}{0}'}" VerticalAlignment="Center" Grid.Column="2" FontWeight="SemiBold"/>
 		</Grid>
 
