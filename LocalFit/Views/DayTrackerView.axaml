@@ -30,28 +30,28 @@
 			<Border Background="{Binding CaloriesBackgroundColor}" CornerRadius="8" Padding="15" Grid.Row="0" Grid.Column="0">
 				<StackPanel>
 					<TextBlock Text="Calories" FontSize="12" Foreground="#FFFFFF" Opacity="0.9"/>
-					<TextBlock Text="{Binding CaloriesDisplay}" FontSize="22" FontWeight="Bold" Foreground="#FFFFFF"/>
+					<TextBlock Text="{Binding CaloriesDisplay}" FontSize="20" FontWeight="Bold" Foreground="#FFFFFF"/>
 				</StackPanel>
 			</Border>
 			
 			<Border Background="{Binding ProteinBackgroundColor}" CornerRadius="8" Padding="15" Grid.Row="0" Grid.Column="1">
 				<StackPanel>
 					<TextBlock Text="Protein" FontSize="12" Foreground="#FFFFFF" Opacity="0.9"/>
-					<TextBlock Text="{Binding ProteinDisplay}" FontSize="22" FontWeight="Bold" Foreground="#FFFFFF"/>
+					<TextBlock Text="{Binding ProteinDisplay}" FontSize="20" FontWeight="Bold" Foreground="#FFFFFF"/>
 				</StackPanel>
 			</Border>
 			
 			<Border Background="{Binding FatBackgroundColor}" CornerRadius="8" Padding="15" Grid.Row="1" Grid.Column="0">
 				<StackPanel>
 					<TextBlock Text="Fat" FontSize="12" Foreground="#FFFFFF" Opacity="0.9"/>
-					<TextBlock Text="{Binding FatDisplay}" FontSize="22" FontWeight="Bold" Foreground="#FFFFFF"/>
+					<TextBlock Text="{Binding FatDisplay}" FontSize="20" FontWeight="Bold" Foreground="#FFFFFF"/>
 				</StackPanel>
 			</Border>
 			
 			<Border Background="{Binding CarbsBackgroundColor}" CornerRadius="8" Padding="15" Grid.Row="1" Grid.Column="1">
 				<StackPanel>
 					<TextBlock Text="Carbs" FontSize="12" Foreground="#FFFFFF" Opacity="0.9"/>
-					<TextBlock Text="{Binding CarbsDisplay}" FontSize="22" FontWeight="Bold" Foreground="#FFFFFF"/>
+					<TextBlock Text="{Binding CarbsDisplay}" FontSize="20" FontWeight="Bold" Foreground="#FFFFFF"/>
 				</StackPanel>
 			</Border>
 		</Grid>
