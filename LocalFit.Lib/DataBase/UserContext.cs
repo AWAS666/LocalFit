@@ -51,6 +51,7 @@ public class FoodEaten
     public int Id { get; set; }
     public decimal Amount { get; set; }
     public FoodPresets Preset { get; set; }
+    public decimal Calories { get => Preset.Calories * DayTracker.GetMultiplier(Preset.Unit, Amount); }
     public DateTime Created { get; set; } = DateTime.UtcNow;
     public DateTime Updated { get; set; } = DateTime.UtcNow;
 }
@@ -105,7 +106,7 @@ public class DayTracker
         return FoodsEaten.Sum(x => x.Preset.Sugar * GetMultiplier(x.Preset.Unit, x.Amount));
     }
 
-    private static decimal GetMultiplier(FoodUnit unit, decimal amount)
+    public static decimal GetMultiplier(FoodUnit unit, decimal amount)
     {
         return unit switch
         {

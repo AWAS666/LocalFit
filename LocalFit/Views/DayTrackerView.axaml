@@ -65,7 +65,7 @@
 							<TextBlock FontSize="12" Margin="0,4,0,0">
 								<Run Text="{Binding Amount, StringFormat='{}{0:F0}g'}"/>
 								<Run Text=" | "/>
-								<Run Text="{Binding Preset.Calories, StringFormat='{}{0:F0} cal'}"/>
+								<Run Text="{Binding Calories, StringFormat='{}{0:F0} cal'}"/>
 							</TextBlock>
 						</StackPanel>
 						<Button Command="{Binding $parent[UserControl].DataContext.RemoveFoodCommand}" 
