@@ -86,23 +86,33 @@ public class DayTracker
 
     public decimal TotalCalories()
     {
-        return FoodsEaten.Sum(x => x.Preset.Calories);
+        return FoodsEaten.Sum(x => x.Preset.Calories * GetMultiplier(x.Preset.Unit, x.Amount));
     }
     public decimal TotalFat()
     {
-        return FoodsEaten.Sum(x => x.Preset.Fat);
+        return FoodsEaten.Sum(x => x.Preset.Fat * GetMultiplier(x.Preset.Unit, x.Amount));
     }
     public decimal TotalProtein()
     {
-        return FoodsEaten.Sum(x => x.Preset.Protein);
+        return FoodsEaten.Sum(x => x.Preset.Protein * GetMultiplier(x.Preset.Unit, x.Amount));
     }
     public decimal TotalCarbs()
     {
-        return FoodsEaten.Sum(x => x.Preset.Carbs);
+        return FoodsEaten.Sum(x => x.Preset.Carbs * GetMultiplier(x.Preset.Unit, x.Amount));
     }
     public decimal TotalSugar()
     {
-        return FoodsEaten.Sum(x => x.Preset.Sugar);
+        return FoodsEaten.Sum(x => x.Preset.Sugar * GetMultiplier(x.Preset.Unit, x.Amount));
+    }
+
+    private static decimal GetMultiplier(FoodUnit unit, decimal amount)
+    {
+        return unit switch
+        {
+            FoodUnit.Gram100 => amount / 100,
+            FoodUnit.Piece => amount,
+            _ => amount
+        };
     }
 }
 
