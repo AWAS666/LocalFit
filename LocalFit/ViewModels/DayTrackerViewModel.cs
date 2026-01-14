@@ -140,6 +140,7 @@ public partial class DayTrackerViewModel : ObservableObject
     private async Task RemoveFood(FoodEaten food)
     {
         using var db = new UserContext();
+        db.Attach(Current!);
         Current!.FoodsEaten.Remove(food);
         db.Day.Update(Current);
         await db.SaveChangesAsync();
