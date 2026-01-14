@@ -60,7 +60,7 @@ public partial class DayTrackerViewModel : ObservableObject
         if (goal <= 0) return $"{current:F0}{unit}";
         return decimals == 0
             ? $"{current:F0}/{goal:F0}{unit}"
-            : $"{current:F1}/{goal:F1}g";
+            : $"{current:F0}/{goal:F0}g";
     }
 
     private static string GetBackgroundColor(decimal current, decimal goal, string defaultColor)
