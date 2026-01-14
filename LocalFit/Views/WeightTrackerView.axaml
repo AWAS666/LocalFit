@@ -2,11 +2,83 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 			 xmlns:vm="using:LocalFit.ViewModels"
+			 xmlns:local="using:LocalFit.Views.Dialogs"
+			 mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
 			 x:Class="LocalFit.Views.WeightTrackerView"
 			 x:DataType="vm:WeightTrackerViewModel">
 	<Design.DataContext>
 		<vm:WeightTrackerViewModel/>
-	</Design.DataContext>	
+	</Design.DataContext>
+	<Grid RowDefinitions="Auto,*,Auto">
+		<!-- Current Weight Display -->
+		<Border Background="#FF2196F3" CornerRadius="12" Padding="30" Margin="20" Grid.Row="0">
+			<StackPanel HorizontalAlignment="Center">
+				<TextBlock Text="Current Weight" FontSize="16" Opacity="0.9" HorizontalAlignment="Center"/>
+				<TextBlock Text="{Binding Current.Weight, StringFormat='{}{0:F1} kg'}" 
+						   FontSize="48" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+				<TextBlock Text="{Binding Current.Height, StringFormat='Height: {0:F0} cm'}" 
+						   FontSize="14" Opacity="0.8" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+			</StackPanel>
+		</Border>
+		
+		<!-- Weight History -->
+		<ScrollViewer Grid.Row="1" Margin="10">
+			<StackPanel Spacing="5">
+				<TextBlock Text="Weight History" FontSize="18" FontWeight="SemiBold" Margin="10,0"/>
+				<ListBox ItemsSource="{Binding WeightHistory}">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Border BorderBrush="#E0E0E0" BorderThickness="0,0,0,1" Padding="15">
+								<Grid ColumnDefinitions="*,Auto">
+									<StackPanel>
+										<TextBlock Text="{Binding Weight, StringFormat='{}{0:F1} kg'}" 
+												   FontSize="18" FontWeight="SemiBold"/>
+										<TextBlock Text="{Binding Created, StringFormat='{}{0:MMM d, yyyy}'}" 
+												   FontSize="12" Opacity="0.7" Margin="0,4,0,0"/>
+										<TextBlock Text="{Binding Note}" 
+												   FontSize="12" Opacity="0.8" 
+												   Margin="0,4,0,0"
+												   IsVisible="{Binding Note, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+									</StackPanel>
+									<TextBlock Text="{Binding Height, StringFormat='{}{0:F0} cm'}" 
+											   FontSize="14" Opacity="0.7" 
+											   VerticalAlignment="Center" Grid.Column="1"/>
+								</Grid>
+							</Border>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</StackPanel>
+		</ScrollViewer>
+		
+		<!-- Add Weight Button -->
+		<Button Command="{Binding ShowAddWeightDialogCommand}" 
+				Margin="10" 
+				Height="56" 
+				Width="56"
+				Grid.Row="2"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Bottom"
+				CornerRadius="28"
+				Background="#FF4CAF50">
+			<LucideIcon Kind="Plus" Size="28" Foreground="#FFFFFF"/>
+		</Button>
+		
+		<!-- Dialog Overlay -->
+		<Grid IsVisible="{Binding IsAddWeightDialogVisible}" ZIndex="100" Grid.Row="0" Grid.RowSpan="3">
+			<Rectangle Fill="#80000000" Opacity="0.7" Tapped="OnBackdropTapped"/>
+			<Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+					CornerRadius="8" 
+					BorderBrush="#E0E0E0"
+					BorderThickness="2"
+					Padding="0"
+					Width="400"
+					MaxHeight="550"
+					VerticalAlignment="Center"
+					HorizontalAlignment="Center">
+				<local:AddWeightDialog DataContext="{Binding AddWeightDialogViewModel}"/>
+			</Border>
+		</Grid>
+	</Grid>
 </UserControl>

@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:LocalFit.ViewModels"
+             xmlns:lucide="using:Lucide.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="500"
+             x:Class="LocalFit.Views.Dialogs.GoalSetupDialog"
+             x:DataType="vm:GoalSetupDialogViewModel">
+    <ScrollViewer>
+        <StackPanel Margin="20" Spacing="20">
+            <TextBlock Text="Fitness Goals" FontSize="24" FontWeight="Bold"/>
+            
+            <StackPanel Spacing="5">
+                <TextBlock Text="Calorie Goal:"/>
+                <ComboBox SelectedItem="{Binding Goal}" ItemsSource="{Binding Goals}"/>
+            </StackPanel>
+            
+            <StackPanel Spacing="5">
+                <TextBlock Text="Fitness Level:"/>
+                <ComboBox SelectedItem="{Binding FitnessLevel}" ItemsSource="{Binding FitnessLevels}"/>
+            </StackPanel>
+            
+            <StackPanel Spacing="5">
+                <TextBlock Text="Sex:"/>
+                <ComboBox SelectedItem="{Binding Sex}" ItemsSource="{Binding Sexes}"/>
+            </StackPanel>
+            
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10" Margin="0,10">
+                <Button Command="{Binding CancelCommand}" Grid.Column="0" MinWidth="100" Height="44" Width="56">
+                    <LucideIcon Kind="X" Size="24"/>
+                </Button>
+                <Button Command="{Binding SaveCommand}" Grid.Column="1" Classes="SaveButton" MinWidth="100" Height="44" Width="56" HorizontalAlignment="Right">
+                    <LucideIcon Kind="Check" Size="24"/>
+                </Button>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

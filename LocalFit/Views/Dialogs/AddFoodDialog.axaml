@@ -1,0 +1,93 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:LocalFit.ViewModels"
+             xmlns:local="using:LocalFit.Views.Dialogs"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="600"
+             x:Class="LocalFit.Views.Dialogs.AddFoodDialog"
+             x:DataType="vm:AddFoodDialogViewModel">
+    <Grid RowDefinitions="Auto,Auto,*,Auto,Auto,Auto">
+        <TextBlock Text="Add Food" FontSize="24" FontWeight="Bold" Margin="20,20,20,10" Grid.Row="0"/>
+        
+        <TextBox Text="{Binding SearchText}" Watermark="Search foods..." Margin="20,0" Grid.Row="1">
+            <TextBox.Styles>
+                <Style Selector="TextBox">
+                    <Setter Property="Height" Value="44"/>
+                </Style>
+            </TextBox.Styles>
+        </TextBox>
+        
+        <ListBox ItemsSource="{Binding FilteredFoods}" SelectedItem="{Binding SelectedFood}" Margin="20,10" Grid.Row="2">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="*,Auto">
+                        <StackPanel Margin="10">
+                            <TextBlock Text="{Binding Name}" FontWeight="SemiBold" FontSize="16"/>
+                            <TextBlock FontSize="12" Margin="0,4,0,0">
+                                <Run Text="Cal: "/>
+                                <Run Text="{Binding Calories}"/>
+                                <Run Text=" | P: "/>
+                                <Run Text="{Binding Protein}"/>
+                                <Run Text="g | F: "/>
+                                <Run Text="{Binding Fat}"/>
+                                <Run Text="g | C: "/>
+                                <Run Text="{Binding Carbs}"/>
+                                <Run Text="g"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <Grid Margin="20,10" Grid.Row="3" ColumnDefinitions="Auto,*,Auto">
+            <TextBlock Text="Amount:" VerticalAlignment="Center" Margin="0,0,10,0" Grid.Column="0"/>
+            <NumericUpDown Value="{Binding Amount}" Minimum="0.1" Maximum="10000" Increment="0.1" ShowButtonSpinner="False" Grid.Column="1" Margin="0,0,10,0"/>
+            <TextBlock Text="{Binding SelectedFood.Unit, StringFormat='{}{0}'}" VerticalAlignment="Center" Grid.Column="2" FontWeight="SemiBold"/>
+        </Grid>
+        
+        <Border Background="#F5F5F5" CornerRadius="8" Padding="15" Margin="20,10" Grid.Row="4">
+            <StackPanel Spacing="8">
+                <TextBlock Text="Nutrition (calculated)" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="5">
+                    <TextBlock Text="Calories:" Grid.Column="0" Grid.Row="0" FontSize="12"/>
+                    <TextBlock Text="{Binding CalculatedCalories, StringFormat='{}{0:F0}'}" Grid.Column="1" Grid.Row="0" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                    <TextBlock Text="Protein:" Grid.Column="0" Grid.Row="1" FontSize="12"/>
+                    <TextBlock Text="{Binding CalculatedProtein, StringFormat='{}{0:F1}g'}" Grid.Column="1" Grid.Row="1" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                    <TextBlock Text="Fat:" Grid.Column="0" Grid.Row="2" FontSize="12"/>
+                    <TextBlock Text="{Binding CalculatedFat, StringFormat='{}{0:F1}g'}" Grid.Column="1" Grid.Row="2" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                    <TextBlock Text="Carbs:" Grid.Column="0" Grid.Row="3" FontSize="12"/>
+                    <TextBlock Text="{Binding CalculatedCarbs, StringFormat='{}{0:F1}g'}" Grid.Column="1" Grid.Row="3" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+        
+        <Grid ColumnDefinitions="Auto,*" Margin="20,10" Grid.Row="5" ColumnSpacing="10">
+            <Button Content="Create New" Command="{Binding ShowCreateNewFoodDialogCommand}" Grid.Column="0" MinWidth="100" Height="44"/>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" Spacing="5" HorizontalAlignment="Right">
+                <Button Command="{Binding SelectFoodCommand}" CommandParameter="{Binding SelectedFood}" IsEnabled="{Binding SelectedFood, Converter={x:Static ObjectConverters.IsNotNull}}" MinWidth="100" Height="44" Width="56" Classes="SaveButton">
+                    <LucideIcon Kind="Check" Size="24"/>
+                </Button>
+                <Button Command="{Binding CancelCommand}" MinWidth="100" Height="44" Width="56">
+                    <LucideIcon Kind="X" Size="24"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+        
+        <Grid IsVisible="{Binding IsEditFoodDialogVisible}" ZIndex="100" Grid.Row="0" Grid.RowSpan="6">
+            <Rectangle Fill="#80000000" Opacity="0.7"/>
+            <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+                    CornerRadius="8" 
+                    BorderBrush="#E0E0E0"
+                    BorderThickness="2"
+                    Padding="20"
+                    Width="400"
+                    MaxHeight="600"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                <local:EditFoodDialog DataContext="{Binding EditFoodDialogViewModel}"/>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

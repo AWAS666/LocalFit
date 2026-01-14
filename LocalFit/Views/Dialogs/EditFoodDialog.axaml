@@ -1,0 +1,63 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:LocalFit.ViewModels"
+             xmlns:lucide="using:Lucide.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="500"
+             x:Class="LocalFit.Views.Dialogs.EditFoodDialog"
+             x:DataType="vm:EditFoodDialogViewModel">
+    <ScrollViewer>
+        <StackPanel Margin="20" Spacing="15">
+            <TextBlock Text="Food Details" FontSize="20" FontWeight="Bold"/>
+            
+            <StackPanel Spacing="5">
+                <TextBlock Text="Name:"/>
+                <TextBox Text="{Binding Name}" Watermark="Food name"/>
+            </StackPanel>
+            
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <StackPanel Spacing="5" Grid.Column="0">
+                    <TextBlock Text="Calories:"/>
+                    <NumericUpDown Value="{Binding Calories}" Minimum="0" Maximum="10000" ShowButtonSpinner="False"/>
+                </StackPanel>
+                
+                <StackPanel Spacing="5" Grid.Column="1">
+                    <TextBlock Text="Protein (g):"/>
+                    <NumericUpDown Value="{Binding Protein}" Minimum="0" Maximum="1000" Increment="0.1" ShowButtonSpinner="False"/>
+                </StackPanel>
+            </Grid>
+            
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <StackPanel Spacing="5" Grid.Column="0">
+                    <TextBlock Text="Fat (g):"/>
+                    <NumericUpDown Value="{Binding Fat}" Minimum="0" Maximum="1000" Increment="0.1" ShowButtonSpinner="False"/>
+                </StackPanel>
+                
+                <StackPanel Spacing="5" Grid.Column="1">
+                    <TextBlock Text="Carbs (g):"/>
+                    <NumericUpDown Value="{Binding Carbs}" Minimum="0" Maximum="1000" Increment="0.1" ShowButtonSpinner="False"/>
+                </StackPanel>
+            </Grid>
+            
+            <StackPanel Spacing="5">
+                <TextBlock Text="Sugar (g):"/>
+                <NumericUpDown Value="{Binding Sugar}" Minimum="0" Maximum="1000" Increment="0.1" ShowButtonSpinner="False"/>
+            </StackPanel>
+            
+            <StackPanel Spacing="5">
+                <TextBlock Text="Unit:"/>
+                <ComboBox SelectedItem="{Binding Unit}" ItemsSource="{Binding Units}"/>
+            </StackPanel>
+            
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10" Margin="0,10">
+                <Button Command="{Binding CancelCommand}" Grid.Column="0" MinWidth="100" Height="44" Width="56">
+                    <LucideIcon Kind="X" Size="24"/>
+                </Button>
+                <Button Command="{Binding SaveCommand}" Grid.Column="1" Classes="SaveButton" MinWidth="100" Height="44" Width="56" HorizontalAlignment="Right">
+                    <LucideIcon Kind="Check" Size="24"/>
+                </Button>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

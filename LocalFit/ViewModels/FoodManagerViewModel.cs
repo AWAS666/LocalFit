@@ -4,8 +4,8 @@ using LocalFit.Lib.DataBase;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace LocalFit.ViewModels;
@@ -18,41 +18,85 @@ public partial class FoodManagerViewModel : ObservableObject
     private int size = 20;
 
     [ObservableProperty]
-    private List<FoodPresets> foods = new();
+    private ObservableCollection<FoodPresets> foods = new();
+
+    [ObservableProperty]
+    private string searchText = string.Empty;
+
+    [ObservableProperty]
+    private bool isEditFoodDialogVisible;
+
+    [ObservableProperty]
+    private EditFoodDialogViewModel? editFoodDialogViewModel;
+
+    private List<FoodPresets> allFoods = new();
 
     public FoodManagerViewModel()
     {
-        LoadFoods();
+        _ = LoadFoods();
     }
 
 
     partial void OnPageChanged(int value)
     {
-        LoadFoods();
+        FilterFoods();
     }
-
 
     private async Task LoadFoods()
     {
         using var db = new UserContext();
-        Foods = await db.FoodPresets.Skip(Page * size).Take(size).ToListAsync();
+        allFoods = await db.FoodPresets.OrderBy(x => x.Name).ToListAsync();
+        FilterFoods();
+    }
+
+    private void FilterFoods()
+    {
+        var filtered = allFoods;
+        
+        if (!string.IsNullOrWhiteSpace(SearchText))
+        {
+            filtered = filtered.Where(f => f.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase)).ToList();
+        }
+
+        var paginated = filtered.Skip(Page * size).Take(size).ToList();
+        Foods = new ObservableCollection<FoodPresets>(paginated);
+    }
+
+    private void SetupEditFoodDialog(EditFoodDialogViewModel dialogViewModel)
+    {
+        dialogViewModel.OnSaved += async (preset) =>
+        {
+            await LoadFoods();
+            IsEditFoodDialogVisible = false;
+            EditFoodDialogViewModel = null;
+        };
+        dialogViewModel.OnCancel += () =>
+        {
+            IsEditFoodDialogVisible = false;
+            EditFoodDialogViewModel = null;
+        };
+        IsEditFoodDialogVisible = true;
     }
 
     [RelayCommand]
-    private async Task Add()
+    private void ShowAddFoodDialog()
     {
-        using var db = new UserContext();
-        db.FoodPresets.Add(new FoodPresets
-        {
-            Name = "New Food",
-            Calories = 0,
-            Fat = 0,
-            Protein = 0,
-            Carbs = 0,
-            Sugar = 0,
-        });
-        await db.SaveChangesAsync();
-        await LoadFoods();
+        EditFoodDialogViewModel = new EditFoodDialogViewModel();
+        SetupEditFoodDialog(EditFoodDialogViewModel);
+    }
+
+    [RelayCommand]
+    private void ShowEditFoodDialog(FoodPresets preset)
+    {
+        EditFoodDialogViewModel = new EditFoodDialogViewModel(preset);
+        SetupEditFoodDialog(EditFoodDialogViewModel);
+    }
+
+    [RelayCommand]
+    private void HideEditFoodDialog()
+    {
+        IsEditFoodDialogVisible = false;
+        EditFoodDialogViewModel = null;
     }
 
     [RelayCommand]
@@ -62,5 +106,33 @@ public partial class FoodManagerViewModel : ObservableObject
         db.FoodPresets.Remove(preset);
         await db.SaveChangesAsync();
         await LoadFoods();
+    }
+
+    private void ChangePage(int offset)
+    {
+        if (offset < 0 && Page > 0)
+        {
+            Page--;
+        }
+        else if (offset > 0)
+        {
+            var totalPages = (int)Math.Ceiling((double)allFoods.Count / size);
+            if (Page < totalPages - 1)
+            {
+                Page++;
+            }
+        }
+    }
+
+    [RelayCommand]
+    private void PreviousPage()
+    {
+        ChangePage(-1);
+    }
+
+    [RelayCommand]
+    private void NextPage()
+    {
+        ChangePage(1);
     }
 }

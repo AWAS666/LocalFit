@@ -121,6 +121,9 @@ namespace LocalFit.Lib.Migrations
                     b.Property<decimal>("Sugar")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Unit")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("Updated")
                         .HasColumnType("TEXT");
 

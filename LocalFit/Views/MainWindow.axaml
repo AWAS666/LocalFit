@@ -5,6 +5,7 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:views="using:LocalFit.Views"
 		mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
+		Width="450" Height="800"
 		x:Class="LocalFit.Views.MainWindow"
 		Icon="/Assets/avalonia-logo.ico"
 		Title="LocalFit">

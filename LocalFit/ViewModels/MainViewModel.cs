@@ -6,23 +6,29 @@ namespace LocalFit.ViewModels;
 public partial class MainViewModel : ObservableObject
 {
     [ObservableProperty]
-    private object currentView = new BMRViewModel();
+    private object currentView = new DayTrackerViewModel();
 
     [RelayCommand]
-    public void View1()
-    {
-        CurrentView = new BMRViewModel();
-    }
-
-    [RelayCommand]
-    public void View2()
+    public void NavigateToFoodManager()
     {
         CurrentView = new FoodManagerViewModel();
     }
 
     [RelayCommand]
-    public void View3()
+    public void NavigateToDayTracker()
     {
-        CurrentView = null;
+        CurrentView = new DayTrackerViewModel();
+    }
+
+    [RelayCommand]
+    public void NavigateToWeightTracker()
+    {
+        CurrentView = new WeightTrackerViewModel();
+    }
+
+    [RelayCommand]
+    public void NavigateToSettings()
+    {
+        CurrentView = new SettingsViewModel();
     }
 }

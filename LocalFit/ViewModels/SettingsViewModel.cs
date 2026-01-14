@@ -1,0 +1,112 @@
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using LocalFit.Lib;
+using LocalFit.Lib.DataBase;
+using System;
+using System.Linq;
+using System.Reflection;
+
+namespace LocalFit.ViewModels;
+
+public partial class SettingsViewModel : ObservableObject
+{
+    [ObservableProperty]
+    private FitnessGoal? currentGoal;
+
+    [ObservableProperty]
+    private WeightTracker? currentWeight;
+
+    [ObservableProperty]
+    private bool isGoalSetupDialogVisible;
+
+    [ObservableProperty]
+    private GoalSetupDialogViewModel? goalSetupDialogViewModel;
+
+    [ObservableProperty]
+    private decimal calculatedCalories;
+
+    [ObservableProperty]
+    private decimal calculatedProtein;
+
+    [ObservableProperty]
+    private decimal calculatedFat;
+
+    [ObservableProperty]
+    private decimal calculatedCarbs;
+
+    [ObservableProperty]
+    private string version = "1.0.0";
+
+    public SettingsViewModel()
+    {
+        LoadCurrentSettings();
+        LoadVersion();
+    }
+
+    private void LoadVersion()
+    {
+        var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
+        if (assemblyVersion != null)
+        {
+            Version = $"Version {assemblyVersion.Major}.{assemblyVersion.Minor}.{assemblyVersion.Build}";
+        }
+    }
+
+    private void LoadCurrentSettings()
+    {
+        using var db = new UserContext();
+        CurrentGoal = db.Goal.OrderByDescending(x => x.Created).FirstOrDefault();
+        CurrentWeight = db.Weight.OrderByDescending(x => x.Created).FirstOrDefault();
+        CalculateNutrition();
+    }
+
+    private void CalculateNutrition()
+    {
+        if (CurrentWeight == null || CurrentGoal == null) return;
+
+        var nutrition = BMRCalculator.CalculateDailyNutrition(
+            CurrentWeight.Weight,
+            CurrentWeight.Height,
+            30, // Age - TODO: add age to settings
+            CurrentGoal.Sex,
+            CurrentGoal.FitLevel,
+            CurrentGoal.Goal
+        );
+
+        CalculatedCalories = nutrition.Calories;
+        CalculatedProtein = nutrition.ProteinGrams;
+        CalculatedFat = nutrition.FatGrams;
+        CalculatedCarbs = nutrition.CarbsGrams;
+    }
+
+    private void SetupGoalDialog(GoalSetupDialogViewModel dialogViewModel)
+    {
+        dialogViewModel.OnSaved += (goal) =>
+        {
+            CurrentGoal = goal;
+            CalculateNutrition();
+            IsGoalSetupDialogVisible = false;
+            GoalSetupDialogViewModel = null;
+        };
+        dialogViewModel.OnCancel += () =>
+        {
+            IsGoalSetupDialogVisible = false;
+            GoalSetupDialogViewModel = null;
+        };
+        IsGoalSetupDialogVisible = true;
+    }
+
+    [RelayCommand]
+    private void ShowGoalSetupDialog()
+    {
+        GoalSetupDialogViewModel = new GoalSetupDialogViewModel();
+        SetupGoalDialog(GoalSetupDialogViewModel);
+    }
+
+    [RelayCommand]
+    private void HideGoalSetupDialog()
+    {
+        IsGoalSetupDialogVisible = false;
+        GoalSetupDialogViewModel = null;
+    }
+}

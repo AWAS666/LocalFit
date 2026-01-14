@@ -41,6 +41,7 @@ public class FoodPresets
     public decimal Protein { get; set; }
     public decimal Carbs { get; set; }
     public decimal Sugar { get; set; }
+    public FoodUnit Unit { get; set; } = FoodUnit.Gram100;
     public DateTime Created { get; set; } = DateTime.UtcNow;
     public DateTime Updated { get; set; } = DateTime.UtcNow;
 }
@@ -55,7 +56,7 @@ public class FoodEaten
 }
 public enum FoodUnit
 {
-    Gram,
+    Gram100,
     Piece,
 }
 
@@ -80,8 +81,8 @@ public class DayTracker
     public DateOnly Date { get; set; } = DateOnly.FromDateTime(DateTime.UtcNow);
     public List<FoodEaten> FoodsEaten { get; set; } = new();
 
-    public FitnessGoal? Goal { get; set; } = new();
-    public WeightTracker? Weight { get; set; } = new();
+    public FitnessGoal? Goal { get; set; }
+    public WeightTracker? Weight { get; set; }
 
     public decimal TotalCalories()
     {

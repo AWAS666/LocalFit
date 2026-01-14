@@ -20,40 +20,118 @@ public partial class DayTrackerViewModel : ObservableObject
     private DayTracker current;
 
     [ObservableProperty]
-    private ObservableCollection<FoodEaten> eaten;
+    private ObservableCollection<FoodEaten> eaten = new();
+
+    [ObservableProperty]
+    private bool isAddFoodDialogVisible;
+
+    public decimal TotalCalories => Current?.TotalCalories() ?? 0;
+    public decimal TotalProtein => Current?.TotalProtein() ?? 0;
+    public decimal TotalFat => Current?.TotalFat() ?? 0;
+    public decimal TotalCarbs => Current?.TotalCarbs() ?? 0;
+
+    [ObservableProperty]
+    private AddFoodDialogViewModel? addFoodDialogViewModel;
+
+    private void RefreshTotals()
+    {
+        OnPropertyChanged(nameof(TotalCalories));
+        OnPropertyChanged(nameof(TotalProtein));
+        OnPropertyChanged(nameof(TotalFat));
+        OnPropertyChanged(nameof(TotalCarbs));
+    }
+
+    private async Task NavigateToDay(int dayOffset)
+    {
+        using var db = new UserContext();
+        var targetDate = Current!.Date.AddDays(dayOffset);
+        var day = await db.Day.Include(x => x.FoodsEaten).ThenInclude(x => x.Preset).FirstOrDefaultAsync(x => x.Date == targetDate);
+        if (day == null)
+        {
+            day = new DayTracker
+            {
+                Date = targetDate,
+                // set to current if this was missing
+                Weight = db.Weight.OrderByDescending(x => x.Created).FirstOrDefault(),
+                Goal = db.Goal.OrderByDescending(x => x.Created).FirstOrDefault()
+            };
+            db.Day.Add(day);
+            await db.SaveChangesAsync();
+        }
+        Current = day;       
+        Eaten = new ObservableCollection<FoodEaten>(Current.FoodsEaten);
+        RefreshTotals();
+    }
 
     public DayTrackerViewModel()
     {
         var today = DateOnly.FromDateTime(DateTime.UtcNow);
         using var db = new UserContext();
-        Current = db.Day.Include(x => x.FoodsEaten).FirstOrDefault(x => x.Date == today);
-        if (Current == null)
+        var day = db.Day.Include(x => x.FoodsEaten).ThenInclude(x => x.Preset).FirstOrDefault(x => x.Date == today);
+        if (day == null)
         {
-            Current = new DayTracker
+            day = new DayTracker
             {
                 Date = today,
             };
-            db.Day.Add(Current);
-            Eaten = new ObservableCollection<FoodEaten>(Current.FoodsEaten);
+            db.Day.Add(day);
         }
+        Current = day;
+        Eaten = new ObservableCollection<FoodEaten>(Current.FoodsEaten);
         // always update to latest weight/goal on daily but not on nav
         Current.Weight = db.Weight.OrderByDescending(x => x.Created).FirstOrDefault();
         Current.Goal = db.Goal.OrderByDescending(x => x.Created).FirstOrDefault();
         db.SaveChanges();
+        RefreshTotals();
     }
 
+    private void SetupAddFoodDialog(AddFoodDialogViewModel dialogViewModel)
+    {
+        dialogViewModel.OnFoodSelected += async (preset, amount) =>
+        {
+            await AddFoodToDay(preset, amount);
+            IsAddFoodDialogVisible = false;
+        };
+        dialogViewModel.OnCancel += () =>
+        {
+            IsAddFoodDialogVisible = false;
+        };
+        IsAddFoodDialogVisible = true;
+    }
 
     [RelayCommand]
-    private async Task AddFood()
+    private void ShowAddFoodDialog()
+    {
+        AddFoodDialogViewModel = new AddFoodDialogViewModel();
+        SetupAddFoodDialog(AddFoodDialogViewModel);
+    }
+
+    [RelayCommand]
+    private void HideAddFoodDialog()
+    {
+        IsAddFoodDialogVisible = false;
+        AddFoodDialogViewModel = null;
+    }
+
+    private async Task AddFoodToDay(FoodPresets preset, decimal amount)
     {
         using var db = new UserContext();
+        var presetEntity = await db.FoodPresets.FindAsync(preset.Id);
+        if (presetEntity == null) return;
+        
         var foodEaten = new FoodEaten
         {
+            Preset = presetEntity,
+            Amount = amount
         };
         Current!.FoodsEaten.Add(foodEaten);
         db.Day.Update(Current);
         await db.SaveChangesAsync();
+        
+        // Reload to get the entity with Preset loaded
+        db.Entry(foodEaten).Reference(x => x.Preset).Load();
         Eaten.Add(foodEaten);
+        RefreshTotals();
     }
 
 
@@ -65,27 +143,18 @@ public partial class DayTrackerViewModel : ObservableObject
         db.Day.Update(Current);
         await db.SaveChangesAsync();
         Eaten.Remove(food);
+        RefreshTotals();
     }
 
     [RelayCommand]
     private async Task LastDay()
     {
-        using var db = new UserContext();
-        var previousDate = Current!.Date.AddDays(-1);
-        var last = await db.Day.Include(x => x.FoodsEaten).FirstOrDefaultAsync(x => x.Date == previousDate);
-        if (last == null) return;
-        Current = last;
-        Eaten = new ObservableCollection<FoodEaten>(Current.FoodsEaten);
+        await NavigateToDay(-1);
     }
 
     [RelayCommand]
     private async Task NextDay()
     {
-        using var db = new UserContext();
-        var previousDate = Current!.Date.AddDays(1);
-        var last = await db.Day.Include(x => x.FoodsEaten).FirstOrDefaultAsync(x => x.Date == previousDate);
-        if (last == null) return;
-        Current = last;
-        Eaten = new ObservableCollection<FoodEaten>(Current.FoodsEaten);
+        await NavigateToDay(1);
     }
 }

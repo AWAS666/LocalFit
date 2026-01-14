@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:LocalFit.ViewModels"
+             xmlns:lucide="using:Lucide.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="400"
+             x:Class="LocalFit.Views.Dialogs.AddWeightDialog"
+             x:DataType="vm:AddWeightDialogViewModel">
+    <StackPanel Margin="20" Spacing="20">
+        <TextBlock Text="Add Weight Entry" FontSize="24" FontWeight="Bold"/>
+        
+        <StackPanel Spacing="5">
+            <TextBlock Text="Weight (kg):"/>
+            <NumericUpDown Value="{Binding Weight}" Minimum="0" Maximum="500" Increment="0.1" ShowButtonSpinner="False"/>
+        </StackPanel>
+        
+        <StackPanel Spacing="5">
+            <TextBlock Text="Height (cm):"/>
+            <NumericUpDown Value="{Binding Height}" Minimum="0" Maximum="300" Increment="1" ShowButtonSpinner="False"/>
+        </StackPanel>
+        
+        <StackPanel Spacing="5">
+            <TextBlock Text="Note (optional):"/>
+            <TextBox Text="{Binding Note}" Watermark="Add a note..." AcceptsReturn="True" TextWrapping="Wrap" MinHeight="80"/>
+        </StackPanel>
+        
+        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10" Margin="0,10">
+            <Button Command="{Binding CancelCommand}" Grid.Column="0" MinWidth="100" Height="44" Width="56">
+                <LucideIcon Kind="X" Size="24"/>
+            </Button>
+            <Button Command="{Binding SaveCommand}" Grid.Column="1" Classes="SaveButton" MinWidth="100" Height="44" Width="56" HorizontalAlignment="Right">
+                <LucideIcon Kind="Check" Size="24"/>
+            </Button>
+        </Grid>
+    </StackPanel>
+</UserControl>

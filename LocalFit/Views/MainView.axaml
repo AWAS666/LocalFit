@@ -12,26 +12,58 @@
 		to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
 		<vm:MainViewModel />
 	</Design.DataContext>
-	<Grid RowDefinitions="200*,50">
+	<Grid RowDefinitions="*,Auto">
 		<ContentControl Content="{Binding CurrentView}">
 			<ContentControl.DataTemplates>
-				<DataTemplate DataType="vm:BMRViewModel">
-					<local:NutritionCalculator />
-				</DataTemplate>
 				<DataTemplate DataType="vm:FoodManagerViewModel">
 					<local:FoodManager />
 				</DataTemplate>
-		</ContentControl.DataTemplates>
+				<DataTemplate DataType="vm:DayTrackerViewModel">
+					<local:DayTrackerView />
+				</DataTemplate>
+				<DataTemplate DataType="vm:WeightTrackerViewModel">
+					<local:WeightTrackerView />
+				</DataTemplate>
+				<DataTemplate DataType="vm:SettingsViewModel">
+					<local:SettingsView />
+				</DataTemplate>
+			</ContentControl.DataTemplates>
 		</ContentControl>
-		<Grid Grid.Row="1" ColumnDefinitions="100,100*,100">
-			<Button Command="{Binding View1Command}"
-					HorizontalAlignment="Center" VerticalContentAlignment="Center" Height="50">
-				<LucideIcon Kind="Star" Size="30" StrokeWidth="1.5"/>
+		<Border Grid.Row="1" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0" Background="#FFFFFF">
+			<Grid ColumnDefinitions="*,*,*,*">
+			<Button Command="{Binding NavigateToDayTrackerCommand}"
+					HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Height="50"
+					Background="Transparent">
+				<StackPanel Spacing="4">
+					<LucideIcon Kind="Calendar" Size="24" HorizontalAlignment="Center" Foreground="#000000"/>
+					<TextBlock Text="Day" FontSize="10" HorizontalAlignment="Center" Foreground="#000000"/>
+				</StackPanel>
 			</Button>
-			<Button Command="{Binding View2Command}"
-					HorizontalAlignment="Center" VerticalContentAlignment="Center" Height="50" Grid.Column="1">View2</Button>
-			<Button Command="{Binding View3Command}"
-					HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.Column="2" Height="50">View3</Button>
-		</Grid>
+			<Button Command="{Binding NavigateToWeightTrackerCommand}"
+					HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Height="50" Grid.Column="1"
+					Background="Transparent">
+				<StackPanel Spacing="4">
+					<LucideIcon Kind="Scale" Size="24" HorizontalAlignment="Center" Foreground="#000000"/>
+					<TextBlock Text="Weight" FontSize="10" HorizontalAlignment="Center" Foreground="#000000"/>
+				</StackPanel>
+			</Button>
+			<Button Command="{Binding NavigateToFoodManagerCommand}"
+					HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Height="50" Grid.Column="2"
+					Background="Transparent">
+				<StackPanel Spacing="4">
+					<LucideIcon Kind="UtensilsCrossed" Size="24" HorizontalAlignment="Center" Foreground="#000000"/>
+					<TextBlock Text="Food" FontSize="10" HorizontalAlignment="Center" Foreground="#000000"/>
+				</StackPanel>
+			</Button>
+			<Button Command="{Binding NavigateToSettingsCommand}"
+					HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Height="50" Grid.Column="3"
+					Background="Transparent">
+				<StackPanel Spacing="4">
+					<LucideIcon Kind="Settings" Size="24" HorizontalAlignment="Center" Foreground="#000000"/>
+					<TextBlock Text="Settings" FontSize="10" HorizontalAlignment="Center" Foreground="#000000"/>
+				</StackPanel>
+			</Button>
+			</Grid>
+		</Border>
 	</Grid>
 </UserControl>
