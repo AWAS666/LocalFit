@@ -58,7 +58,7 @@ public partial class DayTrackerViewModel : ObservableObject
             db.Day.Add(day);
             await db.SaveChangesAsync();
         }
-        Current = day;       
+        Current = day;
         Eaten = new ObservableCollection<FoodEaten>(Current.FoodsEaten);
         RefreshTotals();
     }
@@ -116,9 +116,10 @@ public partial class DayTrackerViewModel : ObservableObject
     private async Task AddFoodToDay(FoodPresets preset, decimal amount)
     {
         using var db = new UserContext();
+        db.Attach(Current!);
         var presetEntity = await db.FoodPresets.FindAsync(preset.Id);
         if (presetEntity == null) return;
-        
+
         var foodEaten = new FoodEaten
         {
             Preset = presetEntity,
@@ -127,7 +128,7 @@ public partial class DayTrackerViewModel : ObservableObject
         Current!.FoodsEaten.Add(foodEaten);
         db.Day.Update(Current);
         await db.SaveChangesAsync();
-        
+
         // Reload to get the entity with Preset loaded
         db.Entry(foodEaten).Reference(x => x.Preset).Load();
         Eaten.Add(foodEaten);
