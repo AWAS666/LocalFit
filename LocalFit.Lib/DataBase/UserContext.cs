@@ -8,6 +8,7 @@ public class UserContext : DbContext
     public DbSet<FoodEaten> FoodEaten { get; set; }
     public DbSet<WeightTracker> Weight { get; set; }
     public DbSet<DayTracker> Day { get; set; }
+    public DbSet<FitnessGoal> Goal { get; set; }
     public UserContext(string db = "database.db")
     {
         var local = Environment.SpecialFolder.LocalApplicationData;
@@ -79,7 +80,8 @@ public class DayTracker
     public DateOnly Date { get; set; } = DateOnly.FromDateTime(DateTime.UtcNow);
     public List<FoodEaten> FoodsEaten { get; set; } = new();
 
-    public NutritionResult Targets { get; set; } = new();
+    public FitnessGoal? Goal { get; set; } = new();
+    public WeightTracker? Weight { get; set; } = new();
 
     public decimal TotalCalories()
     {
@@ -101,4 +103,15 @@ public class DayTracker
     {
         return FoodsEaten.Sum(x => x.Preset.Sugar);
     }
+}
+
+
+public class FitnessGoal
+{
+    public int Id { get; set; }
+    public CalorieGoal Goal { get; set; }
+    public FitnessLevel FitLevel { get; set; }
+    public Sex Sex { get; set; }
+    public DateTime Created { get; set; } = DateTime.UtcNow;
+    public DateTime Updated { get; set; } = DateTime.UtcNow;
 }

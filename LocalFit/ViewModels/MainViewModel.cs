@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace LocalFit.ViewModels;
 
-public partial class MainViewModel : ViewModelBase
+public partial class MainViewModel : ObservableObject
 {
     [ObservableProperty]
     private object currentView = new BMRViewModel();

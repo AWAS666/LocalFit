@@ -22,14 +22,45 @@ namespace LocalFit.Lib.Migrations
                     b.Property<DateOnly>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("TargetsId")
+                    b.Property<int?>("GoalId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("WeightId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Date");
 
-                    b.HasIndex("TargetsId");
+                    b.HasIndex("GoalId");
+
+                    b.HasIndex("WeightId");
 
                     b.ToTable("Day");
+                });
+
+            modelBuilder.Entity("LocalFit.Lib.DataBase.FitnessGoal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("FitLevel")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Goal")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Sex")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Goal");
                 });
 
             modelBuilder.Entity("LocalFit.Lib.DataBase.FoodEaten", b =>
@@ -127,38 +158,19 @@ namespace LocalFit.Lib.Migrations
                     b.ToTable("Weight");
                 });
 
-            modelBuilder.Entity("LocalFit.Lib.NutritionResult", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<decimal>("Calories")
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal>("CarbsGrams")
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal>("FatGrams")
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal>("ProteinGrams")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("NutritionResult");
-                });
-
             modelBuilder.Entity("LocalFit.Lib.DataBase.DayTracker", b =>
                 {
-                    b.HasOne("LocalFit.Lib.NutritionResult", "Targets")
+                    b.HasOne("LocalFit.Lib.DataBase.FitnessGoal", "Goal")
                         .WithMany()
-                        .HasForeignKey("TargetsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GoalId");
 
-                    b.Navigation("Targets");
+                    b.HasOne("LocalFit.Lib.DataBase.WeightTracker", "Weight")
+                        .WithMany()
+                        .HasForeignKey("WeightId");
+
+                    b.Navigation("Goal");
+
+                    b.Navigation("Weight");
                 });
 
             modelBuilder.Entity("LocalFit.Lib.DataBase.FoodEaten", b =>

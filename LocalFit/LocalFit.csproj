@@ -20,6 +20,7 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="Lucide.Avalonia" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +28,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\GoalSetupView.axaml.cs">
+      <DependentUpon>GoalSetupView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\DayTrackerView.axaml.cs">
+      <DependentUpon>DayTrackerView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\WeightTrackerView.axaml.cs">
+      <DependentUpon>WeightTrackerView.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\FoodManager.axaml.cs">
       <DependentUpon>FoodManager.axaml</DependentUpon>
     </Compile>

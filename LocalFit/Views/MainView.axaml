@@ -17,19 +17,21 @@
 			<ContentControl.DataTemplates>
 				<DataTemplate DataType="vm:BMRViewModel">
 					<local:NutritionCalculator />
-				</DataTemplate>			
-			<DataTemplate DataType="vm:FoodManagerViewModel">
+				</DataTemplate>
+				<DataTemplate DataType="vm:FoodManagerViewModel">
 					<local:FoodManager />
-				</DataTemplate>			
-			</ContentControl.DataTemplates>
+				</DataTemplate>
+		</ContentControl.DataTemplates>
 		</ContentControl>
 		<Grid Grid.Row="1" ColumnDefinitions="100,100*,100">
 			<Button Command="{Binding View1Command}"
-				HorizontalAlignment="Center" VerticalContentAlignment="Center" Height="50">View1</Button>
-			<Button Command="{Binding View2Command}" 
-				HorizontalAlignment="Center" VerticalContentAlignment="Center" Height="50" Grid.Column="1">View2</Button>
+					HorizontalAlignment="Center" VerticalContentAlignment="Center" Height="50">
+				<LucideIcon Kind="Star" Size="30" StrokeWidth="1.5"/>
+			</Button>
+			<Button Command="{Binding View2Command}"
+					HorizontalAlignment="Center" VerticalContentAlignment="Center" Height="50" Grid.Column="1">View2</Button>
 			<Button Command="{Binding View3Command}"
-				HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.Column="2" Height="50">View3</Button>
+					HorizontalAlignment="Center" VerticalContentAlignment="Center" Grid.Column="2" Height="50">View3</Button>
 		</Grid>
 	</Grid>
 </UserControl>

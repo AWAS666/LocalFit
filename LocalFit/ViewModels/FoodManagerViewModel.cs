@@ -54,4 +54,13 @@ public partial class FoodManagerViewModel : ObservableObject
         await db.SaveChangesAsync();
         await LoadFoods();
     }
+
+    [RelayCommand]
+    private async Task Remove(FoodPresets preset)
+    {
+        using var db = new UserContext();
+        db.FoodPresets.Remove(preset);
+        await db.SaveChangesAsync();
+        await LoadFoods();
+    }
 }
