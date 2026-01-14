@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LocalFit.Lib;
 using LocalFit.Lib.DataBase;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,7 +18,17 @@ public partial class DayTrackerViewModel : ObservableObject
     /// defaults to current, can navigate days -> add option to just pick date?
     /// </summary>
     [ObservableProperty]
+    [NotifyPropertyChangedFor(
+        nameof(TotalCalories), nameof(TotalProtein), nameof(TotalFat), nameof(TotalCarbs),
+        nameof(GoalNutrition),
+        nameof(CaloriesDisplay), nameof(ProteinDisplay), nameof(FatDisplay), nameof(CarbsDisplay),
+        nameof(CaloriesBackgroundColor), nameof(ProteinBackgroundColor), nameof(FatBackgroundColor), nameof(CarbsBackgroundColor))]
     private DayTracker current;
+
+    partial void OnCurrentChanged(DayTracker value)
+    {
+        GoalNutrition = CalculateGoalNutrition();
+    }
 
     [ObservableProperty]
     private ObservableCollection<FoodEaten> eaten = new();
@@ -31,21 +42,59 @@ public partial class DayTrackerViewModel : ObservableObject
     public decimal TotalCarbs => Current?.TotalCarbs() ?? 0;
 
     [ObservableProperty]
+    private NutritionResult goalNutrition;
+
+    public string CaloriesDisplay => GetDisplay(TotalCalories, GoalNutrition.Calories, 0, "kcal");
+    public string ProteinDisplay => GetDisplay(TotalProtein, GoalNutrition.ProteinGrams, 1);
+    public string FatDisplay => GetDisplay(TotalFat, GoalNutrition.FatGrams, 1);
+    public string CarbsDisplay => GetDisplay(TotalCarbs, GoalNutrition.CarbsGrams, 1);
+
+    public string CaloriesBackgroundColor => GetBackgroundColor(TotalCalories, GoalNutrition.Calories, "#FF4CAF50");
+    public string ProteinBackgroundColor => GetBackgroundColor(TotalProtein, GoalNutrition.ProteinGrams, "#FF2196F3");
+    public string FatBackgroundColor => GetBackgroundColor(TotalFat, GoalNutrition.FatGrams, "#FFFF9800");
+    public string CarbsBackgroundColor => GetBackgroundColor(TotalCarbs, GoalNutrition.CarbsGrams, "#FF9C27B0");
+
+    private static string GetDisplay(decimal current, decimal goal, int decimals, string unit = "")
+    {
+        if (goal <= 0) return $"{current:F0}{unit}";
+        return decimals == 0
+            ? $"{current:F0}/{goal:F0}{unit}"
+            : $"{current:F1}/{goal:F1}g";
+    }
+
+    private static string GetBackgroundColor(decimal current, decimal goal, string defaultColor)
+    {
+        return goal > 0 && current > goal ? "#FFE53935" : defaultColor;
+    }
+
+    [ObservableProperty]
     private AddFoodDialogViewModel? addFoodDialogViewModel;
 
-    private void RefreshTotals()
+
+    private NutritionResult CalculateGoalNutrition()
     {
-        OnPropertyChanged(nameof(TotalCalories));
-        OnPropertyChanged(nameof(TotalProtein));
-        OnPropertyChanged(nameof(TotalFat));
-        OnPropertyChanged(nameof(TotalCarbs));
+        if (Current?.Weight == null || Current?.Goal == null)
+            return new NutritionResult();
+
+        return BMRCalculator.CalculateDailyNutrition(
+            Current.Weight.Weight,
+            Current.Weight.Height,
+            Current.Weight.Age,
+            Current.Goal.Sex,
+            Current.Goal.FitLevel,
+            Current.Goal.Goal
+        );
     }
 
     private async Task NavigateToDay(int dayOffset)
     {
         using var db = new UserContext();
         var targetDate = Current!.Date.AddDays(dayOffset);
-        var day = await db.Day.Include(x => x.FoodsEaten).ThenInclude(x => x.Preset).FirstOrDefaultAsync(x => x.Date == targetDate);
+        var day = await db.Day.Include(x => x.FoodsEaten)
+            .ThenInclude(x => x.Preset)
+            .Include(x => x.Goal)
+            .Include(x => x.Weight)
+            .FirstOrDefaultAsync(x => x.Date == targetDate);
         if (day == null)
         {
             day = new DayTracker
@@ -60,7 +109,6 @@ public partial class DayTrackerViewModel : ObservableObject
         }
         Current = day;
         Eaten = new ObservableCollection<FoodEaten>(Current.FoodsEaten);
-        RefreshTotals();
     }
 
     public DayTrackerViewModel()
@@ -76,13 +124,12 @@ public partial class DayTrackerViewModel : ObservableObject
             };
             db.Day.Add(day);
         }
+        // always update to latest weight/goal on daily but not on nav
+        day.Weight = db.Weight.OrderByDescending(x => x.Created).FirstOrDefault();
+        day.Goal = db.Goal.OrderByDescending(x => x.Created).FirstOrDefault();
         Current = day;
         Eaten = new ObservableCollection<FoodEaten>(Current.FoodsEaten);
-        // always update to latest weight/goal on daily but not on nav
-        Current.Weight = db.Weight.OrderByDescending(x => x.Created).FirstOrDefault();
-        Current.Goal = db.Goal.OrderByDescending(x => x.Created).FirstOrDefault();
         db.SaveChanges();
-        RefreshTotals();
     }
 
     private void SetupAddFoodDialog(AddFoodDialogViewModel dialogViewModel)
@@ -132,7 +179,7 @@ public partial class DayTrackerViewModel : ObservableObject
         // Reload to get the entity with Preset loaded
         db.Entry(foodEaten).Reference(x => x.Preset).Load();
         Eaten.Add(foodEaten);
-        RefreshTotals();
+        OnPropertyChanged(nameof(Current));
     }
 
 
@@ -145,7 +192,7 @@ public partial class DayTrackerViewModel : ObservableObject
         db.Day.Update(Current);
         await db.SaveChangesAsync();
         Eaten.Remove(food);
-        RefreshTotals();
+        OnPropertyChanged(nameof(Current));
     }
 
     [RelayCommand]

@@ -70,10 +70,20 @@ public class WeightTracker
     /// </summary>
     public decimal Height { get; set; }
     public decimal Weight { get; set; }
+    public DateOnly BirthDate { get; set; }
     public string? Note { get; set; }
     public byte[]? Image { get; set; }
     public DateTime Created { get; set; } = DateTime.UtcNow;
     public DateTime Updated { get; set; } = DateTime.UtcNow;
+
+    public int Age
+    {
+        get
+        {
+            var difference = DateTime.UtcNow - BirthDate.ToDateTime(TimeOnly.MinValue);
+            return (int)(difference.TotalDays / 365.25);
+        }
+    }
 }
 
 [PrimaryKey(nameof(Date))]

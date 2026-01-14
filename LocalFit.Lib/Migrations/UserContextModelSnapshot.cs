@@ -138,6 +138,9 @@ namespace LocalFit.Lib.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateOnly>("BirthDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 

@@ -16,6 +16,9 @@ public partial class AddWeightDialogViewModel : ObservableObject
     private decimal height = 175;
 
     [ObservableProperty]
+    private DateTimeOffset birthDate = DateTimeOffset.UtcNow.AddYears(-30);
+
+    [ObservableProperty]
     private string? note;
 
     public event Action<WeightTracker>? OnSaved;
@@ -34,6 +37,7 @@ public partial class AddWeightDialogViewModel : ObservableObject
         {
             Weight = latest.Weight;
             Height = latest.Height;
+            BirthDate = new DateTimeOffset(latest.BirthDate.ToDateTime(TimeOnly.MinValue), TimeSpan.Zero);
         }
     }
 
@@ -45,6 +49,7 @@ public partial class AddWeightDialogViewModel : ObservableObject
         {
             Weight = Weight,
             Height = Height,
+            BirthDate = DateOnly.FromDateTime(BirthDate.DateTime),
             Note = Note
         };
         db.Weight.Add(entry);

@@ -67,7 +67,7 @@ public partial class SettingsViewModel : ObservableObject
         var nutrition = BMRCalculator.CalculateDailyNutrition(
             CurrentWeight.Weight,
             CurrentWeight.Height,
-            30, // Age - TODO: add age to settings
+            CurrentWeight.Age,
             CurrentGoal.Sex,
             CurrentGoal.FitLevel,
             CurrentGoal.Goal

@@ -26,31 +26,31 @@
 		
 		<!-- Nutrition Summary Cards -->
 		<Grid Grid.Row="1" ColumnDefinitions="*,*" RowDefinitions="*,*" Margin="10" ColumnSpacing="10" RowSpacing="10">
-			<Border Background="#FF4CAF50" CornerRadius="8" Padding="15" Grid.Row="0" Grid.Column="0">
+			<Border Background="{Binding CaloriesBackgroundColor}" CornerRadius="8" Padding="15" Grid.Row="0" Grid.Column="0">
 				<StackPanel>
 					<TextBlock Text="Calories" FontSize="12" Foreground="#FFFFFF" Opacity="0.9"/>
-					<TextBlock Text="{Binding TotalCalories, StringFormat='{}{0:F0}'}" FontSize="24" FontWeight="Bold" Foreground="#FFFFFF"/>
+					<TextBlock Text="{Binding CaloriesDisplay}" FontSize="24" FontWeight="Bold" Foreground="#FFFFFF"/>
 				</StackPanel>
 			</Border>
 			
-			<Border Background="#FF2196F3" CornerRadius="8" Padding="15" Grid.Row="0" Grid.Column="1">
+			<Border Background="{Binding ProteinBackgroundColor}" CornerRadius="8" Padding="15" Grid.Row="0" Grid.Column="1">
 				<StackPanel>
 					<TextBlock Text="Protein" FontSize="12" Foreground="#FFFFFF" Opacity="0.9"/>
-					<TextBlock Text="{Binding TotalProtein, StringFormat='{}{0:F1}g'}" FontSize="24" FontWeight="Bold" Foreground="#FFFFFF"/>
+					<TextBlock Text="{Binding ProteinDisplay}" FontSize="24" FontWeight="Bold" Foreground="#FFFFFF"/>
 				</StackPanel>
 			</Border>
 			
-			<Border Background="#FFFF9800" CornerRadius="8" Padding="15" Grid.Row="1" Grid.Column="0">
+			<Border Background="{Binding FatBackgroundColor}" CornerRadius="8" Padding="15" Grid.Row="1" Grid.Column="0">
 				<StackPanel>
 					<TextBlock Text="Fat" FontSize="12" Foreground="#FFFFFF" Opacity="0.9"/>
-					<TextBlock Text="{Binding TotalFat, StringFormat='{}{0:F1}g'}" FontSize="24" FontWeight="Bold" Foreground="#FFFFFF"/>
+					<TextBlock Text="{Binding FatDisplay}" FontSize="24" FontWeight="Bold" Foreground="#FFFFFF"/>
 				</StackPanel>
 			</Border>
 			
-			<Border Background="#FF9C27B0" CornerRadius="8" Padding="15" Grid.Row="1" Grid.Column="1">
+			<Border Background="{Binding CarbsBackgroundColor}" CornerRadius="8" Padding="15" Grid.Row="1" Grid.Column="1">
 				<StackPanel>
 					<TextBlock Text="Carbs" FontSize="12" Foreground="#FFFFFF" Opacity="0.9"/>
-					<TextBlock Text="{Binding TotalCarbs, StringFormat='{}{0:F1}g'}" FontSize="24" FontWeight="Bold" Foreground="#FFFFFF"/>
+					<TextBlock Text="{Binding CarbsDisplay}" FontSize="24" FontWeight="Bold" Foreground="#FFFFFF"/>
 				</StackPanel>
 			</Border>
 		</Grid>

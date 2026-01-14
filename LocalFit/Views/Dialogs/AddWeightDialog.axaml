@@ -21,6 +21,11 @@
         </StackPanel>
         
         <StackPanel Spacing="5">
+            <TextBlock Text="Birthday:"/>
+            <DatePicker SelectedDate="{Binding BirthDate}" MinHeight="44"/>
+        </StackPanel>
+        
+        <StackPanel Spacing="5">
             <TextBlock Text="Note (optional):"/>
             <TextBox Text="{Binding Note}" Watermark="Add a note..." AcceptsReturn="True" TextWrapping="Wrap" MinHeight="80"/>
         </StackPanel>
