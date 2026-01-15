@@ -7,7 +7,7 @@ namespace LocalFit.Lib;
 
 /// <summary>
 /// todo: need to read up on actual nutrition calculations and improve this -> there should be papers on this but will do as a start
-/// https://www.calculator.net -> seems to have similarish results
+/// https://www.calculator.net/macro-calculator.html -> seems to have similarish results
 /// </summary>
 public static class BMRCalculator
 {
@@ -52,8 +52,8 @@ public static class BMRCalculator
     {
         return goal switch
         {
-            CalorieGoal.Cut => -500,
-            CalorieGoal.AggressiveCut => -250,
+            CalorieGoal.AggressiveCut => -500,
+            CalorieGoal.Cut => -250,
             CalorieGoal.Maintenance => 0,
             CalorieGoal.Bulk => 150,
             CalorieGoal.AggressiveBulk => 300,
@@ -75,7 +75,6 @@ public static class BMRCalculator
         var proteinGrams = weightKg * GetProteinPerKg(fitnessLevel);
         var proteinCalories = proteinGrams * 4;
 
-        // Fat (25% of calories)
         var fatCalories = tdee * 0.25m;
         var fatGrams = fatCalories / 9;
 

@@ -8,8 +8,8 @@
 - [ ] better mvvm, we do have some view specific fields in models right now
 - [x] change ui design to just black/white (or #222222/ #DDDDDD)
 - [ ] https://github.com/accntech/shad-ui/ -> implement or to little difference?
-- [ ] track favourite items -> add counter field to presets
-- [ ] add last amount -> default to last used amount when adding preset
+- [x] track favourite items -> add counter field to presets
+- [x] add last amount -> default to last used amount when adding preset
 
 ## Todo Global
 - translations
