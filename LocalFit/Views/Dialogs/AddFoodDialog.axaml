@@ -18,7 +18,7 @@
 			</TextBox.Styles>
 		</TextBox>
 
-		<ListBox ItemsSource="{Binding FilteredFoods}" SelectedItem="{Binding SelectedFood}" Margin="20,10" Grid.Row="2">
+		<ListBox ItemsSource="{Binding FilteredFoods}" SelectedItem="{Binding SelectedFood}" Margin="20,10" Grid.Row="2" Background="Transparent">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<Grid ColumnDefinitions="*,Auto">
@@ -47,18 +47,18 @@
 			<TextBlock Text="{Binding SelectedFood.Unit, StringFormat='{}{0}'}" VerticalAlignment="Center" Grid.Column="2" FontWeight="SemiBold"/>
 		</Grid>
 
-		<Border Background="#F5F5F5" CornerRadius="8" Padding="15" Margin="20,10" Grid.Row="4">
+		<Border Background="#DDDDDD" CornerRadius="8" Padding="15" Margin="20,10" Grid.Row="4">
 			<StackPanel Spacing="8">
-				<TextBlock Text="Nutrition (calculated)" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,5" Foreground="Black"/>
+				<TextBlock Text="Nutrition (calculated)" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,5" Foreground="#222222"/>
 				<Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto, Auto,Auto" ColumnSpacing="10" RowSpacing="5">
-					<TextBlock Text="Calories:" Grid.Column="0" Grid.Row="0" FontSize="12" Foreground="Black"/>
-					<TextBlock Text="{Binding CalculatedCalories, StringFormat='{}{0:F0}'}" Grid.Column="1" Grid.Row="0" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Right" Foreground="Black"/>
-					<TextBlock Text="Protein:" Grid.Column="0" Grid.Row="1" FontSize="12" Foreground="Black"/>
-					<TextBlock Text="{Binding CalculatedProtein, StringFormat='{}{0:F1}g'}" Grid.Column="1" Grid.Row="1" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Right" Foreground="Black"/>
-					<TextBlock Text="Fat:" Grid.Column="0" Grid.Row="2" FontSize="12" Foreground="Black"/>
-					<TextBlock Text="{Binding CalculatedFat, StringFormat='{}{0:F1}g'}" Grid.Column="1" Grid.Row="2" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Right" Foreground="Black"/>
-					<TextBlock Text="Carbs:" Grid.Column="0" Grid.Row="3" FontSize="12" Foreground="Black"/>
-					<TextBlock Text="{Binding CalculatedCarbs, StringFormat='{}{0:F1}g'}" Grid.Column="1" Grid.Row="3" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Right" Foreground="Black"/>
+					<TextBlock Text="Calories:" Grid.Column="0" Grid.Row="0" FontSize="12" Foreground="#222222"/>
+					<TextBlock Text="{Binding CalculatedCalories, StringFormat='{}{0:F0}'}" Grid.Column="1" Grid.Row="0" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Right" Foreground="#222222"/>
+					<TextBlock Text="Protein:" Grid.Column="0" Grid.Row="1" FontSize="12" Foreground="#222222"/>
+					<TextBlock Text="{Binding CalculatedProtein, StringFormat='{}{0:F1}g'}" Grid.Column="1" Grid.Row="1" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Right" Foreground="#222222"/>
+					<TextBlock Text="Fat:" Grid.Column="0" Grid.Row="2" FontSize="12" Foreground="#222222"/>
+					<TextBlock Text="{Binding CalculatedFat, StringFormat='{}{0:F1}g'}" Grid.Column="1" Grid.Row="2" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Right" Foreground="#222222"/>
+					<TextBlock Text="Carbs:" Grid.Column="0" Grid.Row="3" FontSize="12" Foreground="#222222"/>
+					<TextBlock Text="{Binding CalculatedCarbs, StringFormat='{}{0:F1}g'}" Grid.Column="1" Grid.Row="3" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Right" Foreground="#222222"/>
 				</Grid>
 			</StackPanel>
 		</Border>
@@ -79,7 +79,7 @@
 			<Rectangle Fill="#80000000" Opacity="0.7"/>
 			<Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
 					CornerRadius="8"
-					BorderBrush="#E0E0E0"
+					BorderBrush="#222222"
 					BorderThickness="2"
 					Padding="20"
 					Width="400"

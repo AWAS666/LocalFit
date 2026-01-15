@@ -45,27 +45,32 @@ public partial class DayTrackerViewModel : ObservableObject
     [ObservableProperty]
     private NutritionResult goalNutrition;
 
-    public string CaloriesDisplay => GetDisplay(TotalCalories, GoalNutrition.Calories, 0, "kcal");
+    public string CaloriesDisplay => GetDisplay(TotalCalories, GoalNutrition.Calories, 0);
     public string ProteinDisplay => GetDisplay(TotalProtein, GoalNutrition.ProteinGrams, 1);
     public string FatDisplay => GetDisplay(TotalFat, GoalNutrition.FatGrams, 1);
     public string CarbsDisplay => GetDisplay(TotalCarbs, GoalNutrition.CarbsGrams, 1);
 
-    public string CaloriesBackgroundColor => GetBackgroundColor(TotalCalories, GoalNutrition.Calories, "#FF4CAF50");
-    public string ProteinBackgroundColor => GetBackgroundColor(TotalProtein, GoalNutrition.ProteinGrams, "#FF2196F3");
-    public string FatBackgroundColor => GetBackgroundColor(TotalFat, GoalNutrition.FatGrams, "#FFFF9800");
-    public string CarbsBackgroundColor => GetBackgroundColor(TotalCarbs, GoalNutrition.CarbsGrams, "#FF9C27B0");
+    public string CaloriesBackgroundColor => "#222222";
+    public string ProteinBackgroundColor => "#222222";
+    public string FatBackgroundColor => "#222222";
+    public string CarbsBackgroundColor => "#222222";
 
-    private static string GetDisplay(decimal current, decimal goal, int decimals, string unit = "")
+    public string CaloriesForegroundColor => GetCaloriesForegroundColor(TotalCalories, GoalNutrition.Calories);
+
+    private static string GetDisplay(decimal current, decimal goal, int decimals)
     {
-        if (goal <= 0) return $"{current:F0}{unit}";
+        if (goal <= 0) return $"{current:F0}";
         return decimals == 0
-            ? $"{current:F0}/{goal:F0}{unit}"
-            : $"{current:F0}/{goal:F0}g";
+            ? $"{current:F0}/{goal:F0}"
+            : $"{current:F0}/{goal:F0}";
     }
 
-    private static string GetBackgroundColor(decimal current, decimal goal, string defaultColor)
+    private static string GetCaloriesForegroundColor(decimal current, decimal goal)
     {
-        return goal > 0 && current > goal ? "#FFE53935" : defaultColor;
+        // Only show red text for calories when exceeding goal
+        if (goal > 0 && current > goal)
+            return "#FFE53935";
+        return "#FFFFFF";
     }
 
     [ObservableProperty]
@@ -203,6 +208,7 @@ public partial class DayTrackerViewModel : ObservableObject
         OnPropertyChanged(nameof(ProteinBackgroundColor));
         OnPropertyChanged(nameof(FatBackgroundColor));
         OnPropertyChanged(nameof(CarbsBackgroundColor));
+        OnPropertyChanged(nameof(CaloriesForegroundColor));
     }
 
     [RelayCommand]
@@ -253,6 +259,7 @@ public partial class DayTrackerViewModel : ObservableObject
             OnPropertyChanged(nameof(ProteinBackgroundColor));
             OnPropertyChanged(nameof(FatBackgroundColor));
             OnPropertyChanged(nameof(CarbsBackgroundColor));
+            OnPropertyChanged(nameof(CaloriesForegroundColor));
         };
         dialogViewModel.OnCancel += () =>
         {

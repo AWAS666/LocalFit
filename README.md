@@ -6,6 +6,8 @@
 - [ ] Photos/camera access in general
 - [ ] Food api to build base database?
 - [ ] better mvvm, we do have some view specific fields in models right now
+- [x] change ui design to just black/white (or #222222/ #DDDDDD)
+- [ ] https://github.com/accntech/shad-ui/ -> implement or to little difference?
 
 ## Todo Global
 - translations

@@ -12,15 +12,15 @@
 	<Application.Styles>
 		<FluentTheme />
 		<Style Selector="Button.SaveButton">
-			<Setter Property="Background" Value="#FF4CAF50"/>
-			<Setter Property="Foreground" Value="#FFFFFF"/>
+			<Setter Property="Background" Value="#222222"/>
+			<Setter Property="Foreground" Value="#DDDDDD"/>
 			<Setter Property="FontWeight" Value="SemiBold"/>
 		</Style>
 		<Style Selector="Button.SaveButton:pointerover">
-			<Setter Property="Background" Value="#FF45A049"/>
+			<Setter Property="Background" Value="#1A1A1A"/>
 		</Style>
 		<Style Selector="Button.SaveButton:pressed">
-			<Setter Property="Background" Value="#FF3D8B40"/>
+			<Setter Property="Background" Value="#111111"/>
 		</Style>
 		<Style Selector="NumericUpDown">
 			<Setter Property="ShowButtonSpinner" Value="False"/>

@@ -12,13 +12,13 @@
 	</Design.DataContext>
 	<Grid RowDefinitions="Auto,*,Auto">
 		<!-- Current Weight Display -->
-		<Border Background="#FF2196F3" CornerRadius="12" Padding="30" Margin="20" Grid.Row="0">
+		<Border Background="#222222" CornerRadius="12" Padding="30" Margin="20" Grid.Row="0">
 			<StackPanel HorizontalAlignment="Center">
-				<TextBlock Text="Current Weight" FontSize="16" Opacity="0.9" HorizontalAlignment="Center"/>
+				<TextBlock Text="Current Weight" FontSize="16" Opacity="0.9" HorizontalAlignment="Center" Foreground="#DDDDDD"/>
 				<TextBlock Text="{Binding Current.Weight, StringFormat='{}{0:F1} kg'}" 
-						   FontSize="48" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+						   FontSize="48" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0" Foreground="#DDDDDD"/>
 				<TextBlock Text="{Binding Current.Height, StringFormat='Height: {0:F0} cm'}" 
-						   FontSize="14" Opacity="0.8" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+						   FontSize="14" Opacity="0.8" HorizontalAlignment="Center" Margin="0,5,0,0" Foreground="#DDDDDD"/>
 			</StackPanel>
 		</Border>
 		
@@ -26,10 +26,10 @@
 		<ScrollViewer Grid.Row="1" Margin="10">
 			<StackPanel Spacing="5">
 				<TextBlock Text="Weight History" FontSize="18" FontWeight="SemiBold" Margin="10,0"/>
-				<ListBox ItemsSource="{Binding WeightHistory}">
+				<ListBox ItemsSource="{Binding WeightHistory}" Background="Transparent">
 					<ListBox.ItemTemplate>
 						<DataTemplate>
-							<Border BorderBrush="#E0E0E0" BorderThickness="0,0,0,1" Padding="15">
+							<Border BorderBrush="#222222" BorderThickness="0,0,0,1" Padding="15">
 								<Grid ColumnDefinitions="*,Auto">
 									<StackPanel>
 										<TextBlock Text="{Binding Weight, StringFormat='{}{0:F1} kg'}" 
@@ -61,8 +61,8 @@
 				HorizontalAlignment="Right"
 				VerticalAlignment="Bottom"
 				CornerRadius="28"
-				Background="#FF4CAF50">
-			<LucideIcon Kind="Plus" Size="28" Foreground="#FFFFFF"/>
+				Background="#222222">
+			<LucideIcon Kind="Plus" Size="28" Foreground="#DDDDDD"/>
 		</Button>
 		
 		<!-- Dialog Overlay -->
@@ -70,7 +70,7 @@
 			<Rectangle Fill="#80000000" Opacity="0.7" Tapped="OnBackdropTapped"/>
 			<Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
 					CornerRadius="8" 
-					BorderBrush="#E0E0E0"
+					BorderBrush="#222222"
 					BorderThickness="2"
 					Padding="0"
 					Width="400"

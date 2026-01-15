@@ -16,7 +16,7 @@
 			<TextBlock Text="Settings" FontSize="28" FontWeight="Bold"/>
 			
 			<!-- Fitness Goals Section -->
-			<Border BorderBrush="#E0E0E0" BorderThickness="0,0,0,1" Padding="0,0,0,20">
+			<Border BorderBrush="#222222" BorderThickness="0,0,0,1" Padding="0,0,0,20">
 				<StackPanel Spacing="15">
 					<Grid ColumnDefinitions="*,Auto">
 						<TextBlock Text="Fitness Goals" FontSize="20" FontWeight="SemiBold" Grid.Column="0"/>
@@ -44,24 +44,24 @@
 					</StackPanel>
 					
 					<!-- Calculated Nutrition Targets -->
-					<Border Background="#F5F5F5" CornerRadius="8" Padding="15" Margin="0,10,0,0">
+					<Border Background="#DDDDDD" CornerRadius="8" Padding="15" Margin="0,10,0,0">
 						<StackPanel Spacing="8">
-							<TextBlock Text="Daily Nutrition Targets" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,5" Foreground="#000000"/>
+							<TextBlock Text="Daily Nutrition Targets" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,5" Foreground="#222222"/>
 							<Grid ColumnDefinitions="Auto,*">
-								<TextBlock Text="Calories:" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#000000"/>
-								<TextBlock Text="{Binding CalculatedCalories, StringFormat='{}{0:F0}'}" Grid.Column="1" FontWeight="SemiBold" Foreground="#000000"/>
+								<TextBlock Text="Calories:" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#222222"/>
+								<TextBlock Text="{Binding CalculatedCalories, StringFormat='{}{0:F0}'}" Grid.Column="1" FontWeight="SemiBold" Foreground="#222222"/>
 							</Grid>
 							<Grid ColumnDefinitions="Auto,*">
-								<TextBlock Text="Protein:" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#000000"/>
-								<TextBlock Text="{Binding CalculatedProtein, StringFormat='{}{0:F1}g'}" Grid.Column="1" FontWeight="SemiBold" Foreground="#000000"/>
+								<TextBlock Text="Protein:" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#222222"/>
+								<TextBlock Text="{Binding CalculatedProtein, StringFormat='{}{0:F1}g'}" Grid.Column="1" FontWeight="SemiBold" Foreground="#222222"/>
 							</Grid>
 							<Grid ColumnDefinitions="Auto,*">
-								<TextBlock Text="Fat:" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#000000"/>
-								<TextBlock Text="{Binding CalculatedFat, StringFormat='{}{0:F1}g'}" Grid.Column="1" FontWeight="SemiBold" Foreground="#000000"/>
+								<TextBlock Text="Fat:" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#222222"/>
+								<TextBlock Text="{Binding CalculatedFat, StringFormat='{}{0:F1}g'}" Grid.Column="1" FontWeight="SemiBold" Foreground="#222222"/>
 							</Grid>
 							<Grid ColumnDefinitions="Auto,*">
-								<TextBlock Text="Carbs:" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#000000"/>
-								<TextBlock Text="{Binding CalculatedCarbs, StringFormat='{}{0:F1}g'}" Grid.Column="1" FontWeight="SemiBold" Foreground="#000000"/>
+								<TextBlock Text="Carbs:" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#222222"/>
+								<TextBlock Text="{Binding CalculatedCarbs, StringFormat='{}{0:F1}g'}" Grid.Column="1" FontWeight="SemiBold" Foreground="#222222"/>
 							</Grid>
 						</StackPanel>
 					</Border>
@@ -69,7 +69,7 @@
 			</Border>
 			
 			<!-- General Settings Section (Placeholder) -->
-			<Border BorderBrush="#E0E0E0" BorderThickness="0,0,0,1" Padding="0,0,0,20">
+			<Border BorderBrush="#222222" BorderThickness="0,0,0,1" Padding="0,0,0,20">
 				<StackPanel Spacing="15">
 					<TextBlock Text="General Settings" FontSize="20" FontWeight="SemiBold"/>
 					<TextBlock Text="Coming soon..." FontSize="14" Opacity="0.6" Margin="0,10,0,0"/>
@@ -93,7 +93,7 @@
 		<Rectangle Fill="#80000000" Opacity="0.7" Tapped="OnBackdropTapped"/>
 		<Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
 				CornerRadius="8" 
-				BorderBrush="#E0E0E0"
+				BorderBrush="#222222"
 				BorderThickness="2"
 				Padding="0"
 				Width="400"
