@@ -18,11 +18,6 @@ public partial class DayTrackerViewModel : ObservableObject
     /// defaults to current, can navigate days -> add option to just pick date?
     /// </summary>
     [ObservableProperty]
-    //[NotifyPropertyChangedFor(
-    //    nameof(TotalCalories), nameof(TotalProtein), nameof(TotalFat), nameof(TotalCarbs),
-    //    nameof(GoalNutrition),
-    //    nameof(CaloriesDisplay), nameof(ProteinDisplay), nameof(FatDisplay), nameof(CarbsDisplay),
-    //    nameof(CaloriesBackgroundColor), nameof(ProteinBackgroundColor), nameof(FatBackgroundColor), nameof(CarbsBackgroundColor))]
     private DayTracker current;
 
     partial void OnCurrentChanged(DayTracker value)
@@ -50,12 +45,10 @@ public partial class DayTrackerViewModel : ObservableObject
     public string FatDisplay => GetDisplay(TotalFat, GoalNutrition.FatGrams, 1);
     public string CarbsDisplay => GetDisplay(TotalCarbs, GoalNutrition.CarbsGrams, 1);
 
-    public string CaloriesBackgroundColor => "#222222";
-    public string ProteinBackgroundColor => "#222222";
-    public string FatBackgroundColor => "#222222";
-    public string CarbsBackgroundColor => "#222222";
-
-    public string CaloriesForegroundColor => GetCaloriesForegroundColor(TotalCalories, GoalNutrition.Calories);
+    public string CaloriesForegroundColor => GetForegroundColor(TotalCalories, GoalNutrition.Calories);
+    public string ProteinForegroundColor => GetForegroundColor(TotalProtein, GoalNutrition.ProteinGrams);
+    public string FatForegroundColor => GetForegroundColor(TotalFat, GoalNutrition.FatGrams);
+    public string CarbsForegroundColor => GetForegroundColor(TotalCarbs, GoalNutrition.CarbsGrams);
 
     private static string GetDisplay(decimal current, decimal goal, int decimals)
     {
@@ -65,9 +58,9 @@ public partial class DayTrackerViewModel : ObservableObject
             : $"{current:F0}/{goal:F0}";
     }
 
-    private static string GetCaloriesForegroundColor(decimal current, decimal goal)
+    private static string GetForegroundColor(decimal current, decimal goal)
     {
-        // Only show red text for calories when exceeding goal
+        // Show red text when exceeding goal
         if (goal > 0 && current > goal)
             return "#FFE53935";
         return "#FFFFFF";
@@ -210,11 +203,10 @@ public partial class DayTrackerViewModel : ObservableObject
         OnPropertyChanged(nameof(ProteinDisplay));
         OnPropertyChanged(nameof(FatDisplay));
         OnPropertyChanged(nameof(CarbsDisplay));
-        OnPropertyChanged(nameof(CaloriesBackgroundColor));
-        OnPropertyChanged(nameof(ProteinBackgroundColor));
-        OnPropertyChanged(nameof(FatBackgroundColor));
-        OnPropertyChanged(nameof(CarbsBackgroundColor));
         OnPropertyChanged(nameof(CaloriesForegroundColor));
+        OnPropertyChanged(nameof(ProteinForegroundColor));
+        OnPropertyChanged(nameof(FatForegroundColor));
+        OnPropertyChanged(nameof(CarbsForegroundColor));
     }
 
     [RelayCommand]
@@ -261,11 +253,10 @@ public partial class DayTrackerViewModel : ObservableObject
             OnPropertyChanged(nameof(ProteinDisplay));
             OnPropertyChanged(nameof(FatDisplay));
             OnPropertyChanged(nameof(CarbsDisplay));
-            OnPropertyChanged(nameof(CaloriesBackgroundColor));
-            OnPropertyChanged(nameof(ProteinBackgroundColor));
-            OnPropertyChanged(nameof(FatBackgroundColor));
-            OnPropertyChanged(nameof(CarbsBackgroundColor));
             OnPropertyChanged(nameof(CaloriesForegroundColor));
+            OnPropertyChanged(nameof(ProteinForegroundColor));
+            OnPropertyChanged(nameof(FatForegroundColor));
+            OnPropertyChanged(nameof(CarbsForegroundColor));
         };
         dialogViewModel.OnCancel += () =>
         {
