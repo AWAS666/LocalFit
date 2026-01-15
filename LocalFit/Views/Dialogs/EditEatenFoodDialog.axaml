@@ -17,7 +17,7 @@
 
 		<StackPanel Spacing="5">
 			<TextBlock Text="Amount:"/>
-			<NumericUpDown Value="{Binding Amount, Converter={StaticResource NumericUpDownConverter}, ConverterParameter=0}" Minimum="0" Maximum="10000" Increment="1" ShowButtonSpinner="True"/>
+			<NumericUpDown Value="{Binding Amount}" Minimum="0" Maximum="10000" Increment="1" ShowButtonSpinner="True"/>
 			<TextBlock Text="{Binding UnitDisplay}" FontSize="12" Opacity="0.7" Margin="0,5,0,0"/>
 		</StackPanel>
 

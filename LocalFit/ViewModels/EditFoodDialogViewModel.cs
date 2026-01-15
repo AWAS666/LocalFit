@@ -16,19 +16,19 @@ public partial class EditFoodDialogViewModel : ObservableObject
     private string name = string.Empty;
 
     [ObservableProperty]
-    private decimal calories;
+    private decimal? calories;
 
     [ObservableProperty]
-    private decimal fat;
+    private decimal? fat;
 
     [ObservableProperty]
-    private decimal protein;
+    private decimal? protein;
 
     [ObservableProperty]
-    private decimal carbs;
+    private decimal? carbs;
 
     [ObservableProperty]
-    private decimal sugar;
+    private decimal? sugar;
 
     [ObservableProperty]
     private FoodUnit unit = FoodUnit.Gram100;
@@ -54,7 +54,17 @@ public partial class EditFoodDialogViewModel : ObservableObject
         Unit = preset.Unit;
     }
 
-    [RelayCommand]
+    partial void OnNameChanged(string value)
+    {
+        SaveCommand.NotifyCanExecuteChanged();
+    }
+
+    private bool CanSave()
+    {
+        return !string.IsNullOrWhiteSpace(Name);
+    }
+
+    [RelayCommand(CanExecute = nameof(CanSave))]
     private async Task Save()
     {
         using var db = new UserContext();
@@ -69,11 +79,11 @@ public partial class EditFoodDialogViewModel : ObservableObject
                 return;
             }
             preset.Name = Name;
-            preset.Calories = Calories;
-            preset.Fat = Fat;
-            preset.Protein = Protein;
-            preset.Carbs = Carbs;
-            preset.Sugar = Sugar;
+            preset.Calories = Calories ?? 0;
+            preset.Fat = Fat ?? 0;
+            preset.Protein = Protein ?? 0;
+            preset.Carbs = Carbs ?? 0;
+            preset.Sugar = Sugar ?? 0;
             preset.Unit = Unit;
             preset.Updated = DateTime.UtcNow;
             db.FoodPresets.Update(preset);
@@ -83,11 +93,11 @@ public partial class EditFoodDialogViewModel : ObservableObject
             preset = new FoodPresets
             {
                 Name = Name,
-                Calories = Calories,
-                Fat = Fat,
-                Protein = Protein,
-                Carbs = Carbs,
-                Sugar = Sugar,
+                Calories = Calories ?? 0,
+                Fat = Fat ?? 0,
+                Protein = Protein ?? 0,
+                Carbs = Carbs ?? 0,
+                Sugar = Sugar ?? 0,
                 Unit = Unit,
             };
             db.FoodPresets.Add(preset);

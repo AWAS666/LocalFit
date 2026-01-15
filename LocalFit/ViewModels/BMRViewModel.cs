@@ -10,10 +10,10 @@ namespace LocalFit.ViewModels;
 public partial class BMRViewModel : ObservableObject
 {
     [ObservableProperty]
-    private decimal weight = 60;
+    private decimal? weight = 60;
 
     [ObservableProperty]
-    private decimal height = 180;
+    private decimal? height = 180;
 
     [ObservableProperty]
     private int age = 20;
@@ -32,31 +32,31 @@ public partial class BMRViewModel : ObservableObject
     public CalorieGoal[] Goals => Enum.GetValues<CalorieGoal>();
 
     [ObservableProperty]
-    private decimal calories;
+    private decimal? calories;
 
     [ObservableProperty]
-    private decimal fat;
+    private decimal? fat;
 
     [ObservableProperty]
-    private decimal protein;
+    private decimal? protein;
 
     [ObservableProperty]
-    private decimal carbs;
+    private decimal? carbs;
 
     [ObservableProperty]
-    private decimal bmi;
+    private decimal? bmi;
 
     public BMRViewModel()
     {
         Recalculate();
     }
 
-    partial void OnWeightChanged(decimal oldValue, decimal newValue)
+    partial void OnWeightChanged(decimal? oldValue, decimal? newValue)
     {
         Recalculate();
     }
 
-    partial void OnHeightChanged(decimal oldValue, decimal newValue)
+    partial void OnHeightChanged(decimal? oldValue, decimal? newValue)
     {
         Recalculate();
     }
@@ -83,11 +83,21 @@ public partial class BMRViewModel : ObservableObject
 
     private void Recalculate()
     {
-        var nut = BMRCalculator.CalculateDailyNutrition(Weight, Height, Age, Sex, Fitness, Goal);
+        if (Weight == null || Height == null)
+        {
+            Calories = null;
+            Protein = null;
+            Fat = null;
+            Carbs = null;
+            Bmi = null;
+            return;
+        }
+
+        var nut = BMRCalculator.CalculateDailyNutrition(Weight.Value, Height.Value, Age, Sex, Fitness, Goal);
         Calories = nut.Calories;
         Protein = nut.ProteinGrams;
         Fat = nut.FatGrams;
         Carbs = nut.CarbsGrams;
-        Bmi = BMRCalculator.BMI(Weight, Height);
+        Bmi = BMRCalculator.BMI(Weight.Value, Height.Value);
     }
 }

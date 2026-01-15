@@ -22,19 +22,19 @@ public partial class AddFoodDialogViewModel : ObservableObject
     private FoodPresets? selectedFood;
 
     [ObservableProperty]
-    private decimal amount = 100;
+    private decimal? amount = 100;
 
     [ObservableProperty]
-    private decimal calculatedCalories;
+    private decimal? calculatedCalories;
 
     [ObservableProperty]
-    private decimal calculatedProtein;
+    private decimal? calculatedProtein;
 
     [ObservableProperty]
-    private decimal calculatedFat;
+    private decimal? calculatedFat;
 
     [ObservableProperty]
-    private decimal calculatedCarbs;
+    private decimal? calculatedCarbs;
 
     [ObservableProperty]
     private bool isEditFoodDialogVisible;
@@ -57,28 +57,15 @@ public partial class AddFoodDialogViewModel : ObservableObject
         FilterFoods();
     }
 
-    partial void OnSelectedFoodChanged(FoodPresets? value)
-    {
-        if (value != null)
-        {
-            Amount = value.Unit == FoodUnit.Piece ? 1 : 100;
-            CalculateNutrition();
-        }
-    }
-
-    partial void OnAmountChanged(decimal value)
-    {
-        CalculateNutrition();
-    }
 
     private void CalculateNutrition()
     {
-        if (SelectedFood == null)
+        if (SelectedFood == null || Amount == null)
         {
-            CalculatedCalories = 0;
-            CalculatedProtein = 0;
-            CalculatedFat = 0;
-            CalculatedCarbs = 0;
+            CalculatedCalories = null;
+            CalculatedProtein = null;
+            CalculatedFat = null;
+            CalculatedCarbs = null;
             return;
         }
 
@@ -86,12 +73,12 @@ public partial class AddFoodDialogViewModel : ObservableObject
         if (SelectedFood.Unit == FoodUnit.Gram100)
         {
             // For grams, preset values are per 100g, so divide by 100
-            multiplier = Amount / 100;
+            multiplier = Amount.Value / 100;
         }
         else
         {
             // For pieces, preset values are per piece, so multiply directly
-            multiplier = Amount;
+            multiplier = Amount.Value;
         }
 
         CalculatedCalories = SelectedFood.Calories * multiplier;
@@ -120,11 +107,31 @@ public partial class AddFoodDialogViewModel : ObservableObject
         }
     }
 
-    [RelayCommand]
+    private bool CanSelectFood(FoodPresets? food)
+    {
+        return food != null && Amount.HasValue;
+    }
+
+    [RelayCommand(CanExecute = nameof(CanSelectFood))]
     private void SelectFood(FoodPresets? food)
     {
-        if (food == null) return;
-        OnFoodSelected?.Invoke(food, Amount);
+        OnFoodSelected?.Invoke(food!, Amount!.Value);
+    }
+
+    partial void OnAmountChanged(decimal? value)
+    {
+        CalculateNutrition();
+        SelectFoodCommand.NotifyCanExecuteChanged();
+    }
+
+    partial void OnSelectedFoodChanged(FoodPresets? value)
+    {
+        if (value != null)
+        {
+            Amount = value.Unit == FoodUnit.Piece ? 1 : 100;
+            CalculateNutrition();
+        }
+        SelectFoodCommand.NotifyCanExecuteChanged();
     }
 
     [RelayCommand]

@@ -19,30 +19,30 @@
             <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
                 <StackPanel Spacing="5" Grid.Column="0">
                     <TextBlock Text="Calories:"/>
-                    <NumericUpDown Value="{Binding Calories, Converter={StaticResource NumericUpDownConverter}, ConverterParameter=0}" Minimum="0" Maximum="10000" ShowButtonSpinner="False"/>
+                    <NumericUpDown Value="{Binding Calories}" Minimum="0" Maximum="10000" ShowButtonSpinner="False"/>
                 </StackPanel>
                 
                 <StackPanel Spacing="5" Grid.Column="1">
                     <TextBlock Text="Protein (g):"/>
-                    <NumericUpDown Value="{Binding Protein, Converter={StaticResource NumericUpDownConverter}, ConverterParameter=0}" Minimum="0" Maximum="1000" Increment="0.1" ShowButtonSpinner="False"/>
+                    <NumericUpDown Value="{Binding Protein}" Minimum="0" Maximum="1000" Increment="0.1" ShowButtonSpinner="False"/>
                 </StackPanel>
             </Grid>
             
             <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
                 <StackPanel Spacing="5" Grid.Column="0">
                     <TextBlock Text="Fat (g):"/>
-                    <NumericUpDown Value="{Binding Fat, Converter={StaticResource NumericUpDownConverter}, ConverterParameter=0}" Minimum="0" Maximum="1000" Increment="0.1" ShowButtonSpinner="False"/>
+                    <NumericUpDown Value="{Binding Fat}" Minimum="0" Maximum="1000" Increment="0.1" ShowButtonSpinner="False"/>
                 </StackPanel>
                 
                 <StackPanel Spacing="5" Grid.Column="1">
                     <TextBlock Text="Carbs (g):"/>
-                    <NumericUpDown Value="{Binding Carbs, Converter={StaticResource NumericUpDownConverter}, ConverterParameter=0}" Minimum="0" Maximum="1000" Increment="0.1" ShowButtonSpinner="False"/>
+                    <NumericUpDown Value="{Binding Carbs}" Minimum="0" Maximum="1000" Increment="0.1" ShowButtonSpinner="False"/>
                 </StackPanel>
             </Grid>
             
             <StackPanel Spacing="5">
                 <TextBlock Text="Sugar (g):"/>
-                <NumericUpDown Value="{Binding Sugar, Converter={StaticResource NumericUpDownConverter}, ConverterParameter=0}" Minimum="0" Maximum="1000" Increment="0.1" ShowButtonSpinner="False"/>
+                <NumericUpDown Value="{Binding Sugar}" Minimum="0" Maximum="1000" Increment="0.1" ShowButtonSpinner="False"/>
             </StackPanel>
             
             <StackPanel Spacing="5">

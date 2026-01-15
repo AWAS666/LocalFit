@@ -12,7 +12,7 @@ public partial class EditEatenFoodDialogViewModel : ObservableObject
     private FoodEaten foodEaten;
 
     [ObservableProperty]
-    private decimal amount;
+    private decimal? amount;
 
     public string FoodName => FoodEaten.Preset.Name;
     public string UnitDisplay => FoodEaten.Preset.Unit == FoodUnit.Gram100 ? "g" : "piece(s)";
@@ -26,7 +26,12 @@ public partial class EditEatenFoodDialogViewModel : ObservableObject
         Amount = foodEaten.Amount;
     }
 
-    [RelayCommand]
+    private bool CanSave()
+    {
+        return Amount.HasValue;
+    }
+
+    [RelayCommand(CanExecute = nameof(CanSave))]
     private async Task Save()
     {
         using var db = new UserContext();
@@ -37,12 +42,17 @@ public partial class EditEatenFoodDialogViewModel : ObservableObject
             return;
         }
 
-        entry.Amount = Amount;
+        entry.Amount = Amount!.Value;
         entry.Updated = DateTime.UtcNow;
         await db.SaveChangesAsync();
 
-        FoodEaten.Amount = Amount;
+        FoodEaten.Amount = Amount.Value;
         OnSaved?.Invoke(FoodEaten);
+    }
+
+    partial void OnAmountChanged(decimal? value)
+    {
+        SaveCommand.NotifyCanExecuteChanged();
     }
 
     [RelayCommand]

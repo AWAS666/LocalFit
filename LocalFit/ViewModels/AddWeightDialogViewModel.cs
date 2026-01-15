@@ -10,10 +10,10 @@ namespace LocalFit.ViewModels;
 public partial class AddWeightDialogViewModel : ObservableObject
 {
     [ObservableProperty]
-    private decimal weight = 70;
+    private decimal? weight = 70;
 
     [ObservableProperty]
-    private decimal height = 175;
+    private decimal? height = 175;
 
     [ObservableProperty]
     private DateTimeOffset birthDate = DateTimeOffset.UtcNow.AddYears(-30);
@@ -41,20 +41,35 @@ public partial class AddWeightDialogViewModel : ObservableObject
         }
     }
 
-    [RelayCommand]
+    private bool CanSave()
+    {
+        return Weight.HasValue && Height.HasValue;
+    }
+
+    [RelayCommand(CanExecute = nameof(CanSave))]
     private async Task Save()
     {
         using var db = new UserContext();
         var entry = new WeightTracker
         {
-            Weight = Weight,
-            Height = Height,
+            Weight = Weight!.Value,
+            Height = Height!.Value,
             BirthDate = DateOnly.FromDateTime(BirthDate.DateTime),
             Note = Note
         };
         db.Weight.Add(entry);
         await db.SaveChangesAsync();
         OnSaved?.Invoke(entry);
+    }
+
+    partial void OnWeightChanged(decimal? value)
+    {
+        SaveCommand.NotifyCanExecuteChanged();
+    }
+
+    partial void OnHeightChanged(decimal? value)
+    {
+        SaveCommand.NotifyCanExecuteChanged();
     }
 
     [RelayCommand]

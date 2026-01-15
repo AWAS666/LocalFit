@@ -12,15 +12,15 @@
 	<StackPanel>
 		<StackPanel Orientation="Horizontal" Margin="5">
 			<Label >Weight:</Label>
-			<NumericUpDown Minimum="0" Maximum="500" Value="{Binding Weight, Converter={StaticResource NumericUpDownConverter}, ConverterParameter=0}" Margin="5"/>
+			<NumericUpDown Minimum="0" Maximum="500" Value="{Binding Weight}" Margin="5"/>
 		</StackPanel>
 		<StackPanel Orientation="Horizontal" Margin="5">
 			<Label >Height:</Label>
-			<NumericUpDown Minimum="60" Maximum="250" Value="{Binding Height, Converter={StaticResource NumericUpDownConverter}, ConverterParameter=60}" Margin="5"/>
+			<NumericUpDown Minimum="60" Maximum="250" Value="{Binding Height}" Margin="5"/>
 		</StackPanel>
 		<StackPanel Orientation="Horizontal" Margin="5">
 			<Label >Age:</Label>
-			<NumericUpDown Minimum="0" Maximum="120" Value="{Binding Age, Converter={StaticResource NumericUpDownConverter}, ConverterParameter=0}" Margin="5"/>
+			<NumericUpDown Minimum="0" Maximum="120" Value="{Binding Age}" Margin="5"/>
 		</StackPanel>
 
 		<StackPanel Orientation="Horizontal" Margin="5">

@@ -12,12 +12,12 @@
         
         <StackPanel Spacing="5">
             <TextBlock Text="Weight (kg):"/>
-            <NumericUpDown Value="{Binding Weight, Converter={StaticResource NumericUpDownConverter}, ConverterParameter=0}" Minimum="0" Maximum="500" Increment="0.1" ShowButtonSpinner="False"/>
+            <NumericUpDown Value="{Binding Weight}" Minimum="0" Maximum="500" Increment="0.1" ShowButtonSpinner="False"/>
         </StackPanel>
         
         <StackPanel Spacing="5">
             <TextBlock Text="Height (cm):"/>
-            <NumericUpDown Value="{Binding Height, Converter={StaticResource NumericUpDownConverter}, ConverterParameter=0}" Minimum="0" Maximum="300" Increment="1" ShowButtonSpinner="False"/>
+            <NumericUpDown Value="{Binding Height}" Minimum="0" Maximum="300" Increment="1" ShowButtonSpinner="False"/>
         </StackPanel>
         
         <StackPanel Spacing="5">
