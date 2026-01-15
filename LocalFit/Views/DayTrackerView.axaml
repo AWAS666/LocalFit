@@ -11,7 +11,7 @@
 	<Design.DataContext>
 		<vm:DayTrackerViewModel/>
 	</Design.DataContext>
-	<Grid RowDefinitions="Auto,Auto,Auto,*,Auto">
+	<Grid RowDefinitions="Auto,Auto,*,Auto">
 		<!-- Date Navigation -->
 		<Grid ColumnDefinitions="Auto,*,Auto" Margin="10" Grid.Row="0">
 			<Button Command="{Binding LastDayCommand}" Grid.Column="0">
@@ -57,43 +57,45 @@
 		</Grid>
 		
 		<!-- Foods Eaten List -->
-		<ListBox ItemsSource="{Binding Eaten}" Grid.Row="2" Margin="10" Background="Transparent">
-			<ListBox.ItemTemplate>
-				<DataTemplate>
-					<Grid ColumnDefinitions="*,Auto,Auto">
-						<StackPanel Margin="10">
-							<TextBlock Text="{Binding Preset.Name}" FontWeight="SemiBold" FontSize="16"/>
-							<TextBlock FontSize="12" Margin="0,4,0,0">
-								<Run Text="{Binding AmountDisplay}"/>
-								<Run Text=" | "/>
-								<Run Text="{Binding Calories, StringFormat='{}{0:F0} kcal'}"/>
-							</TextBlock>
-						</StackPanel>
-						<Button Command="{Binding $parent[UserControl].DataContext.ShowEditEatenFoodDialogCommand}" 
-								CommandParameter="{Binding}" 
-								Grid.Column="1" 
-								Margin="5,10"
-								Background="Transparent">
-							<LucideIcon Kind="Pencil" Size="20" Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
-						</Button>
-						<Button Command="{Binding $parent[UserControl].DataContext.RemoveFoodCommand}" 
-								CommandParameter="{Binding}" 
-								Grid.Column="2" 
-								Margin="5,10"
-								Background="Transparent">
-							<LucideIcon Kind="Trash2" Size="20" Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
-						</Button>
-					</Grid>
-				</DataTemplate>
-			</ListBox.ItemTemplate>
-		</ListBox>
+		<ScrollViewer Grid.Row="2" Margin="10">
+			<ListBox ItemsSource="{Binding Eaten}" Background="Transparent">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Grid ColumnDefinitions="*,Auto,Auto">
+							<StackPanel Margin="10">
+								<TextBlock Text="{Binding Preset.Name}" FontWeight="SemiBold" FontSize="16"/>
+								<TextBlock FontSize="12" Margin="0,4,0,0">
+									<Run Text="{Binding AmountDisplay}"/>
+									<Run Text=" | "/>
+									<Run Text="{Binding Calories, StringFormat='{}{0:F0} kcal'}"/>
+								</TextBlock>
+							</StackPanel>
+							<Button Command="{Binding $parent[UserControl].DataContext.ShowEditEatenFoodDialogCommand}" 
+									CommandParameter="{Binding}" 
+									Grid.Column="1" 
+									Margin="5,10"
+									Background="Transparent">
+								<LucideIcon Kind="Pencil" Size="20" Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+							</Button>
+							<Button Command="{Binding $parent[UserControl].DataContext.RemoveFoodCommand}" 
+									CommandParameter="{Binding}" 
+									Grid.Column="2" 
+									Margin="5,10"
+									Background="Transparent">
+								<LucideIcon Kind="Trash2" Size="20" Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+							</Button>
+						</Grid>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</ScrollViewer>
 		
 		<!-- Add Food Button -->
 		<Button Command="{Binding ShowAddFoodDialogCommand}" 
 				Margin="10" 
 				Height="56" 
 				Width="56"
-				Grid.Row="4"
+				Grid.Row="3"
 				HorizontalAlignment="Right"
 				VerticalAlignment="Bottom"
 				CornerRadius="28"
@@ -102,7 +104,7 @@
 		</Button>
 		
 		<!-- Dialog Overlays -->
-		<Grid ZIndex="100" Grid.Row="0" Grid.RowSpan="5">
+		<Grid ZIndex="100" Grid.Row="0" Grid.RowSpan="4">
 			<!-- Add Food Dialog -->
 			<Grid IsVisible="{Binding IsAddFoodDialogVisible}">
 				<Rectangle Fill="#80000000" Opacity="0.7" Tapped="OnBackdropTapped"/>
