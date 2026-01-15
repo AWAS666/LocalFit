@@ -42,7 +42,7 @@
 ### Dialogs
 - Use in-app overlay dialogs (UserControl with ZIndex), NOT separate windows
 - Dialogs should have backdrop (Rectangle with opacity)
-- Dialog borders: `BorderBrush="#E0E0E0"` and `BorderThickness="2"`
+- Dialog borders: `BorderBrush="#222222"` and `BorderThickness="2"`
 - Typical dialog size: Width="400", MaxHeight="600"
 - Use Grid.RowSpan to cover all rows when showing overlay
 
@@ -53,9 +53,29 @@
 - Use `LucideIcon` for icons instead of text where appropriate
 - Buttons: MinHeight="44", use icons for Save (Check) and Cancel (X)
 
+### Color Scheme
+- **Primary Colors**: Black/White monochrome scheme
+  - Dark gray: `#222222` (primary dark color for backgrounds, borders, text on light backgrounds)
+  - Light gray: `#DDDDDD` (primary light color for backgrounds, text on dark backgrounds)
+  - White: `#FFFFFF` (text on dark backgrounds when needed)
+- **Warning Colors**: Red/Yellow only for warnings
+  - Red: `#FFE53935` - **ONLY** used when calories exceed goal (text color, not background)
+  - Yellow: Reserved for future warning use
+- **Theme-Aware Icons**: Use `{DynamicResource SystemControlForegroundBaseHighBrush}` for edit/delete icons to automatically adapt to light/dark themes
+- **Backgrounds**: 
+  - Dark backgrounds: `#222222` for cards, buttons, headers
+  - Light backgrounds: `#DDDDDD` for light areas, info boxes
+  - Transparent: For ListBox controls
+- **Borders**: `#222222` for all borders
+- **Text Colors**:
+  - On dark backgrounds (`#222222`): Use `#DDDDDD` or `#FFFFFF`
+  - On light backgrounds (`#DDDDDD`): Use `#222222`
+  - Calories warning: Use `#FFE53935` for text when calories exceed goal (background stays `#222222`)
+- **No Other Colors**: Remove all green, blue, orange, purple colors. Only black/white/gray with red for calorie warnings.
+
 ### Styling
 - Global styles defined in `App.axaml`
-- Use `Classes="SaveButton"` for primary action buttons (green background)
+- Use `Classes="SaveButton"` for primary action buttons (black `#222222` background with `#DDDDDD` text)
 - Button text/icons should be centered (HorizontalContentAlignment/VerticalContentAlignment)
 - Use consistent spacing and margins (typically 10-20px)
 
