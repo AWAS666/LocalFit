@@ -90,7 +90,10 @@ public partial class AddFoodDialogViewModel : ObservableObject
     private async Task LoadFoods()
     {
         using var db = new UserContext();
-        allFoods = await db.FoodPresets.OrderBy(x => x.Name).ToListAsync();
+        allFoods = await db.FoodPresets
+            .OrderByDescending(x => x.UseCount)
+            .ThenBy(x => x.Name)
+            .ToListAsync();
         FilterFoods();
     }
 
@@ -102,7 +105,11 @@ public partial class AddFoodDialogViewModel : ObservableObject
         }
         else
         {
-            var filtered = allFoods.Where(f => f.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase)).ToList();
+            var filtered = allFoods
+                .Where(f => f.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase))
+                .OrderByDescending(x => x.UseCount)
+                .ThenBy(x => x.Name)
+                .ToList();
             FilteredFoods = new ObservableCollection<FoodPresets>(filtered);
         }
     }
@@ -128,7 +135,8 @@ public partial class AddFoodDialogViewModel : ObservableObject
     {
         if (value != null)
         {
-            Amount = value.Unit == FoodUnit.Piece ? 1 : 100;
+            // Use LastAmount if available, otherwise default based on unit
+            Amount = value.LastAmount ?? (value.Unit == FoodUnit.Piece ? 1 : 100);
             CalculateNutrition();
         }
         SelectFoodCommand.NotifyCanExecuteChanged();

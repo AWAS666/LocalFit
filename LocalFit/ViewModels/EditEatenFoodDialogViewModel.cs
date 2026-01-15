@@ -42,6 +42,15 @@ public partial class EditEatenFoodDialogViewModel : ObservableObject
             return;
         }
 
+        // Update last amount on preset
+        var preset = await db.FoodPresets.FindAsync(FoodEaten.Preset.Id);
+        if (preset != null)
+        {
+            preset.LastAmount = Amount!.Value;
+            preset.Updated = DateTime.UtcNow;
+            db.FoodPresets.Update(preset);
+        }
+
         entry.Amount = Amount!.Value;
         entry.Updated = DateTime.UtcNow;
         await db.SaveChangesAsync();

@@ -179,6 +179,12 @@ public partial class DayTrackerViewModel : ObservableObject
         var presetEntity = await db.FoodPresets.FindAsync(preset.Id);
         if (presetEntity == null) return;
 
+        // Increment use count and save last amount
+        presetEntity.UseCount++;
+        presetEntity.LastAmount = amount;
+        presetEntity.Updated = DateTime.UtcNow;
+        db.FoodPresets.Update(presetEntity);
+
         var foodEaten = new FoodEaten
         {
             Preset = presetEntity,

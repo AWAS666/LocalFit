@@ -111,6 +111,9 @@ namespace LocalFit.Lib.Migrations
                     b.Property<decimal>("Fat")
                         .HasColumnType("TEXT");
 
+                    b.Property<decimal?>("LastAmount")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -126,6 +129,9 @@ namespace LocalFit.Lib.Migrations
 
                     b.Property<DateTime>("Updated")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("UseCount")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
