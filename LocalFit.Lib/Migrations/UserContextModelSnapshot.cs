@@ -111,6 +111,9 @@ namespace LocalFit.Lib.Migrations
                     b.Property<decimal>("Fat")
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
+
                     b.Property<decimal?>("LastAmount")
                         .HasColumnType("TEXT");
 

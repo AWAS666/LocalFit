@@ -91,6 +91,7 @@ public partial class AddFoodDialogViewModel : ObservableObject
     {
         using var db = new UserContext();
         allFoods = await db.FoodPresets
+            .Where(f => !f.IsDeleted)
             .OrderByDescending(x => x.UseCount)
             .ThenBy(x => x.Name)
             .ToListAsync();

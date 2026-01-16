@@ -51,7 +51,7 @@ public partial class FoodManagerViewModel : ObservableObject
     private async Task LoadFoods()
     {
         using var db = new UserContext();
-        allFoods = await db.FoodPresets.OrderBy(x => x.Name).ToListAsync();
+        allFoods = await db.FoodPresets.Where(f => !f.IsDeleted).OrderBy(x => x.Name).ToListAsync();
         FilterFoods();
     }
 
@@ -109,8 +109,14 @@ public partial class FoodManagerViewModel : ObservableObject
     private async Task Remove(FoodPresets preset)
     {
         using var db = new UserContext();
-        db.FoodPresets.Remove(preset);
-        await db.SaveChangesAsync();
+        var presetEntity = await db.FoodPresets.FindAsync(preset.Id);
+        if (presetEntity != null)
+        {
+            presetEntity.IsDeleted = true;
+            presetEntity.Updated = DateTime.UtcNow;
+            db.FoodPresets.Update(presetEntity);
+            await db.SaveChangesAsync();
+        }
         await LoadFoods();
     }
 

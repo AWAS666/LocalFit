@@ -44,6 +44,7 @@ public class FoodPresets
     public FoodUnit Unit { get; set; } = FoodUnit.Gram100;
     public int UseCount { get; set; } = 0;
     public decimal? LastAmount { get; set; }
+    public bool IsDeleted { get; set; } = false;
     public DateTime Created { get; set; } = DateTime.UtcNow;
     public DateTime Updated { get; set; } = DateTime.UtcNow;
 
