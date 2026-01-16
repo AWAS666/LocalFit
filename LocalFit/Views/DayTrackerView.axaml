@@ -110,7 +110,7 @@
 		<Grid ZIndex="100" Grid.Row="0" Grid.RowSpan="4">
 			<!-- Add Food Dialog -->
 			<Grid IsVisible="{Binding IsAddFoodDialogVisible}">
-				<Rectangle Fill="#80000000" Opacity="0.7" Tapped="OnBackdropTapped"/>
+				<Rectangle Fill="#80000000" Opacity="0.7"/>
 				<Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
 						CornerRadius="8" 
 						BorderBrush="#222222"
@@ -126,7 +126,7 @@
 			
 			<!-- Edit Eaten Food Dialog -->
 			<Grid IsVisible="{Binding IsEditEatenFoodDialogVisible}">
-				<Rectangle Fill="#80000000" Opacity="0.7" Tapped="OnBackdropTapped"/>
+				<Rectangle Fill="#80000000" Opacity="0.7"/>
 				<Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
 						CornerRadius="8" 
 						BorderBrush="#222222"

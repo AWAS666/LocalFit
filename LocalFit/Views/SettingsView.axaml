@@ -90,7 +90,7 @@
 	
 		<!-- Dialog Overlay -->
 		<Grid IsVisible="{Binding IsGoalSetupDialogVisible}" ZIndex="100">
-		<Rectangle Fill="#80000000" Opacity="0.7" Tapped="OnBackdropTapped"/>
+		<Rectangle Fill="#80000000" Opacity="0.7"/>
 		<Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
 				CornerRadius="8" 
 				BorderBrush="#222222"
