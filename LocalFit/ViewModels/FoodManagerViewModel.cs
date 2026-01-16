@@ -15,7 +15,7 @@ public partial class FoodManagerViewModel : ObservableObject
     [ObservableProperty]
     private int page = 0;
 
-    private int size = 20;
+    private int size = 10;
 
     [ObservableProperty]
     private ObservableCollection<FoodPresets> foods = new();
@@ -39,6 +39,12 @@ public partial class FoodManagerViewModel : ObservableObject
 
     partial void OnPageChanged(int value)
     {
+        FilterFoods();
+    }
+
+    partial void OnSearchTextChanged(string value)
+    {
+        Page = 0;
         FilterFoods();
     }
 
