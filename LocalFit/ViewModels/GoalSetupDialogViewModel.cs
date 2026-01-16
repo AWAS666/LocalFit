@@ -26,6 +26,8 @@ public partial class GoalSetupDialogViewModel : ObservableObject
     public FitnessLevel[] FitnessLevels => Enum.GetValues<FitnessLevel>();
     public Sex[] Sexes => Enum.GetValues<Sex>();
 
+    public string FitnessLevelDescription => FitnessLevel.GetDescription();
+
     public event Action<FitnessGoal>? OnSaved;
     public event Action? OnCancel;
 
@@ -67,5 +69,10 @@ public partial class GoalSetupDialogViewModel : ObservableObject
     private void Cancel()
     {
         OnCancel?.Invoke();
+    }
+
+    partial void OnFitnessLevelChanged(FitnessLevel value)
+    {
+        OnPropertyChanged(nameof(FitnessLevelDescription));
     }
 }
