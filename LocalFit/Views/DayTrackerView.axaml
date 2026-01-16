@@ -91,17 +91,20 @@
 		</ScrollViewer>
 		
 		<!-- Add Food Button -->
-		<Button Command="{Binding ShowAddFoodDialogCommand}" 
-				Margin="10" 
-				Height="56" 
-				Width="56"
-				Grid.Row="3"
-				HorizontalAlignment="Right"
-				VerticalAlignment="Bottom"
-				CornerRadius="28"
-				Background="#222222">
-			<LucideIcon Kind="Plus" Size="28" Foreground="#DDDDDD"/>
-		</Button>
+		<Grid ColumnDefinitions="*,Auto,*" Margin="20,10" Grid.Row="3">
+			<!-- Placeholder to match pagination width in FoodManager (44 + 15 + ~30 + 15 + 44 = ~148px) -->
+			<Rectangle Grid.Column="1" Width="150" Opacity="0"/>
+			<Button Command="{Binding ShowAddFoodDialogCommand}" 
+					Grid.Column="2"
+					Height="56" 
+					Width="56"
+					HorizontalAlignment="Right"
+					VerticalAlignment="Center"
+					CornerRadius="28"
+					Background="#222222">
+				<LucideIcon Kind="Plus" Size="28" Foreground="#DDDDDD"/>
+			</Button>
+		</Grid>
 		
 		<!-- Dialog Overlays -->
 		<Grid ZIndex="100" Grid.Row="0" Grid.RowSpan="4">
