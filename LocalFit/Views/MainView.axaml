@@ -30,6 +30,9 @@
 				<DataTemplate DataType="vm:SettingsViewModel">
 					<local:SettingsView />
 				</DataTemplate>
+				<DataTemplate DataType="vm:BMRViewModel">
+					<local:NutritionCalculator />
+				</DataTemplate>
 			</ContentControl.DataTemplates>
 		</ContentControl>
 		<Border Grid.Row="1" BorderBrush="#222222" BorderThickness="0,1,0,0" Background="#DDDDDD">

@@ -23,40 +23,46 @@ public partial class MainViewModel : ObservableObject
 
         if (needsWeight || needsGoal)
         {
-            var onboarding = new OnboardingViewModel();
-            onboarding.OnComplete += () =>
-            {
-                CurrentView = new DayTrackerViewModel();
-            };
-            CurrentView = onboarding;
+            CurrentView = new OnboardingViewModel(this);
         }
         else
         {
-            CurrentView = new DayTrackerViewModel();
+            CurrentView = new DayTrackerViewModel(this);
         }
     }
 
     [RelayCommand]
     public void NavigateToFoodManager()
     {
-        CurrentView = new FoodManagerViewModel();
+        CurrentView = new FoodManagerViewModel(this);
     }
 
     [RelayCommand]
     public void NavigateToDayTracker()
     {
-        CurrentView = new DayTrackerViewModel();
+        CurrentView = new DayTrackerViewModel(this);
     }
 
     [RelayCommand]
     public void NavigateToWeightTracker()
     {
-        CurrentView = new WeightTrackerViewModel();
+        CurrentView = new WeightTrackerViewModel(this);
+    }
+
+    public void ChangeView(object view)
+    {
+        CurrentView = view;
     }
 
     [RelayCommand]
     public void NavigateToSettings()
     {
-        CurrentView = new SettingsViewModel();
+        CurrentView = new SettingsViewModel(this);
+    }
+
+    [RelayCommand]
+    public void NavigateToNutritionCalculator()
+    {
+        CurrentView = new BMRViewModel(this);
     }
 }

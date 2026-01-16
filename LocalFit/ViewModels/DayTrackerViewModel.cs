@@ -87,7 +87,8 @@ public partial class DayTrackerViewModel : ObservableObject
             Current.Weight.Age,
             Current.Goal.Sex,
             Current.Goal.FitLevel,
-            Current.Goal.Goal
+            Current.Goal.Goal,
+            Current.Goal.DietType
         );
     }
 
@@ -116,7 +117,7 @@ public partial class DayTrackerViewModel : ObservableObject
         Eaten = new ObservableCollection<FoodEaten>(Current.FoodsEaten);
     }
 
-    public DayTrackerViewModel()
+    public DayTrackerViewModel(MainViewModel mainViewModel)
     {
         var today = DateOnly.FromDateTime(DateTime.UtcNow);
         using var db = new UserContext();

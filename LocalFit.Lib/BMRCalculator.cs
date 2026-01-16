@@ -62,8 +62,7 @@ public static class BMRCalculator
     }
 
 
-    public static NutritionResult CalculateDailyNutrition(decimal weightKg, decimal heightCm, int age, Sex sex, FitnessLevel fitnessLevel, CalorieGoal goal)
-
+    public static NutritionResult CalculateDailyNutrition(decimal weightKg, decimal heightCm, int age, Sex sex, FitnessLevel fitnessLevel, CalorieGoal goal, DietType dietType = DietType.Balanced)
     {
         var bmr = CalculateBmr(weightKg, heightCm, age, sex);
         var tdee = bmr * GetActivityMultiplier(fitnessLevel);
@@ -71,16 +70,56 @@ public static class BMRCalculator
         // Apply goal
         var targetCalories = tdee + GetGoalCaloriesAdjustment(goal);
 
-        // Protein
-        var proteinGrams = weightKg * GetProteinPerKg(fitnessLevel);
-        var proteinCalories = proteinGrams * 4;
+        // Base protein calculation
+        var baseProteinGrams = weightKg * GetProteinPerKg(fitnessLevel);
+        var baseProteinCalories = baseProteinGrams * 4;
 
-        var fatCalories = tdee * 0.25m;
+        // Adjust macros based on diet type
+        decimal proteinCalories, fatCalories, carbsCalories;
+        
+        switch (dietType)
+        {
+            case DietType.Balanced:
+                // Balanced: 25% fat, protein based on fitness level, rest carbs
+                fatCalories = targetCalories * 0.25m;
+                proteinCalories = baseProteinCalories;
+                carbsCalories = targetCalories - proteinCalories - fatCalories;
+                break;
+                
+            case DietType.LowFat:
+                // LowFat: 15% fat, maintain protein, increase carbs
+                fatCalories = targetCalories * 0.15m;
+                proteinCalories = baseProteinCalories;
+                carbsCalories = targetCalories - proteinCalories - fatCalories;
+                break;
+                
+            case DietType.LowCarb:
+                // LowCarb: 10% carbs, increase protein and fat
+                carbsCalories = targetCalories * 0.10m;
+                // Increase protein by 20% for low carb
+                proteinCalories = baseProteinCalories * 1.2m;
+                fatCalories = targetCalories - proteinCalories - carbsCalories;
+                break;
+                
+            case DietType.HighProtein:
+                // HighProtein: increase protein by 30%, reduce fat slightly, adjust carbs
+                proteinCalories = baseProteinCalories * 1.3m;
+                fatCalories = targetCalories * 0.20m;
+                carbsCalories = targetCalories - proteinCalories - fatCalories;
+                break;
+                
+            default:
+                // Default to balanced
+                fatCalories = targetCalories * 0.25m;
+                proteinCalories = baseProteinCalories;
+                carbsCalories = targetCalories - proteinCalories - fatCalories;
+                break;
+        }
+
+        // Convert to grams
+        var proteinGrams = proteinCalories / 4;
         var fatGrams = fatCalories / 9;
-
-        // Carbs (remaining calories)
-        var remainingCalories = tdee - proteinCalories - fatCalories;
-        var carbsGrams = remainingCalories / 4;
+        var carbsGrams = carbsCalories / 4;
 
         return new NutritionResult
         {
@@ -149,4 +188,12 @@ public enum CalorieGoal
     Maintenance,
     Bulk,
     AggressiveBulk
+}
+
+public enum DietType
+{
+    Balanced,
+    LowFat,
+    LowCarb,
+    HighProtein
 }

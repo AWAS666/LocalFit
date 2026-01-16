@@ -9,6 +9,8 @@ namespace LocalFit.ViewModels;
 
 public partial class OnboardingViewModel : ObservableObject
 {
+    private readonly MainViewModel mainViewModel;
+
     [ObservableProperty]
     private int currentStep = 1;
 
@@ -29,10 +31,9 @@ public partial class OnboardingViewModel : ObservableObject
     public bool ShowGoalStep => NeedsGoal && !NeedsWeight;
     public bool IsComplete => !NeedsWeight && !NeedsGoal;
 
-    public event Action? OnComplete;
-
-    public OnboardingViewModel()
+    public OnboardingViewModel(MainViewModel mainViewModel)
     {
+        this.mainViewModel = mainViewModel;
         CheckRequirements();
     }
 
@@ -137,7 +138,7 @@ public partial class OnboardingViewModel : ObservableObject
             // Auto-complete after a short delay to show completion message
             Task.Delay(2000).ContinueWith(_ =>
             {
-                OnComplete?.Invoke();
+                mainViewModel.ChangeView(new DayTrackerViewModel(mainViewModel));
             });
         }
     }

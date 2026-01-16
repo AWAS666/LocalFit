@@ -1,7 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using LocalFit.Lib;
+using LocalFit.Lib.DataBase;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -9,27 +12,33 @@ namespace LocalFit.ViewModels;
 
 public partial class BMRViewModel : ObservableObject
 {
+    private readonly MainViewModel mainViewModel;
+
     [ObservableProperty]
     private decimal? weight = 60;
 
     [ObservableProperty]
-    private decimal? height = 180;
+    private decimal? height;
 
     [ObservableProperty]
-    private int age = 20;
+    private int? age;
 
     [ObservableProperty]
-    private Sex sex = Sex.Male;
+    private Sex? sex;
 
     [ObservableProperty]
-    private FitnessLevel fitness = FitnessLevel.Sedentary;
+    private FitnessLevel? fitness;
 
     [ObservableProperty]
-    private CalorieGoal goal = CalorieGoal.Maintenance;
+    private CalorieGoal? goal;
+
+    [ObservableProperty]
+    private DietType? dietType;
 
     public Sex[] Sexes => Enum.GetValues<Sex>();
     public FitnessLevel[] FitnessLevels => Enum.GetValues<FitnessLevel>();
     public CalorieGoal[] Goals => Enum.GetValues<CalorieGoal>();
+    public DietType[] DietTypes => Enum.GetValues<DietType>();
 
     [ObservableProperty]
     private decimal? calories;
@@ -46,9 +55,39 @@ public partial class BMRViewModel : ObservableObject
     [ObservableProperty]
     private decimal? bmi;
 
-    public BMRViewModel()
+    public BMRViewModel(MainViewModel mainViewModel)
     {
+        this.mainViewModel = mainViewModel;
+        LoadUserDefaults();
         Recalculate();
+    }
+
+    private void LoadUserDefaults()
+    {
+        using var db = new UserContext();
+        var currentWeight = db.Weight.OrderByDescending(x => x.Created).FirstOrDefault();
+        var currentGoal = db.Goal.OrderByDescending(x => x.Created).FirstOrDefault();
+
+        if (currentWeight != null)
+        {
+            Weight = currentWeight.Weight;
+            Height = currentWeight.Height;
+            Age = currentWeight.Age;
+        }
+
+        if (currentGoal != null)
+        {
+            Sex = currentGoal.Sex;
+            Fitness = currentGoal.FitLevel;
+            Goal = currentGoal.Goal;
+            DietType = currentGoal.DietType;
+        }
+    }
+
+    [RelayCommand]
+    private void NavigateBack()
+    {
+        mainViewModel.NavigateToSettings();
     }
 
     partial void OnWeightChanged(decimal? oldValue, decimal? newValue)
@@ -61,29 +100,34 @@ public partial class BMRViewModel : ObservableObject
         Recalculate();
     }
 
-    partial void OnAgeChanged(int oldValue, int newValue)
+    partial void OnAgeChanged(int? oldValue, int? newValue)
     {
         Recalculate();
     }
 
-    partial void OnSexChanged(Sex oldValue, Sex newValue)
+    partial void OnSexChanged(Sex? oldValue, Sex? newValue)
     {
         Recalculate();
     }
 
-    partial void OnFitnessChanged(FitnessLevel oldValue, FitnessLevel newValue)
+    partial void OnFitnessChanged(FitnessLevel? oldValue, FitnessLevel? newValue)
     {
         Recalculate();
     }
 
-    partial void OnGoalChanged(CalorieGoal oldValue, CalorieGoal newValue)
+    partial void OnGoalChanged(CalorieGoal? oldValue, CalorieGoal? newValue)
+    {
+        Recalculate();
+    }
+
+    partial void OnDietTypeChanged(DietType? oldValue, DietType? newValue)
     {
         Recalculate();
     }
 
     private void Recalculate()
     {
-        if (Weight == null || Height == null)
+        if (Weight == null || Height == null || Age == null || Sex == null || Fitness == null || Goal == null || DietType == null)
         {
             Calories = null;
             Protein = null;
@@ -93,7 +137,7 @@ public partial class BMRViewModel : ObservableObject
             return;
         }
 
-        var nut = BMRCalculator.CalculateDailyNutrition(Weight.Value, Height.Value, Age, Sex, Fitness, Goal);
+        var nut = BMRCalculator.CalculateDailyNutrition(Weight.Value, Height.Value, Age.Value, Sex.Value, Fitness.Value, Goal.Value, DietType.Value);
         Calories = nut.Calories;
         Protein = nut.ProteinGrams;
         Fat = nut.FatGrams;

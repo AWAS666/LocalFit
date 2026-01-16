@@ -31,7 +31,7 @@ public partial class FoodManagerViewModel : ObservableObject
 
     private List<FoodPresets> allFoods = new();
 
-    public FoodManagerViewModel()
+    public FoodManagerViewModel(MainViewModel mainViewModel)
     {
         _ = LoadFoods();
     }

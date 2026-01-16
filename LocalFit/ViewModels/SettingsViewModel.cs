@@ -10,6 +10,8 @@ namespace LocalFit.ViewModels;
 
 public partial class SettingsViewModel : ObservableObject
 {
+    private readonly MainViewModel mainViewModel;
+
     [ObservableProperty]
     private FitnessGoal? currentGoal;
 
@@ -37,8 +39,9 @@ public partial class SettingsViewModel : ObservableObject
     [ObservableProperty]
     private string version = "1.0.0";
 
-    public SettingsViewModel()
+    public SettingsViewModel(MainViewModel mainViewModel)
     {
+        this.mainViewModel = mainViewModel;
         LoadCurrentSettings();
         LoadVersion();
     }
@@ -70,7 +73,8 @@ public partial class SettingsViewModel : ObservableObject
             CurrentWeight.Age,
             CurrentGoal.Sex,
             CurrentGoal.FitLevel,
-            CurrentGoal.Goal
+            CurrentGoal.Goal,
+            CurrentGoal.DietType
         );
 
         CalculatedCalories = nutrition.Calories;
@@ -108,5 +112,11 @@ public partial class SettingsViewModel : ObservableObject
     {
         IsGoalSetupDialogVisible = false;
         GoalSetupDialogViewModel = null;
+    }
+
+    [RelayCommand]
+    private void ShowNutritionCalculator()
+    {
+        mainViewModel.ChangeView(new BMRViewModel(mainViewModel));
     }
 }

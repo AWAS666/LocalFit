@@ -46,6 +46,9 @@ namespace LocalFit.Lib.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("DietType")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("FitLevel")
                         .HasColumnType("INTEGER");
 

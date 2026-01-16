@@ -2,68 +2,107 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 			 xmlns:vm="using:LocalFit.ViewModels"
+			 xmlns:lucide="using:Lucide.Avalonia"
+			 mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
 			 x:Class="LocalFit.Views.NutritionCalculator"
 			 x:DataType="vm:BMRViewModel">
 	<Design.DataContext>
 		<vm:BMRViewModel/>
 	</Design.DataContext>
-	<StackPanel>
-		<StackPanel Orientation="Horizontal" Margin="5">
-			<Label >Weight:</Label>
-			<NumericUpDown Minimum="0" Maximum="500" Value="{Binding Weight}" Margin="5"/>
-		</StackPanel>
-		<StackPanel Orientation="Horizontal" Margin="5">
-			<Label >Height:</Label>
-			<NumericUpDown Minimum="60" Maximum="250" Value="{Binding Height}" Margin="5"/>
-		</StackPanel>
-		<StackPanel Orientation="Horizontal" Margin="5">
-			<Label >Age:</Label>
-			<NumericUpDown Minimum="0" Maximum="120" Value="{Binding Age}" Margin="5"/>
-		</StackPanel>
-
-		<StackPanel Orientation="Horizontal" Margin="5">
-			<Label >Sex:</Label>
-			<ComboBox SelectedItem="{Binding Sex, Mode=TwoWay}"  ItemsSource="{Binding Sexes}"/>
-		</StackPanel>
-
-		<StackPanel Orientation="Horizontal" Margin="5">
-			<Label >Fitness:</Label>
-			<ComboBox SelectedItem="{Binding Fitness, Mode=TwoWay}"  ItemsSource="{Binding FitnessLevels}"/>
-		</StackPanel>
-
-		<StackPanel Orientation="Horizontal" Margin="5">
-			<Label >Goal:</Label>
-			<ComboBox SelectedItem="{Binding Goal, Mode=TwoWay}"  ItemsSource="{Binding Goals}"/>
-		</StackPanel>
-
-
-
-
-		<StackPanel Orientation="Horizontal" Margin="5">
-			<Label >Calories:</Label>
-			<Label Content="{Binding Calories}"/>
-		</StackPanel>
-
-		<StackPanel Orientation="Horizontal" Margin="5">
-			<Label >Fat:</Label>
-			<Label Content="{Binding Fat}"/>
-		</StackPanel>
-
-		<StackPanel Orientation="Horizontal" Margin="5">
-			<Label >Protein:</Label>
-			<Label Content="{Binding Protein}"/>
-		</StackPanel>
-
-		<StackPanel Orientation="Horizontal" Margin="5">
-			<Label >Carbs:</Label>
-			<Label Content="{Binding Carbs}"/>
-		</StackPanel>
-
-		<StackPanel Orientation="Horizontal" Margin="5">
-			<Label >Bmi:</Label>
-			<Label Content="{Binding Bmi}"/>
-		</StackPanel>
-	</StackPanel>
+	<Grid RowDefinitions="Auto,*,Auto">
+		<!-- Header -->
+		<Grid ColumnDefinitions="Auto,*,Auto" Margin="10" Grid.Row="0">
+			<Button Command="{Binding NavigateBackCommand}" Grid.Column="0">
+				<LucideIcon Kind="ArrowLeft" Size="24"/>
+			</Button>
+			<TextBlock Text="Nutrition Calculator" FontSize="24" FontWeight="Bold" 
+					   HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1"/>
+		</Grid>
+		
+		<!-- Calculator Content -->
+		<ScrollViewer Grid.Row="1">
+			<StackPanel Margin="20" Spacing="20">
+				<TextBlock Text="Calculate your daily nutrition needs" FontSize="16" Opacity="0.7" Margin="0,0,0,10"/>
+				
+				<!-- Input Fields -->
+				<Border BorderBrush="#222222" BorderThickness="0,0,0,1" Padding="0,0,0,20">
+					<StackPanel Spacing="10">
+						<TextBlock Text="Personal Information" FontSize="20" FontWeight="SemiBold" Margin="0,0,0,10"/>
+						
+						<Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+							<StackPanel Spacing="5" Grid.Column="0">
+								<TextBlock Text="Weight (kg):"/>
+								<NumericUpDown Minimum="0" Maximum="500" Value="{Binding Weight}" Height="44"/>
+							</StackPanel>
+							
+							<StackPanel Spacing="5" Grid.Column="1">
+								<TextBlock Text="Height (cm):"/>
+								<NumericUpDown Minimum="60" Maximum="250" Value="{Binding Height}" Height="44"/>
+							</StackPanel>
+						</Grid>
+						
+						<Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+							<StackPanel Spacing="5" Grid.Column="0">
+								<TextBlock Text="Age:"/>
+								<NumericUpDown Minimum="0" Maximum="120" Value="{Binding Age}" Height="44"/>
+							</StackPanel>
+							
+							<StackPanel Spacing="5" Grid.Column="1">
+								<TextBlock Text="Sex:"/>
+								<ComboBox SelectedItem="{Binding Sex, Mode=TwoWay}" ItemsSource="{Binding Sexes}"/>
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</Border>
+				
+				<Border BorderBrush="#222222" BorderThickness="0,0,0,1" Padding="0,0,0,20">
+					<StackPanel Spacing="10">
+						<TextBlock Text="Activity/Goals" FontSize="20" FontWeight="SemiBold" Margin="0,0,0,10"/>
+						
+						<Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+							<StackPanel Spacing="5" Grid.Column="0">
+								<TextBlock Text="Fitness Level:"/>
+								<ComboBox SelectedItem="{Binding Fitness, Mode=TwoWay}" ItemsSource="{Binding FitnessLevels}"/>
+							</StackPanel>
+							
+							<StackPanel Spacing="5" Grid.Column="1">
+								<TextBlock Text="Calorie Goal:"/>
+								<ComboBox SelectedItem="{Binding Goal, Mode=TwoWay}" ItemsSource="{Binding Goals}"/>
+							</StackPanel>
+						</Grid>
+						
+						<StackPanel Spacing="5">
+							<TextBlock Text="Diet Type:"/>
+							<ComboBox SelectedItem="{Binding DietType, Mode=TwoWay}" ItemsSource="{Binding DietTypes}"/>
+						</StackPanel>
+					</StackPanel>
+				</Border>
+				
+				<!-- Results -->
+				<Border Background="#DDDDDD" CornerRadius="8" Padding="15">
+					<StackPanel Spacing="8">
+						<TextBlock Text="Daily Nutrition Targets" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,5" Foreground="#222222"/>
+						
+						<Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnSpacing="15" RowSpacing="8">
+							<TextBlock Text="Calories:" Grid.Row="0" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#222222"/>
+							<TextBlock Text="{Binding Calories, StringFormat='{}{0:F0} kcal'}" Grid.Row="0" Grid.Column="1" FontWeight="SemiBold" FontSize="16" Foreground="#222222"/>
+							
+							<TextBlock Text="Protein:" Grid.Row="1" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#222222"/>
+							<TextBlock Text="{Binding Protein, StringFormat='{}{0:F1}g'}" Grid.Row="1" Grid.Column="1" FontWeight="SemiBold" Foreground="#222222"/>
+							
+							<TextBlock Text="Fat:" Grid.Row="2" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#222222"/>
+							<TextBlock Text="{Binding Fat, StringFormat='{}{0:F1}g'}" Grid.Row="2" Grid.Column="1" FontWeight="SemiBold" Foreground="#222222"/>
+							
+							<TextBlock Text="Carbs:" Grid.Row="3" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#222222"/>
+							<TextBlock Text="{Binding Carbs, StringFormat='{}{0:F1}g'}" Grid.Row="3" Grid.Column="1" FontWeight="SemiBold" Foreground="#222222"/>
+							
+							<TextBlock Text="BMI:" Grid.Row="4" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#222222"/>
+							<TextBlock Text="{Binding Bmi, StringFormat='{}{0:F1}'}" Grid.Row="4" Grid.Column="1" FontWeight="SemiBold" Foreground="#222222"/>
+						</Grid>
+					</StackPanel>
+				</Border>
+			</StackPanel>
+		</ScrollViewer>
+	</Grid>
 </UserControl>

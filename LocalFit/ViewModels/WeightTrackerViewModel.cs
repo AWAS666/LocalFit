@@ -21,7 +21,7 @@ public partial class WeightTrackerViewModel : ObservableObject
     [ObservableProperty]
     private AddWeightDialogViewModel? addWeightDialogViewModel;
 
-    public WeightTrackerViewModel()
+    public WeightTrackerViewModel(MainViewModel mainViewModel)
     {
         LoadWeights();
     }

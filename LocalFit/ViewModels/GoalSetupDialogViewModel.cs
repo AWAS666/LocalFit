@@ -20,11 +20,15 @@ public partial class GoalSetupDialogViewModel : ObservableObject
     private Sex sex = Sex.Male;
 
     [ObservableProperty]
+    private DietType dietType = DietType.Balanced;
+
+    [ObservableProperty]
     private WeightTracker? currentWeight;
 
     public CalorieGoal[] Goals => Enum.GetValues<CalorieGoal>();
     public FitnessLevel[] FitnessLevels => Enum.GetValues<FitnessLevel>();
     public Sex[] Sexes => Enum.GetValues<Sex>();
+    public DietType[] DietTypes => Enum.GetValues<DietType>();
 
     public string FitnessLevelDescription => FitnessLevel.GetDescription();
 
@@ -47,6 +51,7 @@ public partial class GoalSetupDialogViewModel : ObservableObject
             Goal = currentGoal.Goal;
             FitnessLevel = currentGoal.FitLevel;
             Sex = currentGoal.Sex;
+            DietType = currentGoal.DietType;
         }
     }
 
@@ -58,7 +63,8 @@ public partial class GoalSetupDialogViewModel : ObservableObject
         {
             Goal = Goal,
             FitLevel = FitnessLevel,
-            Sex = Sex
+            Sex = Sex,
+            DietType = DietType
         };
         db.Goal.Add(fitnessGoal);
         await db.SaveChangesAsync();

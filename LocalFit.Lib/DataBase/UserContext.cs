@@ -143,6 +143,7 @@ public class FitnessGoal
     public CalorieGoal Goal { get; set; }
     public FitnessLevel FitLevel { get; set; }
     public Sex Sex { get; set; }
+    public DietType DietType { get; set; } = DietType.Balanced;
     public DateTime Created { get; set; } = DateTime.UtcNow;
     public DateTime Updated { get; set; } = DateTime.UtcNow;
 }
