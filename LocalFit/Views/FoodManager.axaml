@@ -49,14 +49,14 @@
 									Grid.Column="1" 
 									Margin="10,0"
 									Background="Transparent">
-								<LucideIcon Kind="Pencil" Size="20" Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+								<LucideIcon Kind="Pencil" Size="20"/>
 							</Button>
 							<Button Command="{Binding $parent[UserControl].DataContext.RemoveCommand}" 
 									CommandParameter="{Binding}" 
 									Grid.Column="2" 
 									Margin="10,0"
 									Background="Transparent">
-								<LucideIcon Kind="Trash2" Size="20" Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+								<LucideIcon Kind="Trash2" Size="20"/>
 							</Button>
 						</Grid>
 					</Border>
