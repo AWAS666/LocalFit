@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LocalFit.Lib;
 using LocalFit.Lib.DataBase;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -36,6 +37,8 @@ public partial class AddFoodDialogViewModel : ObservableObject
     [ObservableProperty]
     private decimal? calculatedCarbs;
 
+    public decimal Increment => FoodUnitHelper.GetIncrementForUnit(SelectedFood?.Unit);
+
     [ObservableProperty]
     private bool isEditFoodDialogVisible;
 
@@ -56,7 +59,6 @@ public partial class AddFoodDialogViewModel : ObservableObject
     {
         FilterFoods();
     }
-
 
     private void CalculateNutrition()
     {
@@ -141,6 +143,7 @@ public partial class AddFoodDialogViewModel : ObservableObject
             CalculateNutrition();
         }
         SelectFoodCommand.NotifyCanExecuteChanged();
+        OnPropertyChanged(nameof(Increment));
     }
 
     [RelayCommand]

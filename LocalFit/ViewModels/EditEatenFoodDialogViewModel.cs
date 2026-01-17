@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LocalFit.Lib;
 using LocalFit.Lib.DataBase;
 using System;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ public partial class EditEatenFoodDialogViewModel : ObservableObject
 
     public string FoodName => FoodEaten.Preset.Name;
     public string UnitDisplay => FoodEaten.Preset.Unit == FoodUnit.Gram100 ? "g" : "piece(s)";
+    public decimal Increment => FoodUnitHelper.GetIncrementForUnit(FoodEaten.Preset.Unit);
 
     public event Action<FoodEaten>? OnSaved;
     public event Action? OnCancel;
