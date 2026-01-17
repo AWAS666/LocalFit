@@ -10,6 +10,11 @@
 - [ ] https://github.com/accntech/shad-ui/ -> implement or to little difference?
 - [x] track favourite items -> add counter field to presets
 - [x] add last amount -> default to last used amount when adding preset
+- [ ] date picker for quick navigation
+- [ ] display sugar
+- [ ] water tracking
+- [ ] charts, weight, bmi etc
+- [ ] confirm dialog b4 delete
 
 ## Todo Global
 - translations

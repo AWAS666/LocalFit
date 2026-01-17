@@ -65,8 +65,8 @@ public partial class BMRViewModel : ObservableObject
     private void LoadUserDefaults()
     {
         using var db = new UserContext();
-        var currentWeight = db.Weight.OrderByDescending(x => x.Created).FirstOrDefault();
-        var currentGoal = db.Goal.OrderByDescending(x => x.Created).FirstOrDefault();
+        var currentWeight = db.GetLatestWeight();
+        var currentGoal = db.GetLatestGoal();
 
         if (currentWeight != null)
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LocalFit.ViewModels;
 
-public partial class EditFoodDialogViewModel : ObservableObject
+public partial class EditFoodDialogViewModel : DialogViewModel<FoodPresets>
 {
     [ObservableProperty]
     private int? id;
@@ -34,9 +34,6 @@ public partial class EditFoodDialogViewModel : ObservableObject
     private FoodUnit unit = FoodUnit.Gram100;
 
     public FoodUnit[] Units => Enum.GetValues<FoodUnit>();
-
-    public event Action<FoodPresets>? OnSaved;
-    public event Action? OnCancel;
 
     public EditFoodDialogViewModel()
     {
@@ -73,11 +70,11 @@ public partial class EditFoodDialogViewModel : ObservableObject
         if (Id.HasValue)
         {
             preset = await db.FoodPresets.FindAsync(Id.Value);
-            if (preset == null) 
-            {
-                OnCancel?.Invoke();
-                return;
-            }
+        if (preset == null) 
+        {
+            Cancel();
+            return;
+        }
             preset.Name = Name;
             preset.Calories = Calories ?? 0;
             preset.Fat = Fat ?? 0;
@@ -104,12 +101,6 @@ public partial class EditFoodDialogViewModel : ObservableObject
         }
         
         await db.SaveChangesAsync();
-        OnSaved?.Invoke(preset);
-    }
-
-    [RelayCommand]
-    private void Cancel()
-    {
-        OnCancel?.Invoke();
+        InvokeSaved(preset);
     }
 }

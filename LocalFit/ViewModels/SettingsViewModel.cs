@@ -58,8 +58,8 @@ public partial class SettingsViewModel : ObservableObject
     private void LoadCurrentSettings()
     {
         using var db = new UserContext();
-        CurrentGoal = db.Goal.OrderByDescending(x => x.Created).FirstOrDefault();
-        CurrentWeight = db.Weight.OrderByDescending(x => x.Created).FirstOrDefault();
+        CurrentGoal = db.GetLatestGoal();
+        CurrentWeight = db.GetLatestWeight();
         CalculateNutrition();
     }
 

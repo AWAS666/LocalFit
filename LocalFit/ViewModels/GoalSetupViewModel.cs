@@ -18,7 +18,7 @@ public partial class GoalSetupViewModel : ObservableObject
     public GoalSetupViewModel()
     {
         using var db = new UserContext();
-        CurrentGoal = db.Goal.OrderByDescending(x => x.Created).FirstOrDefault();
-        CurrentWeight = db.Weight.OrderByDescending(x => x.Created).FirstOrDefault();
+        CurrentGoal = db.GetLatestGoal();
+        CurrentWeight = db.GetLatestWeight();
     }
 }

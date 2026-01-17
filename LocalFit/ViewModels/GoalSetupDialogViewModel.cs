@@ -3,12 +3,11 @@ using CommunityToolkit.Mvvm.Input;
 using LocalFit.Lib;
 using LocalFit.Lib.DataBase;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace LocalFit.ViewModels;
 
-public partial class GoalSetupDialogViewModel : ObservableObject
+public partial class GoalSetupDialogViewModel : DialogViewModel<FitnessGoal>
 {
     [ObservableProperty]
     private CalorieGoal goal = CalorieGoal.Maintenance;
@@ -32,9 +31,6 @@ public partial class GoalSetupDialogViewModel : ObservableObject
 
     public string FitnessLevelDescription => FitnessLevel.GetDescription();
 
-    public event Action<FitnessGoal>? OnSaved;
-    public event Action? OnCancel;
-
     public GoalSetupDialogViewModel()
     {
         LoadCurrentGoal();
@@ -43,8 +39,8 @@ public partial class GoalSetupDialogViewModel : ObservableObject
     private void LoadCurrentGoal()
     {
         using var db = new UserContext();
-        var currentGoal = db.Goal.OrderByDescending(x => x.Created).FirstOrDefault();
-        CurrentWeight = db.Weight.OrderByDescending(x => x.Created).FirstOrDefault();
+        var currentGoal = db.GetLatestGoal();
+        CurrentWeight = db.GetLatestWeight();
         
         if (currentGoal != null)
         {
@@ -68,13 +64,7 @@ public partial class GoalSetupDialogViewModel : ObservableObject
         };
         db.Goal.Add(fitnessGoal);
         await db.SaveChangesAsync();
-        OnSaved?.Invoke(fitnessGoal);
-    }
-
-    [RelayCommand]
-    private void Cancel()
-    {
-        OnCancel?.Invoke();
+        InvokeSaved(fitnessGoal);
     }
 
     partial void OnFitnessLevelChanged(FitnessLevel value)

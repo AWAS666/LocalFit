@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LocalFit.ViewModels;
 
-public partial class EditEatenFoodDialogViewModel : ObservableObject
+public partial class EditEatenFoodDialogViewModel : DialogViewModel<FoodEaten>
 {
     [ObservableProperty]
     private FoodEaten foodEaten;
@@ -18,9 +18,6 @@ public partial class EditEatenFoodDialogViewModel : ObservableObject
     public string FoodName => FoodEaten.Preset.Name;
     public string UnitDisplay => FoodEaten.Preset.Unit == FoodUnit.Gram100 ? "g" : "piece(s)";
     public decimal Increment => FoodUnitHelper.GetIncrementForUnit(FoodEaten.Preset.Unit);
-
-    public event Action<FoodEaten>? OnSaved;
-    public event Action? OnCancel;
 
     public EditEatenFoodDialogViewModel(FoodEaten foodEaten)
     {
@@ -40,7 +37,7 @@ public partial class EditEatenFoodDialogViewModel : ObservableObject
         var entry = await db.FoodEaten.FindAsync(FoodEaten.Id);
         if (entry == null)
         {
-            OnCancel?.Invoke();
+            Cancel();
             return;
         }
 
@@ -58,17 +55,11 @@ public partial class EditEatenFoodDialogViewModel : ObservableObject
         await db.SaveChangesAsync();
 
         FoodEaten.Amount = Amount.Value;
-        OnSaved?.Invoke(FoodEaten);
+        InvokeSaved(FoodEaten);
     }
 
     partial void OnAmountChanged(decimal? value)
     {
         SaveCommand.NotifyCanExecuteChanged();
-    }
-
-    [RelayCommand]
-    private void Cancel()
-    {
-        OnCancel?.Invoke();
     }
 }

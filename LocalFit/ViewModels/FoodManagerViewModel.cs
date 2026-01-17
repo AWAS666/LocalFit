@@ -51,7 +51,7 @@ public partial class FoodManagerViewModel : ObservableObject
     private async Task LoadFoods()
     {
         using var db = new UserContext();
-        allFoods = await db.FoodPresets.Where(f => !f.IsDeleted).OrderBy(x => x.Name).ToListAsync();
+        allFoods = await db.GetActiveFoodPresetsAsync(orderByUseCount: false);
         FilterFoods();
     }
 

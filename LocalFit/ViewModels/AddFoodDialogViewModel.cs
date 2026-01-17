@@ -2,7 +2,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LocalFit.Lib;
 using LocalFit.Lib.DataBase;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LocalFit.ViewModels;
 
-public partial class AddFoodDialogViewModel : ObservableObject
+public partial class AddFoodDialogViewModel : DialogViewModel
 {
     [ObservableProperty]
     private string searchText = string.Empty;
@@ -48,7 +47,6 @@ public partial class AddFoodDialogViewModel : ObservableObject
     private List<FoodPresets> allFoods = new();
 
     public event Action<FoodPresets, decimal>? OnFoodSelected;
-    public event Action? OnCancel;
 
     public AddFoodDialogViewModel()
     {
@@ -71,17 +69,7 @@ public partial class AddFoodDialogViewModel : ObservableObject
             return;
         }
 
-        decimal multiplier;
-        if (SelectedFood.Unit == FoodUnit.Gram100)
-        {
-            // For grams, preset values are per 100g, so divide by 100
-            multiplier = Amount.Value / 100;
-        }
-        else
-        {
-            // For pieces, preset values are per piece, so multiply directly
-            multiplier = Amount.Value;
-        }
+        var multiplier = DayTracker.GetMultiplier(SelectedFood.Unit, Amount.Value);
 
         CalculatedCalories = SelectedFood.Calories * multiplier;
         CalculatedProtein = SelectedFood.Protein * multiplier;
@@ -92,11 +80,7 @@ public partial class AddFoodDialogViewModel : ObservableObject
     private async Task LoadFoods()
     {
         using var db = new UserContext();
-        allFoods = await db.FoodPresets
-            .Where(f => !f.IsDeleted)
-            .OrderByDescending(x => x.UseCount)
-            .ThenBy(x => x.Name)
-            .ToListAsync();
+        allFoods = await db.GetActiveFoodPresetsAsync(orderByUseCount: true);
         FilterFoods();
     }
 
@@ -146,11 +130,6 @@ public partial class AddFoodDialogViewModel : ObservableObject
         OnPropertyChanged(nameof(Increment));
     }
 
-    [RelayCommand]
-    private void Cancel()
-    {
-        OnCancel?.Invoke();
-    }
 
     private void SetupEditFoodDialog(EditFoodDialogViewModel dialogViewModel)
     {

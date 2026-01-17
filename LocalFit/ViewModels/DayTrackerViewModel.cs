@@ -107,8 +107,8 @@ public partial class DayTrackerViewModel : ObservableObject
             {
                 Date = targetDate,
                 // set to current if this was missing
-                Weight = db.Weight.OrderByDescending(x => x.Created).FirstOrDefault(),
-                Goal = db.Goal.OrderByDescending(x => x.Created).FirstOrDefault()
+                Weight = db.GetLatestWeight(),
+                Goal = db.GetLatestGoal()
             };
             db.Day.Add(day);
             await db.SaveChangesAsync();
@@ -131,8 +131,8 @@ public partial class DayTrackerViewModel : ObservableObject
             db.Day.Add(day);
         }
         // always update to latest weight/goal on daily but not on nav
-        day.Weight = db.Weight.OrderByDescending(x => x.Created).FirstOrDefault();
-        day.Goal = db.Goal.OrderByDescending(x => x.Created).FirstOrDefault();
+        day.Weight = db.GetLatestWeight();
+        day.Goal = db.GetLatestGoal();
         Current = day;
         Eaten = new ObservableCollection<FoodEaten>(Current.FoodsEaten);
         db.SaveChanges();

@@ -29,7 +29,7 @@ public partial class WeightTrackerViewModel : ObservableObject
     private void LoadWeights()
     {
         using var db = new UserContext();
-        Current = db.Weight.OrderByDescending(x => x.Created).FirstOrDefault();
+        Current = db.GetLatestWeight();
         var history = db.Weight.OrderByDescending(x => x.Created).Take(20).ToList();
         WeightHistory = new ObservableCollection<WeightTracker>(history);
     }

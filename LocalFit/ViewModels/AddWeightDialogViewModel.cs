@@ -2,12 +2,11 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LocalFit.Lib.DataBase;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace LocalFit.ViewModels;
 
-public partial class AddWeightDialogViewModel : ObservableObject
+public partial class AddWeightDialogViewModel : DialogViewModel<WeightTracker>
 {
     [ObservableProperty]
     private decimal? weight = 70;
@@ -21,9 +20,6 @@ public partial class AddWeightDialogViewModel : ObservableObject
     [ObservableProperty]
     private string? note;
 
-    public event Action<WeightTracker>? OnSaved;
-    public event Action? OnCancel;
-
     public AddWeightDialogViewModel()
     {
         LoadLatestWeight();
@@ -32,7 +28,7 @@ public partial class AddWeightDialogViewModel : ObservableObject
     private void LoadLatestWeight()
     {
         using var db = new UserContext();
-        var latest = db.Weight.OrderByDescending(x => x.Created).FirstOrDefault();
+        var latest = db.GetLatestWeight();
         if (latest != null)
         {
             Weight = latest.Weight;
@@ -59,7 +55,7 @@ public partial class AddWeightDialogViewModel : ObservableObject
         };
         db.Weight.Add(entry);
         await db.SaveChangesAsync();
-        OnSaved?.Invoke(entry);
+        InvokeSaved(entry);
     }
 
     partial void OnWeightChanged(decimal? value)
@@ -70,11 +66,5 @@ public partial class AddWeightDialogViewModel : ObservableObject
     partial void OnHeightChanged(decimal? value)
     {
         SaveCommand.NotifyCanExecuteChanged();
-    }
-
-    [RelayCommand]
-    private void Cancel()
-    {
-        OnCancel?.Invoke();
     }
 }
