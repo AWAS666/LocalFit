@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>1.3</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="MainView_Day" xml:space="preserve">
+		<value>日</value>
+	</data>
+	<data name="MainView_Weight" xml:space="preserve">
+		<value>体重</value>
+	</data>
+	<data name="MainView_Food" xml:space="preserve">
+		<value>食物</value>
+	</data>
+	<data name="MainView_Settings" xml:space="preserve">
+		<value>设置</value>
+	</data>
+	<data name="DayTracker_Calories" xml:space="preserve">
+		<value>卡路里（千卡）</value>
+	</data>
+	<data name="DayTracker_Protein" xml:space="preserve">
+		<value>蛋白质（克）</value>
+	</data>
+	<data name="DayTracker_Fat" xml:space="preserve">
+		<value>脂肪（克）</value>
+	</data>
+	<data name="DayTracker_Carbs" xml:space="preserve">
+		<value>碳水化合物（克）</value>
+	</data>
+	<data name="FoodManager_Title" xml:space="preserve">
+		<value>食物管理</value>
+	</data>
+	<data name="FoodManager_SearchWatermark" xml:space="preserve">
+		<value>搜索食物...</value>
+	</data>
+	<data name="FoodManager_Cal" xml:space="preserve">
+		<value>卡:</value>
+	</data>
+	<data name="FoodManager_P" xml:space="preserve">
+		<value>蛋:</value>
+	</data>
+	<data name="FoodManager_F" xml:space="preserve">
+		<value>脂:</value>
+	</data>
+	<data name="FoodManager_C" xml:space="preserve">
+		<value>碳:</value>
+	</data>
+	<data name="FoodManager_Grams" xml:space="preserve">
+		<value>克</value>
+	</data>
+	<data name="Settings_Title" xml:space="preserve">
+		<value>设置</value>
+	</data>
+	<data name="Settings_FitnessGoals" xml:space="preserve">
+		<value>健身目标</value>
+	</data>
+	<data name="Settings_Edit" xml:space="preserve">
+		<value>编辑</value>
+	</data>
+	<data name="Settings_Goal" xml:space="preserve">
+		<value>目标:</value>
+	</data>
+	<data name="Settings_FitnessLevel" xml:space="preserve">
+		<value>活动水平:</value>
+	</data>
+	<data name="Settings_Sex" xml:space="preserve">
+		<value>性别:</value>
+	</data>
+	<data name="Settings_DietType" xml:space="preserve">
+		<value>饮食类型:</value>
+	</data>
+	<data name="Settings_DailyNutritionTargets" xml:space="preserve">
+		<value>每日营养目标</value>
+	</data>
+	<data name="Settings_Calories" xml:space="preserve">
+		<value>卡路里:</value>
+	</data>
+	<data name="Settings_Protein" xml:space="preserve">
+		<value>蛋白质:</value>
+	</data>
+	<data name="Settings_Fat" xml:space="preserve">
+		<value>脂肪:</value>
+	</data>
+	<data name="Settings_Carbs" xml:space="preserve">
+		<value>碳水化合物:</value>
+	</data>
+	<data name="Settings_Tools" xml:space="preserve">
+		<value>工具</value>
+	</data>
+	<data name="Settings_NutritionCalculator" xml:space="preserve">
+		<value>营养计算器</value>
+	</data>
+	<data name="Settings_GeneralSettings" xml:space="preserve">
+		<value>通用设置</value>
+	</data>
+	<data name="Settings_ComingSoon" xml:space="preserve">
+		<value>即将推出...</value>
+	</data>
+	<data name="Settings_About" xml:space="preserve">
+		<value>关于</value>
+	</data>
+	<data name="Settings_FitnessTrackerApp" xml:space="preserve">
+		<value>健身追踪应用</value>
+	</data>
+	<data name="Settings_Version" xml:space="preserve">
+		<value>版本</value>
+	</data>
+	<data name="Onboarding_Welcome" xml:space="preserve">
+		<value>欢迎使用 LocalFit！</value>
+	</data>
+	<data name="Onboarding_GetStarted" xml:space="preserve">
+		<value>让我们开始设置您的个人资料</value>
+	</data>
+	<data name="Onboarding_Step1_Title" xml:space="preserve">
+		<value>步骤 1：添加您的体重</value>
+	</data>
+	<data name="Onboarding_Step1_Description" xml:space="preserve">
+		<value>我们需要您当前的体重和身高来计算您的每日营养目标。</value>
+	</data>
+	<data name="Onboarding_AddWeightEntry" xml:space="preserve">
+		<value>添加体重记录</value>
+	</data>
+	<data name="Onboarding_SkipForNow" xml:space="preserve">
+		<value>暂时跳过</value>
+	</data>
+	<data name="Onboarding_Step2_Title" xml:space="preserve">
+		<value>步骤 2：配置您的目标</value>
+	</data>
+	<data name="Onboarding_Step2_Description" xml:space="preserve">
+		<value>告诉我们您的健身目标和活动水平，以便我们计算您的个性化每日营养目标。</value>
+	</data>
+	<data name="Onboarding_SetUpGoals" xml:space="preserve">
+		<value>设置目标</value>
+	</data>
+	<data name="Onboarding_SetFitnessGoals" xml:space="preserve">
+		<value>设置您的健身目标</value>
+	</data>
+	<data name="Onboarding_AllSet" xml:space="preserve">
+		<value>一切就绪！</value>
+	</data>
+	<data name="Onboarding_AllSetDescription" xml:space="preserve">
+		<value>您现在可以开始追踪您的食物和营养了。您随时可以在设置中更新您的体重和目标。</value>
+	</data>
+	<data name="WeightTracker_CurrentWeight" xml:space="preserve">
+		<value>当前体重</value>
+	</data>
+	<data name="WeightTracker_Kg" xml:space="preserve">
+		<value>公斤</value>
+	</data>
+	<data name="WeightTracker_Height" xml:space="preserve">
+		<value>身高:</value>
+	</data>
+	<data name="WeightTracker_Cm" xml:space="preserve">
+		<value>厘米</value>
+	</data>
+	<data name="WeightTracker_WeightHistory" xml:space="preserve">
+		<value>体重历史</value>
+	</data>
+	<data name="AddFoodDialog_Title" xml:space="preserve">
+		<value>添加食物</value>
+	</data>
+	<data name="AddFoodDialog_SearchWatermark" xml:space="preserve">
+		<value>搜索食物...</value>
+	</data>
+	<data name="AddFoodDialog_Amount" xml:space="preserve">
+		<value>数量:</value>
+	</data>
+	<data name="AddFoodDialog_NutritionCalculated" xml:space="preserve">
+		<value>营养（已计算）</value>
+	</data>
+	<data name="AddFoodDialog_Calories" xml:space="preserve">
+		<value>卡路里:</value>
+	</data>
+	<data name="AddFoodDialog_Protein" xml:space="preserve">
+		<value>蛋白质:</value>
+	</data>
+	<data name="AddFoodDialog_Fat" xml:space="preserve">
+		<value>脂肪:</value>
+	</data>
+	<data name="AddFoodDialog_Carbs" xml:space="preserve">
+		<value>碳水化合物:</value>
+	</data>
+	<data name="AddFoodDialog_CreateNew" xml:space="preserve">
+		<value>创建新项</value>
+	</data>
+	<data name="AddWeightDialog_Title" xml:space="preserve">
+		<value>添加体重记录</value>
+	</data>
+	<data name="AddWeightDialog_Weight" xml:space="preserve">
+		<value>体重（公斤）:</value>
+	</data>
+	<data name="AddWeightDialog_Height" xml:space="preserve">
+		<value>身高（厘米）:</value>
+	</data>
+	<data name="AddWeightDialog_Birthday" xml:space="preserve">
+		<value>生日:</value>
+	</data>
+	<data name="AddWeightDialog_Note" xml:space="preserve">
+		<value>备注（可选）:</value>
+	</data>
+	<data name="AddWeightDialog_NoteWatermark" xml:space="preserve">
+		<value>添加备注...</value>
+	</data>
+	<data name="EditFoodDialog_Title" xml:space="preserve">
+		<value>食物详情</value>
+	</data>
+	<data name="EditFoodDialog_Name" xml:space="preserve">
+		<value>名称:</value>
+	</data>
+	<data name="EditFoodDialog_NameWatermark" xml:space="preserve">
+		<value>食物名称</value>
+	</data>
+	<data name="EditFoodDialog_Calories" xml:space="preserve">
+		<value>卡路里:</value>
+	</data>
+	<data name="EditFoodDialog_Protein" xml:space="preserve">
+		<value>蛋白质（克）:</value>
+	</data>
+	<data name="EditFoodDialog_Fat" xml:space="preserve">
+		<value>脂肪（克）:</value>
+	</data>
+	<data name="EditFoodDialog_Carbs" xml:space="preserve">
+		<value>碳水化合物（克）:</value>
+	</data>
+	<data name="EditFoodDialog_Sugar" xml:space="preserve">
+		<value>糖（克）:</value>
+	</data>
+	<data name="EditFoodDialog_Unit" xml:space="preserve">
+		<value>单位:</value>
+	</data>
+	<data name="EditEatenFoodDialog_Title" xml:space="preserve">
+		<value>编辑食物数量</value>
+	</data>
+	<data name="EditEatenFoodDialog_Food" xml:space="preserve">
+		<value>食物:</value>
+	</data>
+	<data name="EditEatenFoodDialog_Amount" xml:space="preserve">
+		<value>数量:</value>
+	</data>
+	<data name="GoalSetupDialog_Title" xml:space="preserve">
+		<value>健身目标</value>
+	</data>
+	<data name="GoalSetupDialog_CalorieGoal" xml:space="preserve">
+		<value>卡路里目标:</value>
+	</data>
+	<data name="GoalSetupDialog_FitnessLevel" xml:space="preserve">
+		<value>活动水平:</value>
+	</data>
+	<data name="GoalSetupDialog_Sex" xml:space="preserve">
+		<value>性别:</value>
+	</data>
+	<data name="GoalSetupDialog_DietType" xml:space="preserve">
+		<value>饮食类型:</value>
+	</data>
+	<data name="NutritionCalculator_Title" xml:space="preserve">
+		<value>营养计算器</value>
+	</data>
+	<data name="NutritionCalculator_Description" xml:space="preserve">
+		<value>计算您的每日营养需求</value>
+	</data>
+	<data name="NutritionCalculator_PersonalInformation" xml:space="preserve">
+		<value>个人信息</value>
+	</data>
+	<data name="NutritionCalculator_Weight" xml:space="preserve">
+		<value>体重（公斤）:</value>
+	</data>
+	<data name="NutritionCalculator_Height" xml:space="preserve">
+		<value>身高（厘米）:</value>
+	</data>
+	<data name="NutritionCalculator_Age" xml:space="preserve">
+		<value>年龄:</value>
+	</data>
+	<data name="NutritionCalculator_Sex" xml:space="preserve">
+		<value>性别:</value>
+	</data>
+	<data name="NutritionCalculator_ActivityGoals" xml:space="preserve">
+		<value>活动/目标</value>
+	</data>
+	<data name="NutritionCalculator_FitnessLevel" xml:space="preserve">
+		<value>活动水平:</value>
+	</data>
+	<data name="NutritionCalculator_CalorieGoal" xml:space="preserve">
+		<value>卡路里目标:</value>
+	</data>
+	<data name="NutritionCalculator_DietType" xml:space="preserve">
+		<value>饮食类型:</value>
+	</data>
+	<data name="NutritionCalculator_DailyNutritionTargets" xml:space="preserve">
+		<value>每日营养目标</value>
+	</data>
+	<data name="NutritionCalculator_Calories" xml:space="preserve">
+		<value>卡路里:</value>
+	</data>
+	<data name="NutritionCalculator_Protein" xml:space="preserve">
+		<value>蛋白质:</value>
+	</data>
+	<data name="NutritionCalculator_Fat" xml:space="preserve">
+		<value>脂肪:</value>
+	</data>
+	<data name="NutritionCalculator_Carbs" xml:space="preserve">
+		<value>碳水化合物:</value>
+	</data>
+	<data name="NutritionCalculator_BMI" xml:space="preserve">
+		<value>BMI:</value>
+	</data>
+	<data name="NutritionCalculator_Kcal" xml:space="preserve">
+		<value>千卡</value>
+	</data>
+	<data name="FitnessLevel_Sedentary" xml:space="preserve">
+		<value>很少或没有运动</value>
+	</data>
+	<data name="FitnessLevel_LightlyActive" xml:space="preserve">
+		<value>每周运动 1-3 次</value>
+	</data>
+	<data name="FitnessLevel_ModeratelyActive" xml:space="preserve">
+		<value>每周运动 4-5 次</value>
+	</data>
+	<data name="FitnessLevel_VeryActive" xml:space="preserve">
+		<value>每天运动或每周高强度运动 3-4 次</value>
+	</data>
+	<data name="FitnessLevel_Athlete" xml:space="preserve">
+		<value>每周高强度运动 6-7 次</value>
+	</data>
+	<data name="Sex_Male" xml:space="preserve">
+		<value>男性</value>
+	</data>
+	<data name="Sex_Female" xml:space="preserve">
+		<value>女性</value>
+	</data>
+	<data name="FitnessLevel_Sedentary_Display" xml:space="preserve">
+		<value>久坐</value>
+	</data>
+	<data name="FitnessLevel_LightlyActive_Display" xml:space="preserve">
+		<value>轻度活动</value>
+	</data>
+	<data name="FitnessLevel_ModeratelyActive_Display" xml:space="preserve">
+		<value>中度活动</value>
+	</data>
+	<data name="FitnessLevel_VeryActive_Display" xml:space="preserve">
+		<value>高度活动</value>
+	</data>
+	<data name="FitnessLevel_Athlete_Display" xml:space="preserve">
+		<value>运动员</value>
+	</data>
+	<data name="CalorieGoal_AggressiveCut" xml:space="preserve">
+		<value>激进减脂</value>
+	</data>
+	<data name="CalorieGoal_Cut" xml:space="preserve">
+		<value>减脂</value>
+	</data>
+	<data name="CalorieGoal_Maintenance" xml:space="preserve">
+		<value>维持</value>
+	</data>
+	<data name="CalorieGoal_Bulk" xml:space="preserve">
+		<value>增肌</value>
+	</data>
+	<data name="CalorieGoal_AggressiveBulk" xml:space="preserve">
+		<value>激进增肌</value>
+	</data>
+	<data name="DietType_Balanced" xml:space="preserve">
+		<value>均衡</value>
+	</data>
+	<data name="DietType_LowFat" xml:space="preserve">
+		<value>低脂</value>
+	</data>
+	<data name="DietType_LowCarb" xml:space="preserve">
+		<value>低碳水</value>
+	</data>
+	<data name="DietType_HighProtein" xml:space="preserve">
+		<value>高蛋白</value>
+	</data>
+</root>

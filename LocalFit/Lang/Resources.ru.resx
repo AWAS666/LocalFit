@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>1.3</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="MainView_Day" xml:space="preserve">
+		<value>День</value>
+	</data>
+	<data name="MainView_Weight" xml:space="preserve">
+		<value>Вес</value>
+	</data>
+	<data name="MainView_Food" xml:space="preserve">
+		<value>Еда</value>
+	</data>
+	<data name="MainView_Settings" xml:space="preserve">
+		<value>Настройки</value>
+	</data>
+	<data name="DayTracker_Calories" xml:space="preserve">
+		<value>Калории (ккал)</value>
+	</data>
+	<data name="DayTracker_Protein" xml:space="preserve">
+		<value>Белки (г)</value>
+	</data>
+	<data name="DayTracker_Fat" xml:space="preserve">
+		<value>Жиры (г)</value>
+	</data>
+	<data name="DayTracker_Carbs" xml:space="preserve">
+		<value>Углеводы (г)</value>
+	</data>
+	<data name="FoodManager_Title" xml:space="preserve">
+		<value>Менеджер Продуктов</value>
+	</data>
+	<data name="FoodManager_SearchWatermark" xml:space="preserve">
+		<value>Поиск продуктов...</value>
+	</data>
+	<data name="FoodManager_Cal" xml:space="preserve">
+		<value>Кал:</value>
+	</data>
+	<data name="FoodManager_P" xml:space="preserve">
+		<value>Б:</value>
+	</data>
+	<data name="FoodManager_F" xml:space="preserve">
+		<value>Ж:</value>
+	</data>
+	<data name="FoodManager_C" xml:space="preserve">
+		<value>У:</value>
+	</data>
+	<data name="FoodManager_Grams" xml:space="preserve">
+		<value>г</value>
+	</data>
+	<data name="Settings_Title" xml:space="preserve">
+		<value>Настройки</value>
+	</data>
+	<data name="Settings_FitnessGoals" xml:space="preserve">
+		<value>Цели Фитнеса</value>
+	</data>
+	<data name="Settings_Edit" xml:space="preserve">
+		<value>Редактировать</value>
+	</data>
+	<data name="Settings_Goal" xml:space="preserve">
+		<value>Цель:</value>
+	</data>
+	<data name="Settings_FitnessLevel" xml:space="preserve">
+		<value>Уровень Активности:</value>
+	</data>
+	<data name="Settings_Sex" xml:space="preserve">
+		<value>Пол:</value>
+	</data>
+	<data name="Settings_DietType" xml:space="preserve">
+		<value>Тип Диеты:</value>
+	</data>
+	<data name="Settings_DailyNutritionTargets" xml:space="preserve">
+		<value>Ежедневные Цели Питания</value>
+	</data>
+	<data name="Settings_Calories" xml:space="preserve">
+		<value>Калории:</value>
+	</data>
+	<data name="Settings_Protein" xml:space="preserve">
+		<value>Белки:</value>
+	</data>
+	<data name="Settings_Fat" xml:space="preserve">
+		<value>Жиры:</value>
+	</data>
+	<data name="Settings_Carbs" xml:space="preserve">
+		<value>Углеводы:</value>
+	</data>
+	<data name="Settings_Tools" xml:space="preserve">
+		<value>Инструменты</value>
+	</data>
+	<data name="Settings_NutritionCalculator" xml:space="preserve">
+		<value>Калькулятор Питания</value>
+	</data>
+	<data name="Settings_GeneralSettings" xml:space="preserve">
+		<value>Общие Настройки</value>
+	</data>
+	<data name="Settings_ComingSoon" xml:space="preserve">
+		<value>Скоро...</value>
+	</data>
+	<data name="Settings_About" xml:space="preserve">
+		<value>О программе</value>
+	</data>
+	<data name="Settings_FitnessTrackerApp" xml:space="preserve">
+		<value>Приложение Трекера Фитнеса</value>
+	</data>
+	<data name="Settings_Version" xml:space="preserve">
+		<value>Версия</value>
+	</data>
+	<data name="Onboarding_Welcome" xml:space="preserve">
+		<value>Добро пожаловать в LocalFit!</value>
+	</data>
+	<data name="Onboarding_GetStarted" xml:space="preserve">
+		<value>Давайте начнем с настройки вашего профиля</value>
+	</data>
+	<data name="Onboarding_Step1_Title" xml:space="preserve">
+		<value>Шаг 1: Добавьте Ваш Вес</value>
+	</data>
+	<data name="Onboarding_Step1_Description" xml:space="preserve">
+		<value>Нам нужен ваш текущий вес и рост для расчета ваших ежедневных целей питания.</value>
+	</data>
+	<data name="Onboarding_AddWeightEntry" xml:space="preserve">
+		<value>Добавить Запись Веса</value>
+	</data>
+	<data name="Onboarding_SkipForNow" xml:space="preserve">
+		<value>Пропустить пока</value>
+	</data>
+	<data name="Onboarding_Step2_Title" xml:space="preserve">
+		<value>Шаг 2: Настройте Ваши Цели</value>
+	</data>
+	<data name="Onboarding_Step2_Description" xml:space="preserve">
+		<value>Расскажите нам о ваших целях фитнеса и уровне активности, чтобы мы могли рассчитать ваши персонализированные ежедневные цели питания.</value>
+	</data>
+	<data name="Onboarding_SetUpGoals" xml:space="preserve">
+		<value>Установить Цели</value>
+	</data>
+	<data name="Onboarding_SetFitnessGoals" xml:space="preserve">
+		<value>Установите Ваши Цели Фитнеса</value>
+	</data>
+	<data name="Onboarding_AllSet" xml:space="preserve">
+		<value>Все готово!</value>
+	</data>
+	<data name="Onboarding_AllSetDescription" xml:space="preserve">
+		<value>Теперь вы можете начать отслеживать свою еду и питание. Вы всегда можете обновить свой вес и цели в Настройках.</value>
+	</data>
+	<data name="WeightTracker_CurrentWeight" xml:space="preserve">
+		<value>Текущий Вес</value>
+	</data>
+	<data name="WeightTracker_Kg" xml:space="preserve">
+		<value>кг</value>
+	</data>
+	<data name="WeightTracker_Height" xml:space="preserve">
+		<value>Рост:</value>
+	</data>
+	<data name="WeightTracker_Cm" xml:space="preserve">
+		<value>см</value>
+	</data>
+	<data name="WeightTracker_WeightHistory" xml:space="preserve">
+		<value>История Веса</value>
+	</data>
+	<data name="AddFoodDialog_Title" xml:space="preserve">
+		<value>Добавить Еду</value>
+	</data>
+	<data name="AddFoodDialog_SearchWatermark" xml:space="preserve">
+		<value>Поиск продуктов...</value>
+	</data>
+	<data name="AddFoodDialog_Amount" xml:space="preserve">
+		<value>Количество:</value>
+	</data>
+	<data name="AddFoodDialog_NutritionCalculated" xml:space="preserve">
+		<value>Питание (рассчитано)</value>
+	</data>
+	<data name="AddFoodDialog_Calories" xml:space="preserve">
+		<value>Калории:</value>
+	</data>
+	<data name="AddFoodDialog_Protein" xml:space="preserve">
+		<value>Белки:</value>
+	</data>
+	<data name="AddFoodDialog_Fat" xml:space="preserve">
+		<value>Жиры:</value>
+	</data>
+	<data name="AddFoodDialog_Carbs" xml:space="preserve">
+		<value>Углеводы:</value>
+	</data>
+	<data name="AddFoodDialog_CreateNew" xml:space="preserve">
+		<value>Создать Новый</value>
+	</data>
+	<data name="AddWeightDialog_Title" xml:space="preserve">
+		<value>Добавить Запись Веса</value>
+	</data>
+	<data name="AddWeightDialog_Weight" xml:space="preserve">
+		<value>Вес (кг):</value>
+	</data>
+	<data name="AddWeightDialog_Height" xml:space="preserve">
+		<value>Рост (см):</value>
+	</data>
+	<data name="AddWeightDialog_Birthday" xml:space="preserve">
+		<value>День Рождения:</value>
+	</data>
+	<data name="AddWeightDialog_Note" xml:space="preserve">
+		<value>Заметка (необязательно):</value>
+	</data>
+	<data name="AddWeightDialog_NoteWatermark" xml:space="preserve">
+		<value>Добавить заметку...</value>
+	</data>
+	<data name="EditFoodDialog_Title" xml:space="preserve">
+		<value>Детали Продукта</value>
+	</data>
+	<data name="EditFoodDialog_Name" xml:space="preserve">
+		<value>Название:</value>
+	</data>
+	<data name="EditFoodDialog_NameWatermark" xml:space="preserve">
+		<value>Название продукта</value>
+	</data>
+	<data name="EditFoodDialog_Calories" xml:space="preserve">
+		<value>Калории:</value>
+	</data>
+	<data name="EditFoodDialog_Protein" xml:space="preserve">
+		<value>Белки (г):</value>
+	</data>
+	<data name="EditFoodDialog_Fat" xml:space="preserve">
+		<value>Жиры (г):</value>
+	</data>
+	<data name="EditFoodDialog_Carbs" xml:space="preserve">
+		<value>Углеводы (г):</value>
+	</data>
+	<data name="EditFoodDialog_Sugar" xml:space="preserve">
+		<value>Сахар (г):</value>
+	</data>
+	<data name="EditFoodDialog_Unit" xml:space="preserve">
+		<value>Единица:</value>
+	</data>
+	<data name="EditEatenFoodDialog_Title" xml:space="preserve">
+		<value>Изменить Количество Еды</value>
+	</data>
+	<data name="EditEatenFoodDialog_Food" xml:space="preserve">
+		<value>Еда:</value>
+	</data>
+	<data name="EditEatenFoodDialog_Amount" xml:space="preserve">
+		<value>Количество:</value>
+	</data>
+	<data name="GoalSetupDialog_Title" xml:space="preserve">
+		<value>Цели Фитнеса</value>
+	</data>
+	<data name="GoalSetupDialog_CalorieGoal" xml:space="preserve">
+		<value>Цель по Калориям:</value>
+	</data>
+	<data name="GoalSetupDialog_FitnessLevel" xml:space="preserve">
+		<value>Уровень Активности:</value>
+	</data>
+	<data name="GoalSetupDialog_Sex" xml:space="preserve">
+		<value>Пол:</value>
+	</data>
+	<data name="GoalSetupDialog_DietType" xml:space="preserve">
+		<value>Тип Диеты:</value>
+	</data>
+	<data name="NutritionCalculator_Title" xml:space="preserve">
+		<value>Калькулятор Питания</value>
+	</data>
+	<data name="NutritionCalculator_Description" xml:space="preserve">
+		<value>Рассчитайте ваши ежедневные потребности в питании</value>
+	</data>
+	<data name="NutritionCalculator_PersonalInformation" xml:space="preserve">
+		<value>Личная Информация</value>
+	</data>
+	<data name="NutritionCalculator_Weight" xml:space="preserve">
+		<value>Вес (кг):</value>
+	</data>
+	<data name="NutritionCalculator_Height" xml:space="preserve">
+		<value>Рост (см):</value>
+	</data>
+	<data name="NutritionCalculator_Age" xml:space="preserve">
+		<value>Возраст:</value>
+	</data>
+	<data name="NutritionCalculator_Sex" xml:space="preserve">
+		<value>Пол:</value>
+	</data>
+	<data name="NutritionCalculator_ActivityGoals" xml:space="preserve">
+		<value>Активность/Цели</value>
+	</data>
+	<data name="NutritionCalculator_FitnessLevel" xml:space="preserve">
+		<value>Уровень Активности:</value>
+	</data>
+	<data name="NutritionCalculator_CalorieGoal" xml:space="preserve">
+		<value>Цель по Калориям:</value>
+	</data>
+	<data name="NutritionCalculator_DietType" xml:space="preserve">
+		<value>Тип Диеты:</value>
+	</data>
+	<data name="NutritionCalculator_DailyNutritionTargets" xml:space="preserve">
+		<value>Ежедневные Цели Питания</value>
+	</data>
+	<data name="NutritionCalculator_Calories" xml:space="preserve">
+		<value>Калории:</value>
+	</data>
+	<data name="NutritionCalculator_Protein" xml:space="preserve">
+		<value>Белки:</value>
+	</data>
+	<data name="NutritionCalculator_Fat" xml:space="preserve">
+		<value>Жиры:</value>
+	</data>
+	<data name="NutritionCalculator_Carbs" xml:space="preserve">
+		<value>Углеводы:</value>
+	</data>
+	<data name="NutritionCalculator_BMI" xml:space="preserve">
+		<value>ИМТ:</value>
+	</data>
+	<data name="NutritionCalculator_Kcal" xml:space="preserve">
+		<value>ккал</value>
+	</data>
+	<data name="FitnessLevel_Sedentary" xml:space="preserve">
+		<value>мало или нет упражнений</value>
+	</data>
+	<data name="FitnessLevel_LightlyActive" xml:space="preserve">
+		<value>упражнения 1-3 раза в неделю</value>
+	</data>
+	<data name="FitnessLevel_ModeratelyActive" xml:space="preserve">
+		<value>упражнения 4-5 раз в неделю</value>
+	</data>
+	<data name="FitnessLevel_VeryActive" xml:space="preserve">
+		<value>ежедневные упражнения или интенсивные упражнения 3-4 раза в неделю</value>
+	</data>
+	<data name="FitnessLevel_Athlete" xml:space="preserve">
+		<value>интенсивные упражнения 6-7 раз в неделю</value>
+	</data>
+	<data name="Sex_Male" xml:space="preserve">
+		<value>Мужской</value>
+	</data>
+	<data name="Sex_Female" xml:space="preserve">
+		<value>Женский</value>
+	</data>
+	<data name="FitnessLevel_Sedentary_Display" xml:space="preserve">
+		<value>Малоподвижный</value>
+	</data>
+	<data name="FitnessLevel_LightlyActive_Display" xml:space="preserve">
+		<value>Слабо Активный</value>
+	</data>
+	<data name="FitnessLevel_ModeratelyActive_Display" xml:space="preserve">
+		<value>Умеренно Активный</value>
+	</data>
+	<data name="FitnessLevel_VeryActive_Display" xml:space="preserve">
+		<value>Очень Активный</value>
+	</data>
+	<data name="FitnessLevel_Athlete_Display" xml:space="preserve">
+		<value>Спортсмен</value>
+	</data>
+	<data name="CalorieGoal_AggressiveCut" xml:space="preserve">
+		<value>Агрессивное Снижение</value>
+	</data>
+	<data name="CalorieGoal_Cut" xml:space="preserve">
+		<value>Снижение</value>
+	</data>
+	<data name="CalorieGoal_Maintenance" xml:space="preserve">
+		<value>Поддержание</value>
+	</data>
+	<data name="CalorieGoal_Bulk" xml:space="preserve">
+		<value>Набор Массы</value>
+	</data>
+	<data name="CalorieGoal_AggressiveBulk" xml:space="preserve">
+		<value>Агрессивный Набор Массы</value>
+	</data>
+	<data name="DietType_Balanced" xml:space="preserve">
+		<value>Сбалансированная</value>
+	</data>
+	<data name="DietType_LowFat" xml:space="preserve">
+		<value>Низкожировая</value>
+	</data>
+	<data name="DietType_LowCarb" xml:space="preserve">
+		<value>Низкоуглеводная</value>
+	</data>
+	<data name="DietType_HighProtein" xml:space="preserve">
+		<value>Высокобелковая</value>
+	</data>
+</root>
