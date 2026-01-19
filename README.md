@@ -14,7 +14,7 @@
 - [ ] display sugar
 - [ ] water tracking
 - [ ] charts, weight, bmi etc
-- [ ] confirm dialog b4 delete
+- [ ] confirm dialog b4 delete + restore deleted as we just flag them as cascading may fuck up stuff
 
 ## Todo Global
 - translations

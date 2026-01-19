@@ -196,6 +196,51 @@ namespace LocalFit.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aggressive Bulk.
+        /// </summary>
+        public static string CalorieGoal_AggressiveBulk {
+            get {
+                return ResourceManager.GetString("CalorieGoal_AggressiveBulk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aggressive Cut.
+        /// </summary>
+        public static string CalorieGoal_AggressiveCut {
+            get {
+                return ResourceManager.GetString("CalorieGoal_AggressiveCut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bulk.
+        /// </summary>
+        public static string CalorieGoal_Bulk {
+            get {
+                return ResourceManager.GetString("CalorieGoal_Bulk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cut.
+        /// </summary>
+        public static string CalorieGoal_Cut {
+            get {
+                return ResourceManager.GetString("CalorieGoal_Cut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maintenance.
+        /// </summary>
+        public static string CalorieGoal_Maintenance {
+            get {
+                return ResourceManager.GetString("CalorieGoal_Maintenance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Calories (kcal).
         /// </summary>
         public static string DayTracker_Calories {
@@ -228,6 +273,42 @@ namespace LocalFit.Lang {
         public static string DayTracker_Protein {
             get {
                 return ResourceManager.GetString("DayTracker_Protein", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Balanced.
+        /// </summary>
+        public static string DietType_Balanced {
+            get {
+                return ResourceManager.GetString("DietType_Balanced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to High Protein.
+        /// </summary>
+        public static string DietType_HighProtein {
+            get {
+                return ResourceManager.GetString("DietType_HighProtein", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Low Carb.
+        /// </summary>
+        public static string DietType_LowCarb {
+            get {
+                return ResourceManager.GetString("DietType_LowCarb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Low Fat.
+        /// </summary>
+        public static string DietType_LowFat {
+            get {
+                return ResourceManager.GetString("DietType_LowFat", resourceCulture);
             }
         }
         
@@ -349,11 +430,29 @@ namespace LocalFit.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Athlete.
+        /// </summary>
+        public static string FitnessLevel_Athlete_Display {
+            get {
+                return ResourceManager.GetString("FitnessLevel_Athlete_Display", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to exercise 1-3 times a week.
         /// </summary>
         public static string FitnessLevel_LightlyActive {
             get {
                 return ResourceManager.GetString("FitnessLevel_LightlyActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lightly Active.
+        /// </summary>
+        public static string FitnessLevel_LightlyActive_Display {
+            get {
+                return ResourceManager.GetString("FitnessLevel_LightlyActive_Display", resourceCulture);
             }
         }
         
@@ -367,6 +466,15 @@ namespace LocalFit.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Moderately Active.
+        /// </summary>
+        public static string FitnessLevel_ModeratelyActive_Display {
+            get {
+                return ResourceManager.GetString("FitnessLevel_ModeratelyActive_Display", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to little or no exercise.
         /// </summary>
         public static string FitnessLevel_Sedentary {
@@ -376,11 +484,29 @@ namespace LocalFit.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sedentary.
+        /// </summary>
+        public static string FitnessLevel_Sedentary_Display {
+            get {
+                return ResourceManager.GetString("FitnessLevel_Sedentary_Display", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to daily exercise or intense exercise 3-4 times a week.
         /// </summary>
         public static string FitnessLevel_VeryActive {
             get {
                 return ResourceManager.GetString("FitnessLevel_VeryActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Very Active.
+        /// </summary>
+        public static string FitnessLevel_VeryActive_Display {
+            get {
+                return ResourceManager.GetString("FitnessLevel_VeryActive_Display", resourceCulture);
             }
         }
         
@@ -966,6 +1092,24 @@ namespace LocalFit.Lang {
         public static string Settings_Version {
             get {
                 return ResourceManager.GetString("Settings_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Female.
+        /// </summary>
+        public static string Sex_Female {
+            get {
+                return ResourceManager.GetString("Sex_Female", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Male.
+        /// </summary>
+        public static string Sex_Male {
+            get {
+                return ResourceManager.GetString("Sex_Male", resourceCulture);
             }
         }
         
