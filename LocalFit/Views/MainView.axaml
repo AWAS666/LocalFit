@@ -4,6 +4,7 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:LocalFit.ViewModels"
 			 xmlns:local="using:LocalFit.Views"
+			 xmlns:lang="using:LocalFit.Lang"
 			 mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
 			 x:Class="LocalFit.Views.MainView"
 			 x:DataType="vm:MainViewModel">
@@ -42,7 +43,7 @@
 					Background="Transparent">
 				<StackPanel Spacing="4">
 					<LucideIcon Kind="Calendar" Size="24" HorizontalAlignment="Center" Foreground="#222222"/>
-					<TextBlock Text="Day" FontSize="10" HorizontalAlignment="Center" Foreground="#222222"/>
+					<TextBlock Text="{x:Static lang:Resources.MainView_Day}" FontSize="10" HorizontalAlignment="Center" Foreground="#222222"/>
 				</StackPanel>
 			</Button>
 			<Button Command="{Binding NavigateToWeightTrackerCommand}"
@@ -50,7 +51,7 @@
 					Background="Transparent">
 				<StackPanel Spacing="4">
 					<LucideIcon Kind="Scale" Size="24" HorizontalAlignment="Center" Foreground="#222222"/>
-					<TextBlock Text="Weight" FontSize="10" HorizontalAlignment="Center" Foreground="#222222"/>
+					<TextBlock Text="{x:Static lang:Resources.MainView_Weight}" FontSize="10" HorizontalAlignment="Center" Foreground="#222222"/>
 				</StackPanel>
 			</Button>
 			<Button Command="{Binding NavigateToFoodManagerCommand}"
@@ -58,7 +59,7 @@
 					Background="Transparent">
 				<StackPanel Spacing="4">
 					<LucideIcon Kind="UtensilsCrossed" Size="24" HorizontalAlignment="Center" Foreground="#222222"/>
-					<TextBlock Text="Food" FontSize="10" HorizontalAlignment="Center" Foreground="#222222"/>
+					<TextBlock Text="{x:Static lang:Resources.MainView_Food}" FontSize="10" HorizontalAlignment="Center" Foreground="#222222"/>
 				</StackPanel>
 			</Button>
 			<Button Command="{Binding NavigateToSettingsCommand}"
@@ -66,7 +67,7 @@
 					Background="Transparent">
 				<StackPanel Spacing="4">
 					<LucideIcon Kind="Settings" Size="24" HorizontalAlignment="Center" Foreground="#222222"/>
-					<TextBlock Text="Settings" FontSize="10" HorizontalAlignment="Center" Foreground="#222222"/>
+					<TextBlock Text="{x:Static lang:Resources.MainView_Settings}" FontSize="10" HorizontalAlignment="Center" Foreground="#222222"/>
 				</StackPanel>
 			</Button>
 			</Grid>

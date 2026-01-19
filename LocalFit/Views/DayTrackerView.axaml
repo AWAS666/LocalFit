@@ -5,6 +5,7 @@
 			 xmlns:vm="using:LocalFit.ViewModels"
 			 xmlns:local="using:LocalFit.Views.Dialogs"
 			 xmlns:lucide="using:Lucide.Avalonia"
+			 xmlns:lang="using:LocalFit.Lang"
 			 mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="800"
 			 x:Class="LocalFit.Views.DayTrackerView"
 			 x:DataType="vm:DayTrackerViewModel">
@@ -29,28 +30,28 @@
 		<Grid Grid.Row="1" ColumnDefinitions="*,*" RowDefinitions="*,*" Margin="10" ColumnSpacing="10" RowSpacing="10">
 			<Border Background="#222222" CornerRadius="8" Padding="15" Grid.Row="0" Grid.Column="0">
 				<StackPanel>
-					<TextBlock Text="Calories (kcal)" FontSize="12" Foreground="{Binding CaloriesForegroundColor}" Opacity="0.9"/>
+					<TextBlock Text="{x:Static lang:Resources.DayTracker_Calories}" FontSize="12" Foreground="{Binding CaloriesForegroundColor}" Opacity="0.9"/>
 					<TextBlock Text="{Binding CaloriesDisplay}" FontSize="24" FontWeight="Bold" Foreground="{Binding CaloriesForegroundColor}"/>
 				</StackPanel>
 			</Border>
 			
 			<Border Background="#222222" CornerRadius="8" Padding="15" Grid.Row="0" Grid.Column="1">
 				<StackPanel>
-					<TextBlock Text="Protein (g)" FontSize="12" Foreground="{Binding ProteinForegroundColor}" Opacity="0.9"/>
+					<TextBlock Text="{x:Static lang:Resources.DayTracker_Protein}" FontSize="12" Foreground="{Binding ProteinForegroundColor}" Opacity="0.9"/>
 					<TextBlock Text="{Binding ProteinDisplay}" FontSize="24" FontWeight="Bold" Foreground="{Binding ProteinForegroundColor}"/>
 				</StackPanel>
 			</Border>
 			
 			<Border Background="#222222" CornerRadius="8" Padding="15" Grid.Row="1" Grid.Column="0">
 				<StackPanel>
-					<TextBlock Text="Fat (g)" FontSize="12" Foreground="{Binding FatForegroundColor}" Opacity="0.9"/>
+					<TextBlock Text="{x:Static lang:Resources.DayTracker_Fat}" FontSize="12" Foreground="{Binding FatForegroundColor}" Opacity="0.9"/>
 					<TextBlock Text="{Binding FatDisplay}" FontSize="24" FontWeight="Bold" Foreground="{Binding FatForegroundColor}"/>
 				</StackPanel>
 			</Border>
 			
 			<Border Background="#222222" CornerRadius="8" Padding="15" Grid.Row="1" Grid.Column="1">
 				<StackPanel>
-					<TextBlock Text="Carbs (g)" FontSize="12" Foreground="{Binding CarbsForegroundColor}" Opacity="0.9"/>
+					<TextBlock Text="{x:Static lang:Resources.DayTracker_Carbs}" FontSize="12" Foreground="{Binding CarbsForegroundColor}" Opacity="0.9"/>
 					<TextBlock Text="{Binding CarbsDisplay}" FontSize="24" FontWeight="Bold" Foreground="{Binding CarbsForegroundColor}"/>
 				</StackPanel>
 			</Border>
@@ -67,7 +68,8 @@
 								<TextBlock FontSize="12" Margin="0,4,0,0">
 									<Run Text="{Binding AmountDisplay}"/>
 									<Run Text=" | "/>
-									<Run Text="{Binding Calories, StringFormat='{}{0:F0} kcal'}"/>
+									<Run Text="{Binding Calories, StringFormat='{}{0:F0} '}"/>
+									<Run Text="{x:Static lang:Resources.NutritionCalculator_Kcal}"/>
 								</TextBlock>
 							</StackPanel>
 							<Button Command="{Binding $parent[UserControl].DataContext.ShowEditEatenFoodDialogCommand}" 

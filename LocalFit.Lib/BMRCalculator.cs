@@ -165,22 +165,6 @@ public enum FitnessLevel
     Athlete
 }
 
-public static class FitnessLevelExtensions
-{
-    public static string GetDescription(this FitnessLevel level)
-    {
-        return level switch
-        {
-            FitnessLevel.Sedentary => "little or no exercise", 
-            FitnessLevel.LightlyActive => "exercise 1-3 times a week",
-            FitnessLevel.ModeratelyActive => "exercise 4-5 times a week",
-            FitnessLevel.VeryActive => "daily exercise or intense exercise 3-4 times a week", 
-            FitnessLevel.Athlete => "intense exercise 6-7 times a week",
-            _ => ""
-        };
-    }
-}
-
 public enum CalorieGoal
 {
     AggressiveCut,

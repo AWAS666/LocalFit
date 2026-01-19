@@ -4,6 +4,7 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:LocalFit.ViewModels"
 			 xmlns:local="using:LocalFit.Views.Dialogs"
+			 xmlns:lang="using:LocalFit.Lang"
 			 mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
 			 x:Class="LocalFit.Views.WeightTrackerView"
 			 x:DataType="vm:WeightTrackerViewModel">
@@ -14,26 +15,34 @@
 		<!-- Current Weight Display -->
 		<Border Background="#222222" CornerRadius="12" Padding="30" Margin="20" Grid.Row="0">
 			<StackPanel HorizontalAlignment="Center">
-				<TextBlock Text="Current Weight" FontSize="16" Opacity="0.9" HorizontalAlignment="Center" Foreground="#DDDDDD"/>
-				<TextBlock Text="{Binding Current.Weight, StringFormat='{}{0:F1} kg'}" 
-						   FontSize="48" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0" Foreground="#DDDDDD"/>
-				<TextBlock Text="{Binding Current.Height, StringFormat='Height: {0:F0} cm'}" 
-						   FontSize="14" Opacity="0.8" HorizontalAlignment="Center" Margin="0,5,0,0" Foreground="#DDDDDD"/>
+				<TextBlock Text="{x:Static lang:Resources.WeightTracker_CurrentWeight}" FontSize="16" Opacity="0.9" HorizontalAlignment="Center" Foreground="#DDDDDD"/>
+				<TextBlock FontSize="48" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0" Foreground="#DDDDDD">
+					<Run Text="{Binding Current.Weight, StringFormat='{}{0:F1} '}"/>
+					<Run Text="{x:Static lang:Resources.WeightTracker_Kg}"/>
+				</TextBlock>
+				<TextBlock FontSize="14" Opacity="0.8" HorizontalAlignment="Center" Margin="0,5,0,0" Foreground="#DDDDDD">
+					<Run Text="{x:Static lang:Resources.WeightTracker_Height}"/>
+					<Run Text=" "/>
+					<Run Text="{Binding Current.Height, StringFormat='{}{0:F0} '}"/>
+					<Run Text="{x:Static lang:Resources.WeightTracker_Cm}"/>
+				</TextBlock>
 			</StackPanel>
 		</Border>
 		
 		<!-- Weight History -->
 		<ScrollViewer Grid.Row="1" Margin="10">
 			<StackPanel Spacing="5">
-				<TextBlock Text="Weight History" FontSize="18" FontWeight="SemiBold" Margin="10,0"/>
+				<TextBlock Text="{x:Static lang:Resources.WeightTracker_WeightHistory}" FontSize="18" FontWeight="SemiBold" Margin="10,0"/>
 				<ListBox ItemsSource="{Binding WeightHistory}" Background="Transparent">
 					<ListBox.ItemTemplate>
 						<DataTemplate>
 							<Border BorderBrush="#222222" BorderThickness="0,0,0,1" Padding="15">
 								<Grid ColumnDefinitions="*,Auto">
 									<StackPanel>
-										<TextBlock Text="{Binding Weight, StringFormat='{}{0:F1} kg'}" 
-												   FontSize="18" FontWeight="SemiBold"/>
+										<TextBlock FontSize="18" FontWeight="SemiBold">
+											<Run Text="{Binding Weight, StringFormat='{}{0:F1} '}"/>
+											<Run Text="{x:Static lang:Resources.WeightTracker_Kg}"/>
+										</TextBlock>
 										<TextBlock Text="{Binding Created, StringFormat='{}{0:MMM d, yyyy}'}" 
 												   FontSize="12" Opacity="0.7" Margin="0,4,0,0"/>
 										<TextBlock Text="{Binding Note}" 
@@ -41,9 +50,11 @@
 												   Margin="0,4,0,0"
 												   IsVisible="{Binding Note, Converter={x:Static ObjectConverters.IsNotNull}}"/>
 									</StackPanel>
-									<TextBlock Text="{Binding Height, StringFormat='{}{0:F0} cm'}" 
-											   FontSize="14" Opacity="0.7" 
-											   VerticalAlignment="Center" Grid.Column="1"/>
+									<TextBlock FontSize="14" Opacity="0.7" 
+											   VerticalAlignment="Center" Grid.Column="1">
+										<Run Text="{Binding Height, StringFormat='{}{0:F0} '}"/>
+										<Run Text="{x:Static lang:Resources.WeightTracker_Cm}"/>
+									</TextBlock>
 								</Grid>
 							</Border>
 						</DataTemplate>

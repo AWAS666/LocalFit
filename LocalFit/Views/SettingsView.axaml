@@ -4,6 +4,7 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:LocalFit.ViewModels"
 			 xmlns:local="using:LocalFit.Views.Dialogs"
+			 xmlns:lang="using:LocalFit.Lang"
 			 mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
 			 x:Class="LocalFit.Views.SettingsView"
 			 x:DataType="vm:SettingsViewModel">
@@ -13,58 +14,58 @@
 	<Grid>
 		<ScrollViewer>
 		<StackPanel Margin="20" Spacing="20">
-			<TextBlock Text="Settings" FontSize="28" FontWeight="Bold"/>
+			<TextBlock Text="{x:Static lang:Resources.Settings_Title}" FontSize="28" FontWeight="Bold"/>
 			
 			<!-- Fitness Goals Section -->
 			<Border BorderBrush="#222222" BorderThickness="0,0,0,1" Padding="0,0,0,20">
 				<StackPanel Spacing="15">
 					<Grid ColumnDefinitions="*,Auto">
-						<TextBlock Text="Fitness Goals" FontSize="20" FontWeight="SemiBold" Grid.Column="0"/>
+						<TextBlock Text="{x:Static lang:Resources.Settings_FitnessGoals}" FontSize="20" FontWeight="SemiBold" Grid.Column="0"/>
 						<Button Command="{Binding ShowGoalSetupDialogCommand}" Grid.Column="1">
 							<StackPanel Orientation="Horizontal" Spacing="5">
 								<LucideIcon Kind="Pencil" Size="16"/>
-								<TextBlock Text="Edit"/>
+								<TextBlock Text="{x:Static lang:Resources.Settings_Edit}"/>
 							</StackPanel>
 						</Button>
 					</Grid>
 					
 					<StackPanel Spacing="10" Margin="0,10,0,0">
 						<Grid ColumnDefinitions="Auto,*">
-							<TextBlock Text="Goal:" Grid.Column="0" Width="120" Opacity="0.7"/>
-							<TextBlock Text="{Binding CurrentGoal.Goal}" Grid.Column="1" FontWeight="SemiBold"/>
+							<TextBlock Text="{x:Static lang:Resources.Settings_Goal}" Grid.Column="0" Width="120" Opacity="0.7"/>
+							<TextBlock Text="{Binding GoalDisplayName}" Grid.Column="1" FontWeight="SemiBold"/>
 						</Grid>
 						<Grid ColumnDefinitions="Auto,*">
-							<TextBlock Text="Fitness Level:" Grid.Column="0" Width="120" Opacity="0.7"/>
-							<TextBlock Text="{Binding CurrentGoal.FitLevel}" Grid.Column="1" FontWeight="SemiBold"/>
+							<TextBlock Text="{x:Static lang:Resources.Settings_FitnessLevel}" Grid.Column="0" Width="120" Opacity="0.7"/>
+							<TextBlock Text="{Binding FitnessLevelDisplayName}" Grid.Column="1" FontWeight="SemiBold"/>
 						</Grid>
 						<Grid ColumnDefinitions="Auto,*">
-							<TextBlock Text="Sex:" Grid.Column="0" Width="120" Opacity="0.7"/>
-							<TextBlock Text="{Binding CurrentGoal.Sex}" Grid.Column="1" FontWeight="SemiBold"/>
+							<TextBlock Text="{x:Static lang:Resources.Settings_Sex}" Grid.Column="0" Width="120" Opacity="0.7"/>
+							<TextBlock Text="{Binding SexDisplayName}" Grid.Column="1" FontWeight="SemiBold"/>
 						</Grid>
 						<Grid ColumnDefinitions="Auto,*">
-							<TextBlock Text="Diet Type:" Grid.Column="0" Width="120" Opacity="0.7"/>
-							<TextBlock Text="{Binding CurrentGoal.DietType}" Grid.Column="1" FontWeight="SemiBold"/>
+							<TextBlock Text="{x:Static lang:Resources.Settings_DietType}" Grid.Column="0" Width="120" Opacity="0.7"/>
+							<TextBlock Text="{Binding DietTypeDisplayName}" Grid.Column="1" FontWeight="SemiBold"/>
 						</Grid>
 					</StackPanel>
 					
 					<!-- Calculated Nutrition Targets -->
 					<Border Background="#DDDDDD" CornerRadius="8" Padding="15" Margin="0,10,0,0">
 						<StackPanel Spacing="8">
-							<TextBlock Text="Daily Nutrition Targets" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,5" Foreground="#222222"/>
+							<TextBlock Text="{x:Static lang:Resources.Settings_DailyNutritionTargets}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,5" Foreground="#222222"/>
 							<Grid ColumnDefinitions="Auto,*">
-								<TextBlock Text="Calories:" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#222222"/>
+								<TextBlock Text="{x:Static lang:Resources.Settings_Calories}" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#222222"/>
 								<TextBlock Text="{Binding CalculatedCalories, StringFormat='{}{0:F0}'}" Grid.Column="1" FontWeight="SemiBold" Foreground="#222222"/>
 							</Grid>
 							<Grid ColumnDefinitions="Auto,*">
-								<TextBlock Text="Protein:" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#222222"/>
+								<TextBlock Text="{x:Static lang:Resources.Settings_Protein}" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#222222"/>
 								<TextBlock Text="{Binding CalculatedProtein, StringFormat='{}{0:F1}g'}" Grid.Column="1" FontWeight="SemiBold" Foreground="#222222"/>
 							</Grid>
 							<Grid ColumnDefinitions="Auto,*">
-								<TextBlock Text="Fat:" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#222222"/>
+								<TextBlock Text="{x:Static lang:Resources.Settings_Fat}" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#222222"/>
 								<TextBlock Text="{Binding CalculatedFat, StringFormat='{}{0:F1}g'}" Grid.Column="1" FontWeight="SemiBold" Foreground="#222222"/>
 							</Grid>
 							<Grid ColumnDefinitions="Auto,*">
-								<TextBlock Text="Carbs:" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#222222"/>
+								<TextBlock Text="{x:Static lang:Resources.Settings_Carbs}" Grid.Column="0" Width="100" Opacity="0.7" Foreground="#222222"/>
 								<TextBlock Text="{Binding CalculatedCarbs, StringFormat='{}{0:F1}g'}" Grid.Column="1" FontWeight="SemiBold" Foreground="#222222"/>
 							</Grid>
 						</StackPanel>
@@ -75,11 +76,11 @@
 			<!-- Tools Section -->
 			<Border BorderBrush="#222222" BorderThickness="0,0,0,1" Padding="0,0,0,20">
 				<StackPanel Spacing="15">
-					<TextBlock Text="Tools" FontSize="20" FontWeight="SemiBold"/>
+					<TextBlock Text="{x:Static lang:Resources.Settings_Tools}" FontSize="20" FontWeight="SemiBold"/>
 					<Button Command="{Binding ShowNutritionCalculatorCommand}" Margin="0,10,0,0">
 						<StackPanel Orientation="Horizontal" Spacing="5">
 							<LucideIcon Kind="Calculator" Size="16"/>
-							<TextBlock Text="Nutrition Calculator"/>
+							<TextBlock Text="{x:Static lang:Resources.Settings_NutritionCalculator}"/>
 						</StackPanel>
 					</Button>
 				</StackPanel>
@@ -88,17 +89,17 @@
 			<!-- General Settings Section (Placeholder) -->
 			<Border BorderBrush="#222222" BorderThickness="0,0,0,1" Padding="0,0,0,20">
 				<StackPanel Spacing="15">
-					<TextBlock Text="General Settings" FontSize="20" FontWeight="SemiBold"/>
-					<TextBlock Text="Coming soon..." FontSize="14" Opacity="0.6" Margin="0,10,0,0"/>
+					<TextBlock Text="{x:Static lang:Resources.Settings_GeneralSettings}" FontSize="20" FontWeight="SemiBold"/>
+					<TextBlock Text="{x:Static lang:Resources.Settings_ComingSoon}" FontSize="14" Opacity="0.6" Margin="0,10,0,0"/>
 				</StackPanel>
 			</Border>
 			
 			<!-- About Section (Placeholder) -->
 			<Border Padding="0,0,0,20">
 				<StackPanel Spacing="15">
-					<TextBlock Text="About" FontSize="20" FontWeight="SemiBold"/>
+					<TextBlock Text="{x:Static lang:Resources.Settings_About}" FontSize="20" FontWeight="SemiBold"/>
 					<TextBlock Text="LocalFit" FontSize="16" FontWeight="SemiBold" Margin="0,10,0,0"/>
-					<TextBlock Text="Fitness Tracker App" FontSize="14" Opacity="0.7"/>
+					<TextBlock Text="{x:Static lang:Resources.Settings_FitnessTrackerApp}" FontSize="14" Opacity="0.7"/>
 					<TextBlock Text="{Binding Version}" FontSize="12" Opacity="0.6" Margin="0,5,0,0"/>
 				</StackPanel>
 			</Border>

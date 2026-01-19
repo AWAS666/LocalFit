@@ -4,49 +4,50 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:LocalFit.ViewModels"
              xmlns:lucide="using:Lucide.Avalonia"
+             xmlns:lang="using:LocalFit.Lang"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="500"
              x:Class="LocalFit.Views.Dialogs.EditFoodDialog"
              x:DataType="vm:EditFoodDialogViewModel">
     <ScrollViewer>
         <StackPanel Margin="20" Spacing="15">
-            <TextBlock Text="Food Details" FontSize="20" FontWeight="Bold"/>
+            <TextBlock Text="{x:Static lang:Resources.EditFoodDialog_Title}" FontSize="20" FontWeight="Bold"/>
             
             <StackPanel Spacing="5">
-                <TextBlock Text="Name:"/>
-                <TextBox Text="{Binding Name}" Watermark="Food name"/>
+                <TextBlock Text="{x:Static lang:Resources.EditFoodDialog_Name}"/>
+                <TextBox Text="{Binding Name}" Watermark="{x:Static lang:Resources.EditFoodDialog_NameWatermark}"/>
             </StackPanel>
             
             <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
                 <StackPanel Spacing="5" Grid.Column="0">
-                    <TextBlock Text="Calories:"/>
+                    <TextBlock Text="{x:Static lang:Resources.EditFoodDialog_Calories}"/>
                     <NumericUpDown Value="{Binding Calories}" Minimum="0" Maximum="10000" ShowButtonSpinner="False"/>
                 </StackPanel>
                 
                 <StackPanel Spacing="5" Grid.Column="1">
-                    <TextBlock Text="Protein (g):"/>
+                    <TextBlock Text="{x:Static lang:Resources.EditFoodDialog_Protein}"/>
                     <NumericUpDown Value="{Binding Protein}" Minimum="0" Maximum="1000" Increment="0.1" ShowButtonSpinner="False"/>
                 </StackPanel>
             </Grid>
             
             <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
                 <StackPanel Spacing="5" Grid.Column="0">
-                    <TextBlock Text="Fat (g):"/>
+                    <TextBlock Text="{x:Static lang:Resources.EditFoodDialog_Fat}"/>
                     <NumericUpDown Value="{Binding Fat}" Minimum="0" Maximum="1000" Increment="0.1" ShowButtonSpinner="False"/>
                 </StackPanel>
                 
                 <StackPanel Spacing="5" Grid.Column="1">
-                    <TextBlock Text="Carbs (g):"/>
+                    <TextBlock Text="{x:Static lang:Resources.EditFoodDialog_Carbs}"/>
                     <NumericUpDown Value="{Binding Carbs}" Minimum="0" Maximum="1000" Increment="0.1" ShowButtonSpinner="False"/>
                 </StackPanel>
             </Grid>
             
             <StackPanel Spacing="5">
-                <TextBlock Text="Sugar (g):"/>
+                <TextBlock Text="{x:Static lang:Resources.EditFoodDialog_Sugar}"/>
                 <NumericUpDown Value="{Binding Sugar}" Minimum="0" Maximum="1000" Increment="0.1" ShowButtonSpinner="False"/>
             </StackPanel>
             
             <StackPanel Spacing="5">
-                <TextBlock Text="Unit:"/>
+                <TextBlock Text="{x:Static lang:Resources.EditFoodDialog_Unit}"/>
                 <ComboBox SelectedItem="{Binding Unit}" ItemsSource="{Binding Units}"/>
             </StackPanel>
             

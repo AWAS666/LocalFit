@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LocalFit.Extensions;
 using LocalFit.Lib;
 using LocalFit.Lib.DataBase;
 using System;
@@ -14,6 +15,11 @@ public partial class SettingsViewModel : ObservableObject
 
     [ObservableProperty]
     private FitnessGoal? currentGoal;
+
+    public string? GoalDisplayName => CurrentGoal?.Goal.GetDisplayName();
+    public string? FitnessLevelDisplayName => CurrentGoal?.FitLevel.GetDisplayName();
+    public string? SexDisplayName => CurrentGoal?.Sex.GetDisplayName();
+    public string? DietTypeDisplayName => CurrentGoal?.DietType.GetDisplayName();
 
     [ObservableProperty]
     private WeightTracker? currentWeight;
@@ -61,6 +67,10 @@ public partial class SettingsViewModel : ObservableObject
         CurrentGoal = db.GetLatestGoal();
         CurrentWeight = db.GetLatestWeight();
         CalculateNutrition();
+        OnPropertyChanged(nameof(GoalDisplayName));
+        OnPropertyChanged(nameof(FitnessLevelDisplayName));
+        OnPropertyChanged(nameof(SexDisplayName));
+        OnPropertyChanged(nameof(DietTypeDisplayName));
     }
 
     private void CalculateNutrition()
@@ -89,6 +99,10 @@ public partial class SettingsViewModel : ObservableObject
         {
             CurrentGoal = goal;
             CalculateNutrition();
+            OnPropertyChanged(nameof(GoalDisplayName));
+            OnPropertyChanged(nameof(FitnessLevelDisplayName));
+            OnPropertyChanged(nameof(SexDisplayName));
+            OnPropertyChanged(nameof(DietTypeDisplayName));
             IsGoalSetupDialogVisible = false;
             GoalSetupDialogViewModel = null;
         };

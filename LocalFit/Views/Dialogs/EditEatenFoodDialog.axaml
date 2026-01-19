@@ -4,19 +4,20 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:LocalFit.ViewModels"
 			 xmlns:lucide="using:Lucide.Avalonia"
+			 xmlns:lang="using:LocalFit.Lang"
 			 mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300"
 			 x:Class="LocalFit.Views.Dialogs.EditEatenFoodDialog"
 			 x:DataType="vm:EditEatenFoodDialogViewModel">
 	<StackPanel Margin="20" Spacing="20">
-		<TextBlock Text="Edit Food Amount" FontSize="24" FontWeight="Bold"/>
+		<TextBlock Text="{x:Static lang:Resources.EditEatenFoodDialog_Title}" FontSize="24" FontWeight="Bold"/>
 
 		<StackPanel Spacing="5">
-			<TextBlock Text="Food:" FontSize="14" Opacity="0.8"/>
+			<TextBlock Text="{x:Static lang:Resources.EditEatenFoodDialog_Food}" FontSize="14" Opacity="0.8"/>
 			<TextBlock Text="{Binding FoodName}" FontSize="18" FontWeight="SemiBold"/>
 		</StackPanel>
 
 		<StackPanel Spacing="5">
-			<TextBlock Text="Amount:"/>
+			<TextBlock Text="{x:Static lang:Resources.EditEatenFoodDialog_Amount}"/>
 			<NumericUpDown Value="{Binding Amount}" Minimum="0" Maximum="10000" Increment="{Binding Increment}" ShowButtonSpinner="True"/>
 			<TextBlock Text="{Binding UnitDisplay}" FontSize="12" Opacity="0.7" Margin="0,5,0,0"/>
 		</StackPanel>

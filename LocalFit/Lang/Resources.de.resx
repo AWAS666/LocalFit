@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>1.3</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="MainView_Day" xml:space="preserve">
+		<value>Tag</value>
+	</data>
+	<data name="MainView_Weight" xml:space="preserve">
+		<value>Gewicht</value>
+	</data>
+	<data name="MainView_Food" xml:space="preserve">
+		<value>Essen</value>
+	</data>
+	<data name="MainView_Settings" xml:space="preserve">
+		<value>Einstellungen</value>
+	</data>
+	<data name="DayTracker_Calories" xml:space="preserve">
+		<value>Kalorien (kcal)</value>
+	</data>
+	<data name="DayTracker_Protein" xml:space="preserve">
+		<value>Protein (g)</value>
+	</data>
+	<data name="DayTracker_Fat" xml:space="preserve">
+		<value>Fett (g)</value>
+	</data>
+	<data name="DayTracker_Carbs" xml:space="preserve">
+		<value>Kohlenhydrate (g)</value>
+	</data>
+	<data name="FoodManager_Title" xml:space="preserve">
+		<value>Lebensmittelverwaltung</value>
+	</data>
+	<data name="FoodManager_SearchWatermark" xml:space="preserve">
+		<value>Lebensmittel suchen...</value>
+	</data>
+	<data name="FoodManager_Cal" xml:space="preserve">
+		<value>Kal:</value>
+	</data>
+	<data name="FoodManager_P" xml:space="preserve">
+		<value>P:</value>
+	</data>
+	<data name="FoodManager_F" xml:space="preserve">
+		<value>F:</value>
+	</data>
+	<data name="FoodManager_C" xml:space="preserve">
+		<value>K:</value>
+	</data>
+	<data name="FoodManager_Grams" xml:space="preserve">
+		<value>g</value>
+	</data>
+	<data name="Settings_Title" xml:space="preserve">
+		<value>Einstellungen</value>
+	</data>
+	<data name="Settings_FitnessGoals" xml:space="preserve">
+		<value>Fitnessziele</value>
+	</data>
+	<data name="Settings_Edit" xml:space="preserve">
+		<value>Bearbeiten</value>
+	</data>
+	<data name="Settings_Goal" xml:space="preserve">
+		<value>Ziel:</value>
+	</data>
+	<data name="Settings_FitnessLevel" xml:space="preserve">
+		<value>Aktivitätslevel:</value>
+	</data>
+	<data name="Settings_Sex" xml:space="preserve">
+		<value>Geschlecht:</value>
+	</data>
+	<data name="Settings_DietType" xml:space="preserve">
+		<value>Ernährungstyp:</value>
+	</data>
+	<data name="Settings_DailyNutritionTargets" xml:space="preserve">
+		<value>Tägliche Nährstoffziele</value>
+	</data>
+	<data name="Settings_Calories" xml:space="preserve">
+		<value>Kalorien:</value>
+	</data>
+	<data name="Settings_Protein" xml:space="preserve">
+		<value>Protein:</value>
+	</data>
+	<data name="Settings_Fat" xml:space="preserve">
+		<value>Fett:</value>
+	</data>
+	<data name="Settings_Carbs" xml:space="preserve">
+		<value>Kohlenhydrate:</value>
+	</data>
+	<data name="Settings_Tools" xml:space="preserve">
+		<value>Tools</value>
+	</data>
+	<data name="Settings_NutritionCalculator" xml:space="preserve">
+		<value>Nährstoffrechner</value>
+	</data>
+	<data name="Settings_GeneralSettings" xml:space="preserve">
+		<value>Allgemeine Einstellungen</value>
+	</data>
+	<data name="Settings_ComingSoon" xml:space="preserve">
+		<value>Bald verfügbar...</value>
+	</data>
+	<data name="Settings_About" xml:space="preserve">
+		<value>Über</value>
+	</data>
+	<data name="Settings_FitnessTrackerApp" xml:space="preserve">
+		<value>Fitness-Tracker-App</value>
+	</data>
+	<data name="Settings_Version" xml:space="preserve">
+		<value>Version</value>
+	</data>
+	<data name="Onboarding_Welcome" xml:space="preserve">
+		<value>Willkommen bei LocalFit!</value>
+	</data>
+	<data name="Onboarding_GetStarted" xml:space="preserve">
+		<value>Lass uns beginnen, indem wir dein Profil einrichten</value>
+	</data>
+	<data name="Onboarding_Step1_Title" xml:space="preserve">
+		<value>Schritt 1: Füge dein Gewicht hinzu</value>
+	</data>
+	<data name="Onboarding_Step1_Description" xml:space="preserve">
+		<value>Wir benötigen dein aktuelles Gewicht und deine Größe, um deine täglichen Nährstoffziele zu berechnen.</value>
+	</data>
+	<data name="Onboarding_AddWeightEntry" xml:space="preserve">
+		<value>Gewichtseintrag hinzufügen</value>
+	</data>
+	<data name="Onboarding_SkipForNow" xml:space="preserve">
+		<value>Jetzt überspringen</value>
+	</data>
+	<data name="Onboarding_Step2_Title" xml:space="preserve">
+		<value>Schritt 2: Konfiguriere deine Ziele</value>
+	</data>
+	<data name="Onboarding_Step2_Description" xml:space="preserve">
+		<value>Erzähle uns von deinen Fitnesszielen und deinem Aktivitätslevel, damit wir deine personalisierten täglichen Nährstoffziele berechnen können.</value>
+	</data>
+	<data name="Onboarding_SetUpGoals" xml:space="preserve">
+		<value>Ziele einrichten</value>
+	</data>
+	<data name="Onboarding_SetFitnessGoals" xml:space="preserve">
+		<value>Setze deine Fitnessziele</value>
+	</data>
+	<data name="Onboarding_AllSet" xml:space="preserve">
+		<value>Du bist bereit!</value>
+	</data>
+	<data name="Onboarding_AllSetDescription" xml:space="preserve">
+		<value>Du kannst jetzt mit dem Tracking deiner Nahrung und Nährstoffe beginnen. Du kannst dein Gewicht und deine Ziele jederzeit in den Einstellungen aktualisieren.</value>
+	</data>
+	<data name="WeightTracker_CurrentWeight" xml:space="preserve">
+		<value>Aktuelles Gewicht</value>
+	</data>
+	<data name="WeightTracker_Kg" xml:space="preserve">
+		<value>kg</value>
+	</data>
+	<data name="WeightTracker_Height" xml:space="preserve">
+		<value>Größe:</value>
+	</data>
+	<data name="WeightTracker_Cm" xml:space="preserve">
+		<value>cm</value>
+	</data>
+	<data name="WeightTracker_WeightHistory" xml:space="preserve">
+		<value>Gewichtsverlauf</value>
+	</data>
+	<data name="AddFoodDialog_Title" xml:space="preserve">
+		<value>Essen hinzufügen</value>
+	</data>
+	<data name="AddFoodDialog_SearchWatermark" xml:space="preserve">
+		<value>Lebensmittel suchen...</value>
+	</data>
+	<data name="AddFoodDialog_Amount" xml:space="preserve">
+		<value>Menge:</value>
+	</data>
+	<data name="AddFoodDialog_NutritionCalculated" xml:space="preserve">
+		<value>Nährstoffe (berechnet)</value>
+	</data>
+	<data name="AddFoodDialog_Calories" xml:space="preserve">
+		<value>Kalorien:</value>
+	</data>
+	<data name="AddFoodDialog_Protein" xml:space="preserve">
+		<value>Protein:</value>
+	</data>
+	<data name="AddFoodDialog_Fat" xml:space="preserve">
+		<value>Fett:</value>
+	</data>
+	<data name="AddFoodDialog_Carbs" xml:space="preserve">
+		<value>Kohlenhydrate:</value>
+	</data>
+	<data name="AddFoodDialog_CreateNew" xml:space="preserve">
+		<value>Neu erstellen</value>
+	</data>
+	<data name="AddWeightDialog_Title" xml:space="preserve">
+		<value>Gewichtseintrag hinzufügen</value>
+	</data>
+	<data name="AddWeightDialog_Weight" xml:space="preserve">
+		<value>Gewicht (kg):</value>
+	</data>
+	<data name="AddWeightDialog_Height" xml:space="preserve">
+		<value>Größe (cm):</value>
+	</data>
+	<data name="AddWeightDialog_Birthday" xml:space="preserve">
+		<value>Geburtstag:</value>
+	</data>
+	<data name="AddWeightDialog_Note" xml:space="preserve">
+		<value>Notiz (optional):</value>
+	</data>
+	<data name="AddWeightDialog_NoteWatermark" xml:space="preserve">
+		<value>Notiz hinzufügen...</value>
+	</data>
+	<data name="EditFoodDialog_Title" xml:space="preserve">
+		<value>Lebensmitteldetails</value>
+	</data>
+	<data name="EditFoodDialog_Name" xml:space="preserve">
+		<value>Name:</value>
+	</data>
+	<data name="EditFoodDialog_NameWatermark" xml:space="preserve">
+		<value>Lebensmittelname</value>
+	</data>
+	<data name="EditFoodDialog_Calories" xml:space="preserve">
+		<value>Kalorien:</value>
+	</data>
+	<data name="EditFoodDialog_Protein" xml:space="preserve">
+		<value>Protein (g):</value>
+	</data>
+	<data name="EditFoodDialog_Fat" xml:space="preserve">
+		<value>Fett (g):</value>
+	</data>
+	<data name="EditFoodDialog_Carbs" xml:space="preserve">
+		<value>Kohlenhydrate (g):</value>
+	</data>
+	<data name="EditFoodDialog_Sugar" xml:space="preserve">
+		<value>Zucker (g):</value>
+	</data>
+	<data name="EditFoodDialog_Unit" xml:space="preserve">
+		<value>Einheit:</value>
+	</data>
+	<data name="EditEatenFoodDialog_Title" xml:space="preserve">
+		<value>Essensmenge bearbeiten</value>
+	</data>
+	<data name="EditEatenFoodDialog_Food" xml:space="preserve">
+		<value>Essen:</value>
+	</data>
+	<data name="EditEatenFoodDialog_Amount" xml:space="preserve">
+		<value>Menge:</value>
+	</data>
+	<data name="GoalSetupDialog_Title" xml:space="preserve">
+		<value>Fitnessziele</value>
+	</data>
+	<data name="GoalSetupDialog_CalorieGoal" xml:space="preserve">
+		<value>Kalorienziel:</value>
+	</data>
+	<data name="GoalSetupDialog_FitnessLevel" xml:space="preserve">
+		<value>Aktivitätslevel:</value>
+	</data>
+	<data name="GoalSetupDialog_Sex" xml:space="preserve">
+		<value>Geschlecht:</value>
+	</data>
+	<data name="GoalSetupDialog_DietType" xml:space="preserve">
+		<value>Ernährungstyp:</value>
+	</data>
+	<data name="NutritionCalculator_Title" xml:space="preserve">
+		<value>Nährstoffrechner</value>
+	</data>
+	<data name="NutritionCalculator_Description" xml:space="preserve">
+		<value>Berechne deinen täglichen Nährstoffbedarf</value>
+	</data>
+	<data name="NutritionCalculator_PersonalInformation" xml:space="preserve">
+		<value>Persönliche Informationen</value>
+	</data>
+	<data name="NutritionCalculator_Weight" xml:space="preserve">
+		<value>Gewicht (kg):</value>
+	</data>
+	<data name="NutritionCalculator_Height" xml:space="preserve">
+		<value>Größe (cm):</value>
+	</data>
+	<data name="NutritionCalculator_Age" xml:space="preserve">
+		<value>Alter:</value>
+	</data>
+	<data name="NutritionCalculator_Sex" xml:space="preserve">
+		<value>Geschlecht:</value>
+	</data>
+	<data name="NutritionCalculator_ActivityGoals" xml:space="preserve">
+		<value>Aktivität/Ziele</value>
+	</data>
+	<data name="NutritionCalculator_FitnessLevel" xml:space="preserve">
+		<value>Aktivitätslevel:</value>
+	</data>
+	<data name="NutritionCalculator_CalorieGoal" xml:space="preserve">
+		<value>Kalorienziel:</value>
+	</data>
+	<data name="NutritionCalculator_DietType" xml:space="preserve">
+		<value>Ernährungstyp:</value>
+	</data>
+	<data name="NutritionCalculator_DailyNutritionTargets" xml:space="preserve">
+		<value>Tägliche Nährstoffziele</value>
+	</data>
+	<data name="NutritionCalculator_Calories" xml:space="preserve">
+		<value>Kalorien:</value>
+	</data>
+	<data name="NutritionCalculator_Protein" xml:space="preserve">
+		<value>Protein:</value>
+	</data>
+	<data name="NutritionCalculator_Fat" xml:space="preserve">
+		<value>Fett:</value>
+	</data>
+	<data name="NutritionCalculator_Carbs" xml:space="preserve">
+		<value>Kohlenhydrate:</value>
+	</data>
+	<data name="NutritionCalculator_BMI" xml:space="preserve">
+		<value>BMI:</value>
+	</data>
+	<data name="NutritionCalculator_Kcal" xml:space="preserve">
+		<value>kcal</value>
+	</data>
+	<data name="FitnessLevel_Sedentary" xml:space="preserve">
+		<value>wenig oder keine Bewegung</value>
+	</data>
+	<data name="FitnessLevel_LightlyActive" xml:space="preserve">
+		<value>1-3 mal pro Woche trainieren</value>
+	</data>
+	<data name="FitnessLevel_ModeratelyActive" xml:space="preserve">
+		<value>4-5 mal pro Woche trainieren</value>
+	</data>
+	<data name="FitnessLevel_VeryActive" xml:space="preserve">
+		<value>täglich trainieren oder intensives Training 3-4 mal pro Woche</value>
+	</data>
+	<data name="FitnessLevel_Athlete" xml:space="preserve">
+		<value>intensives Training 6-7 mal pro Woche</value>
+	</data>
+	<data name="Sex_Male" xml:space="preserve">
+		<value>Männlich</value>
+	</data>
+	<data name="Sex_Female" xml:space="preserve">
+		<value>Weiblich</value>
+	</data>
+	<data name="FitnessLevel_Sedentary_Display" xml:space="preserve">
+		<value>Bewegungsarm</value>
+	</data>
+	<data name="FitnessLevel_LightlyActive_Display" xml:space="preserve">
+		<value>Leicht aktiv</value>
+	</data>
+	<data name="FitnessLevel_ModeratelyActive_Display" xml:space="preserve">
+		<value>Mäßig aktiv</value>
+	</data>
+	<data name="FitnessLevel_VeryActive_Display" xml:space="preserve">
+		<value>Sehr aktiv</value>
+	</data>
+	<data name="FitnessLevel_Athlete_Display" xml:space="preserve">
+		<value>Sportler</value>
+	</data>
+	<data name="CalorieGoal_AggressiveCut" xml:space="preserve">
+		<value>Aggressives Defizit</value>
+	</data>
+	<data name="CalorieGoal_Cut" xml:space="preserve">
+		<value>Defizit</value>
+	</data>
+	<data name="CalorieGoal_Maintenance" xml:space="preserve">
+		<value>Erhaltung</value>
+	</data>
+	<data name="CalorieGoal_Bulk" xml:space="preserve">
+		<value>Masseaufbau</value>
+	</data>
+	<data name="CalorieGoal_AggressiveBulk" xml:space="preserve">
+		<value>Aggressiver Masseaufbau</value>
+	</data>
+	<data name="DietType_Balanced" xml:space="preserve">
+		<value>Ausgewogen</value>
+	</data>
+	<data name="DietType_LowFat" xml:space="preserve">
+		<value>Fettarm</value>
+	</data>
+	<data name="DietType_LowCarb" xml:space="preserve">
+		<value>Kohlenhydratarm</value>
+	</data>
+	<data name="DietType_HighProtein" xml:space="preserve">
+		<value>Proteinreich</value>
+	</data>
+</root>

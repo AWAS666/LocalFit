@@ -4,6 +4,7 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:LocalFit.ViewModels"
 			 xmlns:local="using:LocalFit.Views.Dialogs"
+			 xmlns:lang="using:LocalFit.Lang"
 			 mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
 			 x:Class="LocalFit.Views.FoodManager"
 			 x:DataType="vm:FoodManagerViewModel">
@@ -12,10 +13,10 @@
 	</Design.DataContext>
 	<Grid RowDefinitions="Auto,Auto,*,Auto">
 		<!-- Header -->
-		<TextBlock Text="Food Manager" FontSize="24" FontWeight="Bold" Margin="20,20,20,10" Grid.Row="0"/>
+		<TextBlock Text="{x:Static lang:Resources.FoodManager_Title}" FontSize="24" FontWeight="Bold" Margin="20,20,20,10" Grid.Row="0"/>
 		
 		<!-- Search -->
-		<TextBox Text="{Binding SearchText}" VerticalContentAlignment="Center" Watermark="Search foods..." Grid.Row="1" Margin="20,0" Height="44"/>
+		<TextBox Text="{Binding SearchText}" VerticalContentAlignment="Center" Watermark="{x:Static lang:Resources.FoodManager_SearchWatermark}" Grid.Row="1" Margin="20,0" Height="44"/>
 		
 		<!-- Food List -->
 		<ListBox ItemsSource="{Binding Foods}" Grid.Row="2" Margin="10" Background="Transparent">
@@ -26,21 +27,29 @@
 							<StackPanel Grid.Column="0">
 								<TextBlock Text="{Binding Name}" FontWeight="SemiBold" FontSize="16"/>
 								<TextBlock FontSize="12" Margin="0,4,0,0" Opacity="0.7">
-									<Run Text="Cal: "/>
+									<Run Text="{x:Static lang:Resources.FoodManager_Cal}"/>
+									<Run Text=" "/>
 									<Run Text="{Binding Calories}"/>
-									<Run Text=" kcal"/>
+									<Run Text=" "/>
+									<Run Text="{x:Static lang:Resources.NutritionCalculator_Kcal}"/>
 									<Run Text="{Binding UnitDisplay}"/>
-									<Run Text=" | P: "/>
+									<Run Text=" | "/>
+									<Run Text="{x:Static lang:Resources.FoodManager_P}"/>
+									<Run Text=" "/>
 									<Run Text="{Binding Protein}"/>
-									<Run Text="g"/>
+									<Run Text="{x:Static lang:Resources.FoodManager_Grams}"/>
 									<Run Text="{Binding UnitDisplay}"/>
-									<Run Text=" | F: "/>
+									<Run Text=" | "/>
+									<Run Text="{x:Static lang:Resources.FoodManager_F}"/>
+									<Run Text=" "/>
 									<Run Text="{Binding Fat}"/>
-									<Run Text="g"/>
+									<Run Text="{x:Static lang:Resources.FoodManager_Grams}"/>
 									<Run Text="{Binding UnitDisplay}"/>
-									<Run Text=" | C: "/>
+									<Run Text=" | "/>
+									<Run Text="{x:Static lang:Resources.FoodManager_C}"/>
+									<Run Text=" "/>
 									<Run Text="{Binding Carbs}"/>
-									<Run Text="g"/>
+									<Run Text="{x:Static lang:Resources.FoodManager_Grams}"/>
 									<Run Text="{Binding UnitDisplay}"/>
 								</TextBlock>
 							</StackPanel>

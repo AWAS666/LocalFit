@@ -4,11 +4,13 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 using LocalFit.Lib.DataBase;
+using LocalFit.Lang;
 using LocalFit.ViewModels;
 using LocalFit.Views;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -34,6 +36,7 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
+        Lang.Resources.Culture = CultureInfo.CurrentUICulture;
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
