@@ -1,25 +1,35 @@
 # LocalFit
 
+Local calorie, food, and weight tracker. Data stays in a SQLite file under Local Application Data.
+
+Avalonia, CommunityToolkit.Mvvm, EF Core. .NET 10. Desktop, Android, iOS, and browser.
+
+```
+dotnet run --project LocalFit.Desktop
+```
+
 ## Todo
-- [x] Add Dialogs for adding/editing db stuff
-- [ ] Barcode Scanner for presets/foods
-- [ ] Photos/camera access in general
-- [ ] Food api to build base database?
-- [ ] better mvvm, we do have some view specific fields in models right now
-- [x] change ui design to just black/white (or #222222/ #DDDDDD)
-- [ ] https://github.com/accntech/shad-ui/ -> implement or to little difference?
-- [x] track favourite items -> add counter field to presets
-- [x] add last amount -> default to last used amount when adding preset
-- [ ] date picker for quick navigation
-- [ ] display sugar
-- [ ] water tracking
-- [ ] charts, weight, bmi etc
-- [ ] confirm dialog b4 delete + restore deleted as we just flag them as cascading may fuck up stuff
+
+- [x] Dialogs for adding and editing data
+- [ ] Barcode scanner for presets
+- [ ] Camera and photos
+- [ ] Food API to seed a base database
+- [ ] Move view-specific fields out of models
+- [x] Black and white UI (`#222222` / `#DDDDDD`)
+- [ ] [shad-ui](https://github.com/accntech/shad-ui) — adopt, or too little difference?
+- [x] Favourite tracking (`UseCount` on presets)
+- [x] Default new entries to the last used amount
+- [ ] Date picker for quick navigation
+- [ ] Display sugar
+- [ ] Water tracking
+- [ ] Charts for weight and BMI
+- [ ] Confirm before delete, and restore soft-deleted items (cascading deletes can break related data)
 
 ## Todo Global
-- translations
-- backend for foods
-- user backups? -> possibly paid feature
-- more social features (friends, groups, challenges, etc) ? -> not sure if anyone would use this
-- llm integration, not sure if actually useful or just a gimmick
-- meal photos
+
+- Translations
+- Food backend
+- User backups (possible paid feature)
+- Social features (friends, groups, challenges) — unclear if useful
+- LLM integration — unclear if useful
+- Meal photos
